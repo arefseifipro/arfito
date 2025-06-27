@@ -1,0 +1,27 @@
+body {
+    background-color: #1a2238;
+    color: #f0f0f0;
+    font-family: 'Vazir', sans-serif;
+  }
+  
+  h1, h2, h3 {
+    letter-spacing: 0.5px;
+  }
+  
+  p {
+    line-height: 1.9;
+    font-size: 1.1rem;
+  }
+  
+  .nav-link:hover {
+    color: #fca311 !important;
+  }
+  
+  .btn-warning {
+    background-color: #fca311;
+    border: none;
+  }
+  
+  .btn-warning:hover {
+    background-color: #e38b00;
+  }
