@@ -6,25 +6,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
-
+  <style>
+    :root {
+      --bg-color: #1a2238;
+      --text-color: #ffffff;
+    }
+    body.light-mode {
+      --bg-color: #f8f9fa;
+      --text-color: #212529;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+    .navbar-custom {
+      background-color: var(--bg-color);
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      width: 25px;
+      height: 3px;
+      background: var(--text-color);
+      margin: 4px 0;
+      transition: background 0.3s;
+    }
+    .custom-nav {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .custom-nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .custom-nav a:hover {
+      color: #f0c040;
+    }
+    .toggle-theme {
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--text-color);
+      margin-right: 10px;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      .custom-nav {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: -250px;
+        background: var(--bg-color);
+        width: 200px;
+        padding: 20px;
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+      .custom-nav.active {
+        right: 0;
+      }
+    }
+  </style>
 </head>
-<body class="bg-midnight text-white" style="min-height: 100vh;">
-
+<body>
   <!-- ناوبری -->
-  <nav class="navbar navbar-dark px-4 py-3" style="background-color: #1a2238;">
-    <a class="navbar-brand fs-3 fw-bold text-warning" href="#">Arfito</a>
-    <ul class="nav">
-      <li class="nav-item"><a class="nav-link text-light" href="index.html">خانه</a></li>
-      <li class="nav-item"><a class="nav-link text-light" href="about.html">درباره ما</a></li>
-      <li class="nav-item"><a class="nav-link text-light" href="projects.html">پروژه‌ها</a></li>
-      <li class="nav-item"><a class="nav-link text-light" href="contact.html">تماس</a></li>
+  <nav class="navbar navbar-dark px-4 py-3 navbar-custom" style="position: relative;">
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand fs-3 fw-bold text-warning me-3" href="#">Arfito</a>
+      <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم">🌙</button>
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="custom-nav" id="main-nav">
+      <li><a href="index.html">خانه</a></li>
+      <li><a href="about.html">درباره ما</a></li>
+      <li><a href="projects.html">پروژه‌ها</a></li>
+      <li><a href="contact.html">تماس</a></li>
     </ul>
   </nav>
 
   <!-- معرفی -->
   <main class="container py-5 text-center">
     <h1 class="fw-bold mb-4 text-warning">سلام! ما Arfito هستیم</h1>
-    <p class="lead text-light mb-4 px-md-5">
+    <p class="lead mb-4 px-md-5">
       یه تیم برنامه‌نویسی خلاق و پیگیر که عاشق دنیای کده. از طراحی فرانت‌اند‌های خوش‌دست گرفته تا الگوریتم‌های سنگین سمت سرور—پشت هر پروژه‌ای، یه ذره شور و شوق گذاشتیم.
     </p>
     <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3">بزن بریم پروژه‌ها</a>
@@ -35,5 +115,35 @@
     © 2025 Arfito — ساخته شده با عشق و سطرهای کد 💻✨
   </footer>
 
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const nav = document.getElementById('main-nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
+
+    // Theme toggle
+    const toggleThemeBtn = document.getElementById('toggle-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
+
+    const applyTheme = (mode) => {
+      document.body.classList.toggle('light-mode', mode === 'light');
+      toggleThemeBtn.textContent = mode === 'light' ? '☀️' : '🌙';
+      localStorage.setItem('theme', mode);
+    };
+
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else {
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    toggleThemeBtn.addEventListener('click', () => {
+      const isLight = document.body.classList.contains('light-mode');
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+  </script>
 </body>
 </html>

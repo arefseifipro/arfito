@@ -25,3 +25,47 @@ body {
   .btn-warning:hover {
     background-color: #e38b00;
   }
+  .navbar {
+    background: #222;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    transition: all 0.4s ease;
+  }
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .bar {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+  }
+  
+  /* موبایل */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+    .nav {
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: -100%;
+      background: #222;
+      width: 200px;
+      padding: 20px;
+    }}
