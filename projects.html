@@ -5,7 +5,12 @@
   <title>پروژه‌ها | Arfito</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  
+
+
   <style>
     :root {
       --bg-color: #1a2238;
@@ -15,13 +20,21 @@
       --bg-color: #f8f9fa;
       --text-color: #212529;
     }
+    body.dark-mode {
+      --bg-color: #1a2238;
+      --text-color: #ffffff;
+    }
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
+      font-family: 'Vazirmatn', sans-serif;
       transition: background-color 0.3s, color 0.3s;
     }
     .navbar-custom {
       background-color: var(--bg-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     .menu-toggle {
       display: none;
@@ -33,6 +46,7 @@
       height: 3px;
       background: var(--text-color);
       margin: 4px 0;
+      transition: all 0.3s ease;
     }
     .custom-nav {
       list-style: none;
@@ -77,11 +91,21 @@
         right: 0;
       }
     }
+    .section-card {
+      background-color: #212b4a;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+    }
+    .section-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
-<body>
-  <!-- ناوبری -->
-  <nav class="navbar navbar-dark px-4 py-3 navbar-custom" style="position: relative;">
+<body class="dark-mode">
+  <nav class="navbar navbar-dark px-4 py-3 navbar-custom">
     <div class="d-flex align-items-center">
       <a class="navbar-brand fs-3 fw-bold text-warning me-3" href="index.html">Arfito</a>
       <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم">🌙</button>
@@ -98,84 +122,196 @@
     </ul>
   </nav>
 
+  <section class="container py-5">
+    <h2 class="text-warning text-center mb-4">پروژه‌های Arfito</h2>
+  
+    <div class="mb-4">
+      <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="جستجوی پروژه..." />
+    </div>
+  
+    <div class="row" id="projectList">
+      <div class="col-md-4 mb-4 project-item">
+        <a href="projects/edu1.html" class="text-decoration-none">
+          <div class="card bg-dark text-white h-100">
+            <div class="card-body">
+              <h5 class="card-title">بازی دوز</h5>
+              <p class="card-text">پروژه CLI با پایتون</p>
+            </div>
+          </div>
+        </a>
+      </div>
+  
+      <div class="col-md-4 mb-4 project-item">
+        <a href="projects/edu2.html" class="text-decoration-none">
+          <div class="card bg-dark text-white h-100">
+            <div class="card-body">
+              <h5 class="card-title">فرم لاگین</h5>
+              <p class="card-text">طراحی واکنش‌گرا با HTML و CSS</p>
+            </div>
+          </div>
+        </a>
+      </div>
+  
+      <div class="col-md-4 mb-4 project-item">
+        <a href="projects/flight-reservation.html" class="text-decoration-none">
+          <div class="card bg-dark text-white h-100">
+            <div class="card-body">
+              <h5 class="card-title">سامانه رزرو پرواز</h5>
+              <p class="card-text">پروژه صنعتی با Bootstrap</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  
   <main class="container py-5">
-    <h2 class="text-warning mb-5 text-center">پروژه‌های ما</h2>
-
-    <div class="row align-items-center mb-5">
-      <div class="col-md-3 text-center mb-3 mb-md-0">
-        <img src="assets/images/project1.png" alt="لوگوی پروژه اول" class="img-fluid rounded" />
+    <h2 class="text-warning mb-5 text-center" data-aos="fade-up">دسته‌بندی پروژه‌ها</h2>
+    <div class="row g-4">
+      <!-- صنعتی -->
+      <div class="col-md-6" data-aos="fade-up">
+        <div class="section-card h-100">
+          <h4 class="text-warning">پروژه‌های صنعتی</h4>
+          <p class="text-light">پروژه‌هایی که برای شرکت‌ها، سازمان‌ها یا کسب‌وکارهای واقعی توسعه داده شده‌اند. شامل سیستم‌های رزرو، داشبوردهای مدیریتی و اپلیکیشن‌های تجاری.</p>
+          <a href="projects-industrial.html" class="btn btn-outline-warning mt-3">مشاهده پروژه‌های صنعتی</a>
+        </div>
       </div>
-      <div class="col-md-9">
-        <h4 class="text-warning">عنوان پروژه اول</h4>
-        <p>اینجا توضیح کوتاه در مورد پروژه قرار می‌گیره. مثلاً اینکه پروژه چی هست، با چی پیاده‌سازی شده، چه مشکلی رو حل می‌کنه و چرا جذابه.</p>
-        <a href="projects/project1.html" class="btn btn-outline-warning mt-2">بازدید پروژه</a>
-      </div>
-    </div>
-
-    <div class="row align-items-center mb-5">
-      <div class="col-md-3 text-center mb-3 mb-md-0">
-        <img src="assets/images/project2.png" alt="لوگوی پروژه دوم" class="img-fluid rounded" />
-      </div>
-      <div class="col-md-9">
-        <h4 class="text-warning">عنوان پروژه دوم</h4>
-        <p>توضیح پروژه دوم...</p>
-        <a href="projects/project2.html" class="btn btn-outline-warning mt-2">بازدید پروژه</a>
-      </div>
-    </div>
-
-    <div class="row align-items-center mb-5">
-      <div class="col-md-3 text-center mb-3 mb-md-0">
-        <img src="assets/images/project3.png" alt="لوگوی پروژه سوم" class="img-fluid rounded" />
-      </div>
-      <div class="col-md-9">
-        <h4 class="text-warning">عنوان پروژه سوم</h4>
-        <p>توضیح پروژه سوم...</p>
-        <a href="projects/project3.html" class="btn btn-outline-warning mt-2">بازدید پروژه</a>
-      </div>
-    </div>
-
-    <div class="row align-items-center mb-5">
-      <div class="col-md-3 text-center mb-3 mb-md-0">
-        <img src="assets/images/project4.png" alt="لوگوی پروژه چهارم" class="img-fluid rounded" />
-      </div>
-      <div class="col-md-9">
-        <h4 class="text-warning">عنوان پروژه چهارم</h4>
-        <p>توضیح پروژه چهارم...</p>
-        <a href="projects/project4.html" class="btn btn-outline-warning mt-2">بازدید پروژه</a>
-      </div>
-    </div>
-
-    <div class="row align-items-center mb-5">
-      <div class="col-md-3 text-center mb-3 mb-md-0">
-        <img src="assets/images/airport.webp" alt="لوگوی پروژه پنجم" class="img-fluid rounded" />
-      </div>
-      <div class="col-md-9">
-        <h4 class="text-warning">عنوان پروژه پنجم</h4>
-        <p>توضیح پروژه پنجم...</p>
-        <a href="projects/project5.html" class="btn btn-outline-warning mt-2">بازدید پروژه</a>
+      <!-- آموزشی -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="section-card h-100">
+          <h4 class="text-warning">پروژه‌های آموزشی</h4>
+          <p class="text-light">پروژه‌هایی که برای یادگیری، تمرین و آموزش طراحی شده‌اند. شامل تمرین‌های فرانت‌اند، بک‌اند، الگوریتم‌ها و پروژه‌های تمرینی.</p>
+          <a href="projects-educational.html" class="btn btn-outline-warning mt-3">مشاهده پروژه‌های آموزشی</a>
+        </div>
       </div>
     </div>
   </main>
-
-  <footer class="text-center text-secondary py-3 small">
-    Arfito • طراحی شده برای نمایش قدرت کد
+  <section class="py-5" id="timeline">
+    <div class="container">
+      <h2 class="text-warning text-center mb-5">تاریخچه پروژه‌ها</h2>
+      <div class="timeline-wrapper d-flex flex-wrap flex-md-nowrap overflow-auto px-2 gap-3">
+        
+        <div class="timeline-card" data-aos="fade-up">
+          <div class="timeline-date">فروردین ۱۴۰۳</div>
+          <h5 class="text-warning">بازی دوز</h5>
+          <p class="small">اولین پروژه CLI با پایتون. تمرین حلقه‌ها، شرط‌ها و ساختار داده‌ها.</p>
+          <span class="badge">Python</span>
+          <span class="badge">Terminal</span>
+        </div>
+  
+        <div class="timeline-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="timeline-date">خرداد ۱۴۰۳</div>
+          <h5 class="text-warning">فرم لاگین</h5>
+          <p class="small">تمرین طراحی رابط کاربری با HTML و CSS. اولین تجربه با Flexbox.</p>
+          <span class="badge">HTML5</span>
+          <span class="badge">CSS3</span>
+          <span class="badge">Flexbox</span>
+        </div>
+  
+        <div class="timeline-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="timeline-date">مرداد ۱۴۰۳</div>
+          <h5 class="text-warning">رزرو پرواز</h5>
+          <p class="small">پروژه صنعتی با طراحی UI کامل. تمرین فرم‌ها، فیلترها و تجربه کاربری.</p>
+          <span class="badge">Bootstrap</span>
+          <span class="badge">UI Design</span>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+  
+  <section class="py-5 text-center" id="stats">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+        <div class="col-6 col-md-3">
+          <h2 class="text-warning display-5 counter" data-target="125">0</h2>
+          <p class="mt-2">پروژه آموزشی</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h2 class="text-warning display-5 counter" data-target="5">0</h2>
+          <p class="mt-2">پروژه صنعتی</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h2 class="text-warning display-5 counter" data-target="350">0</h2>
+          <p class="mt-2">بازدیدکننده</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="200">
+    © 2025 Arfito — طراحی شده با عشق و سطرهای کد 💻✨
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    // Mobile menu toggle
+    AOS.init({ duration: 800, once: true });
+  </script>
+
+  
+  <script>
+    const counters = document.querySelectorAll('.counter');
+    let started = false;
+  
+    const runCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          const increment = Math.ceil(target / 50);
+  
+          if (count < target) {
+            counter.innerText = count + increment;
+            setTimeout(updateCount, 30);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    };
+  
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !started) {
+        runCounters();
+        started = true;
+      }
+    }, { threshold: 0.5 });
+  
+    observer.observe(document.getElementById('stats'));
+  </script>
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const projectItems = document.querySelectorAll('.project-item');
+  
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      projectItems.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
     const menuToggle = document.getElementById('mobile-menu');
     const nav = document.getElementById('main-nav');
     menuToggle.addEventListener('click', () => {
       nav.classList.toggle('active');
+      menuToggle.classList.toggle('open');
     });
 
-    // Theme toggle
     const toggleThemeBtn = document.getElementById('toggle-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const storedTheme = localStorage.getItem('theme');
 
     const applyTheme = (mode) => {
-      document.body.classList.toggle('light-mode', mode === 'light');
+      document.body.classList.remove('light-mode', 'dark-mode');
+      document.body.classList.add(mode === 'light' ? 'light-mode' : 'dark-mode');
       toggleThemeBtn.textContent = mode === 'light' ? '☀️' : '🌙';
       localStorage.setItem('theme', mode);
     };
@@ -183,6 +319,7 @@
     if (storedTheme) {
       applyTheme(storedTheme);
     } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       applyTheme(prefersDark ? 'dark' : 'light');
     }
 
@@ -191,5 +328,42 @@
       applyTheme(isLight ? 'dark' : 'light');
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+  
+  <style>
+    #stats h2 {
+      font-weight: bold;
+    }
+    #stats p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+    }
+  </style>
+  <style>
+    .form-control-lg {
+      background-color: #2e3a5e;
+      color: #fff;
+      border: none;
+    }
+    .form-control-lg::placeholder {
+      color: #ccc;
+    }
+    .card:hover {
+      transform: scale(1.02);
+      transition: 0.3s ease;
+    }
+    body.light-mode .form-control-lg {
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    body.light-mode .card.bg-dark {
+      background-color: #fff !important;
+      color: #212529 !important;
+    }
+  </style>
+  
 </body>
 </html>

@@ -4,8 +4,19 @@
   <meta charset="UTF-8" />
   <title>Arfito | تیم برنامه‌نویسی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+
+  <!-- فونت گوگلی Vazirmatn -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- AOS Animation -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- استایل اختصاصی -->
   <link rel="stylesheet" href="css/style.css" />
+
   <style>
     :root {
       --bg-color: #1a2238;
@@ -20,38 +31,85 @@
       color: var(--text-color);
       transition: background-color 0.3s, color 0.3s;
       min-height: 100vh;
+      font-family: 'Vazirmatn', sans-serif;
     }
+
     .navbar-custom {
       background-color: var(--bg-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
+
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
+
     .bar {
       width: 25px;
       height: 3px;
       background: var(--text-color);
       margin: 4px 0;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
     }
+
+    .menu-toggle.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
     .custom-nav {
       list-style: none;
       display: flex;
       gap: 20px;
       margin: 0;
       padding: 0;
+      opacity: 0;
+      animation: fadeInNav 1s ease forwards;
+      animation-delay: 0.5s;
     }
+
     .custom-nav a {
       color: var(--text-color);
       text-decoration: none;
       font-weight: bold;
+      position: relative;
       transition: color 0.3s;
     }
+
+    .custom-nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      right: 0;
+      background-color: #f0c040;
+      transition: width 0.3s ease;
+    }
+
     .custom-nav a:hover {
       color: #f0c040;
     }
+
+    .custom-nav a:hover::after {
+      width: 100%;
+    }
+
+    @keyframes fadeInNav {
+      to {
+        opacity: 1;
+      }
+    }
+
     .toggle-theme {
       cursor: pointer;
       background: none;
@@ -60,6 +118,7 @@
       color: var(--text-color);
       margin-right: 10px;
     }
+
     @media (max-width: 768px) {
       .menu-toggle {
         display: flex;
@@ -72,18 +131,21 @@
         background: var(--bg-color);
         width: 200px;
         padding: 20px;
-        transition: right 0.3s ease;
+        transition: right 0.4s ease;
         z-index: 999;
+        transform: translateX(100%);
       }
       .custom-nav.active {
         right: 0;
+        transform: translateX(0);
       }
     }
   </style>
 </head>
 <body>
+
   <!-- ناوبری -->
-  <nav class="navbar navbar-dark px-4 py-3 navbar-custom" style="position: relative;">
+  <nav class="navbar navbar-dark px-4 py-3 navbar-custom" data-aos="fade-down">
     <div class="d-flex align-items-center">
       <a class="navbar-brand fs-3 fw-bold text-warning me-3" href="#">Arfito</a>
       <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم">🌙</button>
@@ -103,24 +165,54 @@
 
   <!-- معرفی -->
   <main class="container py-5 text-center">
-    <h1 class="fw-bold mb-4 text-warning">سلام! ما Arfito هستیم</h1>
-    <p class="lead mb-4 px-md-5">
+    <h1 class="fw-bold mb-4 text-warning" data-aos="zoom-in">سلام! ما Arfito هستیم</h1>
+    <p class="lead mb-4 px-md-5" data-aos="fade-up" data-aos-delay="200">
       یه تیم برنامه‌نویسی خلاق و پیگیر که عاشق دنیای کده. از طراحی فرانت‌اند‌های خوش‌دست گرفته تا الگوریتم‌های سنگین سمت سرور—پشت هر پروژه‌ای، یه ذره شور و شوق گذاشتیم.
     </p>
-    <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3">بزن بریم پروژه‌ها</a>
+    <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3" data-aos="fade-up" data-aos-delay="400">بزن بریم پروژه‌ها</a>
   </main>
 
+  <section class="container py-5">
+    <h2 class="text-warning text-center mb-4">🧰 جعبه ابزار Arfito</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <h5 class="text-light">ویرایشگر کد</h5>
+        <p>Visual Studio Code + افزونه‌های Live Server، Prettier، GitLens</p>
+      </div>
+      <div class="col-md-6">
+        <h5 class="text-light">طراحی و وایرفریم</h5>
+        <p>Figma، Canva، طراحی دستی روی کاغذ</p>
+      </div>
+      <div class="col-md-6">
+        <h5 class="text-light">مرورگر توسعه</h5>
+        <p>Firefox Developer Edition + Chrome DevTools</p>
+      </div>
+      <div class="col-md-6">
+        <h5 class="text-light">منابع یادگیری</h5>
+        <p>MDN Web Docs، W3Schools، YouTube، Roadmap.sh</p>
+      </div>
+    </div>
+  </section>
+  
   <!-- فوتر -->
-  <footer class="text-center text-secondary py-3 small">
+  <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="600">
     © 2025 Arfito — ساخته شده با عشق و سطرهای کد 💻✨
   </footer>
 
+  <!-- اسکریپت‌ها -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+
     // Mobile menu toggle
     const menuToggle = document.getElementById('mobile-menu');
     const nav = document.getElementById('main-nav');
     menuToggle.addEventListener('click', () => {
       nav.classList.toggle('active');
+      menuToggle.classList.toggle('open');
     });
 
     // Theme toggle

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>پروژه‌های آموزشی | Arfito</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #1a2238;
+      --text-color: #ffffff;
+    }
+    body.light-mode {
+      --bg-color: #f8f9fa;
+      --text-color: #212529;
+    }
+    body.dark-mode {
+      --bg-color: #1a2238;
+      --text-color: #ffffff;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Vazirmatn', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .navbar-custom {
+      background-color: var(--bg-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      width: 25px;
+      height: 3px;
+      background: var(--text-color);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    .custom-nav {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .custom-nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .custom-nav a:hover {
+      color: #f0c040;
+    }
+    .toggle-theme {
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--text-color);
+      margin-right: 10px;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      .custom-nav {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: -250px;
+        background: var(--bg-color);
+        width: 200px;
+        padding: 20px;
+        transition: right 0.4s ease;
+        z-index: 999;
+        transform: translateX(100%);
+      }
+      .custom-nav.active {
+        right: 0;
+        transform: translateX(0);
+      }
+    }
+    .project-card {
+      background-color: #212b4a;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .project-card img {
+      object-fit: cover;
+      height: 200px;
+    }
+    .project-card .card-body {
+      padding: 1rem 1.25rem;
+    }
+    footer {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="dark-mode">
+  <nav class="navbar navbar-dark px-4 py-3 navbar-custom">
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand fs-3 fw-bold text-warning me-3" href="index.html">Arfito</a>
+      <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم">🌙</button>
+    </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="custom-nav" id="main-nav">
+      <li><a href="index.html">خانه</a></li>
+      <li><a href="about.html">درباره ما</a></li>
+      <li><a href="contact.html">تماس</a></li>
+    </ul>
+  </nav>
+
+  <main class="container py-5">
+    <h2 class="text-warning mb-5 text-center" data-aos="fade-up">پروژه‌های آموزشی</h2>
+    <div class="row g-4">
+      <!-- ۱۱ کارت پروژه آموزشی -->
+      <!-- فقط یکی نمونه: بقیه رو با همین ساختار تکرار کن -->
+      <div class="col-md-6 col-lg-4" data-aos="fade-up">
+        <div class="card project-card h-100">
+          <img src="assets/images/edu1.png" class="card-img-top" alt="پروژه آموزشی ۱">
+          <div class="card-body">
+            <h5 class="card-title text-warning">تمرین فرم لاگین</h5>
+            <p class="card-text text-light">ساخت فرم ورود واکنش‌گرا با HTML و CSS برای تمرین طراحی رابط کاربری.</p>
+            <a href="projects/edu1.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+          </div>
+        </div>
+      </div>
+      <!-- پروژه ۲ -->
+<div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="50">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu2.png" class="card-img-top" alt="پروژه آموزشی ۲">
+      <div class="card-body">
+        <h5 class="card-title text-warning">گالری تصاویر</h5>
+        <p class="card-text text-light">تمرین ساخت گالری با CSS Grid و افکت‌های هاور برای نمایش تصاویر.</p>
+        <a href="projects/edu2.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۳ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu3.png" class="card-img-top" alt="پروژه آموزشی ۳">
+      <div class="card-body">
+        <h5 class="card-title text-warning">ماشین حساب ساده</h5>
+        <p class="card-text text-light">ساخته‌شده با JavaScript برای تمرین عملیات ریاضی و مدیریت ورودی‌ها.</p>
+        <a href="projects/edu3.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۴ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu4.png" class="card-img-top" alt="پروژه آموزشی ۴">
+      <div class="card-body">
+        <h5 class="card-title text-warning">تایمر شمارش معکوس</h5>
+        <p class="card-text text-light">تمرین کار با تاریخ و زمان در جاوااسکریپت برای ساخت تایمر.</p>
+        <a href="projects/edu4.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۵ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu5.png" class="card-img-top" alt="پروژه آموزشی ۵">
+      <div class="card-body">
+        <h5 class="card-title text-warning">لیست وظایف (To-Do)</h5>
+        <p class="card-text text-light">افزودن، حذف و ذخیره وظایف با استفاده از LocalStorage.</p>
+        <a href="projects/edu5.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۶ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu6.png" class="card-img-top" alt="پروژه آموزشی ۶">
+      <div class="card-body">
+        <h5 class="card-title text-warning">نوار پیشرفت</h5>
+        <p class="card-text text-light">ساخت progress bar با CSS و کنترل آن با دکمه‌های جاوااسکریپت.</p>
+        <a href="projects/edu6.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۷ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu7.png" class="card-img-top" alt="پروژه آموزشی ۷">
+      <div class="card-body">
+        <h5 class="card-title text-warning">ساخت تب‌بندی</h5>
+        <p class="card-text text-light">تمرین تب‌سوییچر با HTML, CSS و JS برای نمایش محتوای دسته‌بندی‌شده.</p>
+        <a href="projects/edu7.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۸ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu8.png" class="card-img-top" alt="پروژه آموزشی ۸">
+      <div class="card-body">
+        <h5 class="card-title text-warning">اسلایدر تصاویر</h5>
+        <p class="card-text text-light">ساخت اسلایدر ساده با دکمه‌های قبلی/بعدی و افکت‌های انتقال.</p>
+        <a href="projects/edu8.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۹ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu9.png" class="card-img-top" alt="پروژه آموزشی ۹">
+      <div class="card-body">
+        <h5 class="card-title text-warning">فیلتر محصولات</h5>
+        <p class="card-text text-light">تمرین فیلتر کردن آیتم‌ها با دکمه‌های دسته‌بندی و جاوااسکریپت.</p>
+        <a href="projects/edu9.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۱۰ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="450">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu10.png" class="card-img-top" alt="پروژه آموزشی ۱۰">
+      <div class="card-body">
+        <h5 class="card-title text-warning">Accordion</h5>
+        <p class="card-text text-light">تمرین باز و بسته شدن بخش‌ها با انیمیشن و کنترل رویدادها.</p>
+        <a href="projects/edu10.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- پروژه ۱۱ -->
+  <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+    <div class="card project-card h-100">
+      <img src="assets/images/edu11.png" class="card-img-top" alt="پروژه آموزشی ۱۱">
+      <div class="card-body">
+        <h5 class="card-title text-warning">منوی موبایل</h5>
+        <p class="card-text text-light">ساخت منوی واکنش‌گرا با آیکون همبرگری و انیمیشن باز/بسته شدن.</p>
+        <a href="projects/edu11.html" class="btn btn-outline-warning mt-2">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  
+      <!-- کارت‌های ۲ تا ۱۱ با همین ساختار... -->
+    </div>
+  </main>
+
+  <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="200">
+    © 2025 Arfito — طراحی شده با عشق و سطرهای کد 💻✨
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    const menuToggle = document.getElementById('mobile-menu');
+    const nav = document.getElementById('main-nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      menuToggle.classList.toggle('open');
+    });
+
+    const toggleThemeBtn = document.getElementById('toggle-theme');
+    const storedTheme = localStorage.getItem('theme');
+
+    const applyTheme = (mode) => {
+      document.body.classList.remove('light-mode', 'dark-mode');
+      document.body.classList.add(mode === 'light' ? 'light-mode' : 'dark-mode');
+      toggleThemeBtn.textContent = mode === 'light' ? '☀️' : '🌙';
+      localStorage.setItem('theme', mode);
+    };
+
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    toggleThemeBtn.addEventListener('click', () => {
+      const isLight = document.body.classList.contains('light-mode');
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
