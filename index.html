@@ -140,6 +140,107 @@
         transform: translateX(0);
       }
     }
+
+  .chat-wrapper {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    direction: rtl;
+    font-family: 'Vazirmatn', sans-serif;
+  }
+  .chat-icon {
+    font-size: 24px;
+    padding: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #0ea5e9);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  }
+  .chat-box {
+    width: 320px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .chat-header {
+    background: #4f46e5;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .chat-body {
+    height: 240px;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .chat-input-area {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+    border-top: 1px solid #444;
+    background: #1e293b;
+  }
+  .chat-input-area input {
+    flex: 1;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+  }
+  .chat-input-area button {
+    background: #6366f1;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  .bot-message, .user-message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .bot-message {
+    background: #475569;
+    align-self: flex-start;
+  }
+  .user-message {
+    background: #34d399;
+    color: black;
+    align-self: flex-end;
+    text-align: right;
+  }
+  .p-4.border:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+  background: #2b2f40;
+  }
+  .shoutout {
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   </style>
 </head>
 <body>
@@ -165,35 +266,65 @@
 
   <!-- معرفی -->
   <main class="container py-5 text-center">
-    <h1 class="fw-bold mb-4 text-warning" data-aos="zoom-in">سلام! ما Arfito هستیم</h1>
+    <h1 class="fw-bold mb-4 text-warning" data-aos="zoom-in">سلام! ما آرفیتو (Arfito)
+      هستیم</h1>
     <p class="lead mb-4 px-md-5" data-aos="fade-up" data-aos-delay="200">
       یه تیم برنامه‌نویسی خلاق و پیگیر که عاشق دنیای کده. از طراحی فرانت‌اند‌های خوش‌دست گرفته تا الگوریتم‌های سنگین سمت سرور—پشت هر پروژه‌ای، یه ذره شور و شوق گذاشتیم.
     </p>
     <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3" data-aos="fade-up" data-aos-delay="400">بزن بریم پروژه‌ها</a>
   </main>
 
-  <section class="container py-5">
-    <h2 class="text-warning text-center mb-4">🧰 جعبه ابزار Arfito</h2>
-    <div class="row g-4">
-      <div class="col-md-6">
-        <h5 class="text-light">ویرایشگر کد</h5>
-        <p>Visual Studio Code + افزونه‌های Live Server، Prettier، GitLens</p>
+  <section class="container py-5 text-center" data-aos="fade-up">
+    <h2 class="text-warning mb-4">👋 یه سلام از تیم ما</h2>
+    <p class="lead text-light px-md-5">
+      ما چندتا دوستیم که کد برامون فقط یه شغل نیست — یه مدل زندگیه!  
+      از بحث سر فونت پیش‌فرض گرفته تا دیباگ کردن نصفه‌شب،  
+      پشت Arfito یه تیم کوچیک اما با عشق به جزئیاته 💛
+    </p>
+  </section>
+  <section class="container py-5" data-aos="fade-up" data-aos-delay="100">
+    <h2 class="text-warning text-center mb-5">🚀 چرا Arfito رو انتخاب کنین؟</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
+          <div class="fs-2 text-warning mb-2">🧠</div>
+          <h5 class="text-light">ترکیب خلاقیت + تجربه</h5>
+          <p class="text-secondary small">ما فقط بلد نیستیم — دوست داریم چیز متفاوتی بسازیم!</p>
+        </div>
       </div>
-      <div class="col-md-6">
-        <h5 class="text-light">طراحی و وایرفریم</h5>
-        <p>Figma، Canva، طراحی دستی روی کاغذ</p>
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
+          <div class="fs-2 text-warning mb-2">⏱️</div>
+          <h5 class="text-light">سریع و قابل اعتماد</h5>
+          <p class="text-secondary small">ما واقعاً به ددلاین‌ها احترام می‌ذاریم، چون می‌دونیم وقت شما طلاست</p>
+        </div>
       </div>
-      <div class="col-md-6">
-        <h5 class="text-light">مرورگر توسعه</h5>
-        <p>Firefox Developer Edition + Chrome DevTools</p>
-      </div>
-      <div class="col-md-6">
-        <h5 class="text-light">منابع یادگیری</h5>
-        <p>MDN Web Docs، W3Schools، YouTube، Roadmap.sh</p>
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
+          <div class="fs-2 text-warning mb-2">🧩</div>
+          <h5 class="text-light">پروژه‌محور و منعطف</h5>
+          <p class="text-secondary small">سفارشی‌سازی، یادگیری سریع، و سازگاری با پروژه‌تون جزو DNA ماست</p>
+        </div>
       </div>
     </div>
   </section>
-  
+  <section class="container py-5 text-center" data-aos="zoom-in" data-aos-delay="200">
+    <h4 class="fw-bold text-warning shoutout">ما فقط کد نمی‌زنیم — ما چیزی می‌سازیم که دوست داریم بهش افتخار کنیم 💻✨</h4>
+  </section>
+  <!-- چت‌بات هوشمند Arfito -->
+  <div class="chat-wrapper">
+    <div class="chat-icon" onclick="toggleChat()">🤖</div>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">پرسش از Arfito</div>
+      <div class="chat-body" id="chatBody">
+        <div class="bot-message">سلام! درباره تیم Arfito سوالی داری؟</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="userInput" placeholder="سوالت رو بنویس..." />
+        <button onclick="sendMessage()">ارسال</button>
+      </div>
+    </div>
+  </div>
   <!-- فوتر -->
   <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="600">
     © 2025 Arfito — ساخته شده با عشق و سطرهای کد 💻✨
@@ -237,5 +368,47 @@
       applyTheme(isLight ? 'dark' : 'light');
     });
   </script>
+  <script>
+    const apiURL = "https://arfito-api-v1.vercel.app/api/ask";
+    
+    function toggleChat() {
+      const box = document.getElementById("chatBox");
+      box.style.display = box.style.display === "flex" ? "none" : "flex";
+      box.style.flexDirection = "column";
+    }
+    
+    function extractSiteContent() {
+      const tags = document.querySelectorAll("h1, h2, h3, p, li");
+      return Array.from(tags).map(el => el.textContent.trim()).join("\n");
+    }
+    
+    async function sendMessage() {
+      const input = document.getElementById("userInput");
+      const msg = input.value.trim();
+      if (!msg) return;
+    
+      const chatBody = document.getElementById("chatBody");
+      chatBody.innerHTML += `<div class="user-message">${msg}</div>`;
+    
+      const context = extractSiteContent();
+    
+      try {
+        const res = await fetch(apiURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: msg, context })
+        });
+        const data = await res.json();
+        const reply = data.reply || "پاسخی دریافت نشد.";
+        chatBody.innerHTML += `<div class="bot-message">${reply}</div>`;
+      } catch {
+        chatBody.innerHTML += `<div class="bot-message">❌ خطا در ارتباط با سرور</div>`;
+      }
+    
+      input.value = "";
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+  </script>
+    
 </body>
 </html>
