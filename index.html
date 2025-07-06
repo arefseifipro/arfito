@@ -13,6 +13,7 @@
 
   <!-- AOS Animation -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
 
   <!-- استایل اختصاصی -->
   <link rel="stylesheet" href="css/style.css" />
@@ -141,86 +142,7 @@
       }
     }
 
-  .chat-wrapper {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 9999;
-    direction: rtl;
-    font-family: 'Vazirmatn', sans-serif;
-  }
-  .chat-icon {
-    font-size: 24px;
-    padding: 12px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #6366f1, #0ea5e9);
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 12px rgba(0,0,0,0.3);
-  }
-  .chat-box {
-    width: 320px;
-    background: var(--bg-color);
-    color: var(--text-color);
-    border-radius: 12px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .chat-header {
-    background: #4f46e5;
-    color: white;
-    padding: 12px;
-    font-weight: bold;
-    text-align: center;
-  }
-  .chat-body {
-    height: 240px;
-    overflow-y: auto;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .chat-input-area {
-    display: flex;
-    gap: 6px;
-    padding: 10px;
-    border-top: 1px solid #444;
-    background: #1e293b;
-  }
-  .chat-input-area input {
-    flex: 1;
-    padding: 6px 10px;
-    border-radius: 8px;
-    border: none;
-  }
-  .chat-input-area button {
-    background: #6366f1;
-    border: none;
-    color: white;
-    border-radius: 8px;
-    padding: 6px 12px;
-    cursor: pointer;
-  }
-  .bot-message, .user-message {
-    padding: 8px 12px;
-    border-radius: 10px;
-    max-width: 85%;
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .bot-message {
-    background: #475569;
-    align-self: flex-start;
-  }
-  .user-message {
-    background: #34d399;
-    color: black;
-    align-self: flex-end;
-    text-align: right;
-  }
+ 
   .p-4.border:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 20px rgba(0,0,0,0.3);
@@ -242,6 +164,71 @@
     }
   }
   </style>
+  <style>
+    .technologies {
+      background-color: var(--bg-color, #f9f9f9);
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .technologies h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .tech-item {
+      background-color: #1e1e2f;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .tech-item:hover {
+      transform: scale(1.05);
+    }
+    </style>
+    <style>
+
+      .welcome-banner {
+        background: linear-gradient(to right, #071223, #081527, #0F1E30);
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+        position: relative;
+        border-radius: 6%;
+        transition: background-color 0.3s ease;
+      }
+      .welcome-banner:hover{
+        transform: scale(0.95);
+        transition: transform 0.4s ease;
+      }
+      #namebanner{
+        color:#f0c040;
+      }
+      .banner-overlay {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .welcome-banner h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+      .welcome-banner p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+      @media (max-width: 768px) {
+        .welcome-banner h1 {
+          font-size: 2rem;
+        }
+      }
+      </style>
 </head>
 <body>
 
@@ -250,6 +237,10 @@
     <div class="d-flex align-items-center">
       <a class="navbar-brand fs-3 fw-bold text-warning me-3" href="#">Arfito</a>
       <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم">🌙</button>
+      <button class="lang-toggle">🌐 EN</button>
+
+      
+      
     </div>
     <div class="menu-toggle" id="mobile-menu">
       <span class="bar"></span>
@@ -266,24 +257,52 @@
 
   <!-- معرفی -->
   <main class="container py-5 text-center">
-    <h1 class="fw-bold mb-4 text-warning" data-aos="zoom-in">سلام! ما آرفیتو (Arfito)
-      هستیم</h1>
+    <!-- Welcome Banner -->
+<section class="welcome-banner" dir="rtl">
+  <div class="banner-overlay">
+    <h1 id="namebanner">سلام! به آرفیتو خوش آمدید 👋</h1>
     <p class="lead mb-4 px-md-5" data-aos="fade-up" data-aos-delay="200">
-      یه تیم برنامه‌نویسی خلاق و پیگیر که عاشق دنیای کده. از طراحی فرانت‌اند‌های خوش‌دست گرفته تا الگوریتم‌های سنگین سمت سرور—پشت هر پروژه‌ای، یه ذره شور و شوق گذاشتیم.
+      آرفیتو؟ یه تیم برنامه‌نویسی خلاق و پیگیر که عاشق دنیای کده. از طراحی فرانت‌اند‌های خوش‌دست گرفته تا الگوریتم‌های سنگین سمت سرور و طراحی و اجرای پروژه های بزرگ صنعتی  پشت هر پروژه‌ای، یه دنیا شور و شوق گذاشتیم.
     </p>
-    <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3" data-aos="fade-up" data-aos-delay="400">بزن بریم پروژه‌ها</a>
+    <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3" data-aos="fade-up" data-aos-delay="400">پروژه های ما</a>
+  </div>
+  <!-- آیکون‌های معلق روی بنر -->
+<div class="floating-icons">
+  <span class="icon material-symbols-rounded">laptop</span>
+  <span class="icon material-symbols-rounded">terminal</span>
+  <span class="icon material-symbols-rounded">memory</span>
+  <span class="icon material-symbols-rounded">code</span>
+  <span class="icon material-symbols-rounded">data_object</span>
+</div>
+
+<!-- لینک فونت آیکون -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+
+  <!-- لینک فونت آیکون -->
+  
+
+</section>
+
+
+
+    
   </main>
 
   <section class="container py-5 text-center" data-aos="fade-up">
-    <h2 class="text-warning mb-4">👋 یه سلام از تیم ما</h2>
-    <p class="lead text-light px-md-5">
+    <h2 class="text-warning mb-4">🤞 از خودمون بگیم</h2>
+    <p class="lead mb-4 px-md-5">
       ما چندتا دوستیم که کد برامون فقط یه شغل نیست — یه مدل زندگیه!  
       از بحث سر فونت پیش‌فرض گرفته تا دیباگ کردن نصفه‌شب،  
-      پشت Arfito یه تیم کوچیک اما با عشق به جزئیاته 💛
+      پشت Arfito یه تیم کوچیک اما با عشق به جزئیاته 💛 <br>
+      تیم آرفیتو با افتخار و البته تلاش های زیاد موفق به حضور و ایفای نقش در پروژه های صنعتی بزرگ و تاثیرگذار بوده که کاملاً تخصصی و ماهرانه کدنویسی شده بودند و لیاقت تحسین رو داشتن.
+    <br>
+      خلاصه تموم هدف ما پیشرفت و ارائه بهترین پروژه ها و خلاقانه ترین برنامه هاست♥️
+    
     </p>
   </section>
   <section class="container py-5" data-aos="fade-up" data-aos-delay="100">
-    <h2 class="text-warning text-center mb-5">🚀 چرا Arfito رو انتخاب کنین؟</h2>
+    <h2 class="text-warning text-center mb-5">🚀 چرا آرفیتو رو انتخاب کنیم</h2>
     <div class="row g-4 text-center">
       <div class="col-md-4">
         <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
@@ -308,23 +327,103 @@
       </div>
     </div>
   </section>
-  <section class="container py-5 text-center" data-aos="zoom-in" data-aos-delay="200">
-    <h4 class="fw-bold text-warning shoutout">ما فقط کد نمی‌زنیم — ما چیزی می‌سازیم که دوست داریم بهش افتخار کنیم 💻✨</h4>
-  </section>
-  <!-- چت‌بات هوشمند Arfito -->
-  <div class="chat-wrapper">
-    <div class="chat-icon" onclick="toggleChat()">🤖</div>
-    <div class="chat-box" id="chatBox">
-      <div class="chat-header">پرسش از Arfito</div>
-      <div class="chat-body" id="chatBody">
-        <div class="bot-message">سلام! درباره تیم Arfito سوالی داری؟</div>
-      </div>
-      <div class="chat-input-area">
-        <input type="text" id="userInput" placeholder="سوالت رو بنویس..." />
-        <button onclick="sendMessage()">ارسال</button>
-      </div>
+  <!-- Technologies Section -->
+<section class="technologies" dir="rtl">
+  <h2 id="techeader">🔧 تکنولوژی‌های مورد استفاده ما</h2>
+  <div class="tech-grid">
+    <div class="tech-item">Python</div>
+    <div class="tech-item">Ladder</div>
+    <div class="tech-item">FBD</div>
+    <div class="tech-item">SFC</div>
+    <div class="tech-item">STL</div>
+    <div class="tech-item">HTML5</div>
+    <div class="tech-item">CSS3</div>
+    <div class="tech-item">JavaScript</div>
+    <div class="tech-item">React</div>
+    <div class="tech-item">Node.js</div>
+    <div class="tech-item">Django</div>
+    <div class="tech-item">Java</div>
+    <div class="tech-item">Git & GitHub</div>
+    <div class="tech-item">Tailwind CSS</div>
+    <div class="tech-item">MongoDB</div>
+  </div>
+</section>
+
+
+  
+  <!-- Services Section -->
+<<section class="services-section" dir="rtl">
+  <h2 id="techeader">🛠️ خدمات ما</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="material-symbols-rounded">design_services</span>
+      <p>طراحی پروژه های صنعتی و اپلیکیشن ها</p>
+    </div>
+    <div class="service-card">
+      <span class="material-symbols-rounded">code</span>
+      <p>کدنویسی پروژه های صنعتی و اپلیکیشن ها</p>
+    </div>
+    <div class="service-card">
+      <span class="material-symbols-rounded">security</span>
+      <p>امنیت و تست نفوذ انواع وبسایت ها</p>
+    </div>
+    <div class="service-card">
+      <span class="material-symbols-rounded">cloud</span>
+      <p>خدمات سئو و طراحی و کدنویسی وبسایت ها</p>
     </div>
   </div>
+</section>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+<section class="container py-5 text-center" data-aos="zoom-in" data-aos-delay="200">
+  <h4 class="fw-bold text-warning shoutout">ما فقط کد نمی‌زنیم — ما چیزی می‌سازیم که دوست داریم بهش افتخار کنیم 💻✨</h4>
+</section>
+<footer class="site-footer" dir="rtl">
+  <div class="footer-content">
+    <div class="footer-section links">
+      <h4>لینک‌های مهم</h4>
+      <a href="index.html"><span class="material-symbols-rounded">home</span> صفحه اصلی</a>
+      <a href="services.html"><span class="material-symbols-rounded">widgets</span> خدمات</a>
+      <a href="projects.html"><span class="material-symbols-rounded">folder</span> پروژه‌ها</a>
+      <a href="contact.html"><span class="material-symbols-rounded">mail</span> تماس با ما</a>
+    </div>
+
+    <div class="footer-section contact">
+      <h4>تماس با ما</h4>
+      <p><span class="material-symbols-rounded">call</span> +98 912 000 1234</p>
+      <p><span class="material-symbols-rounded">alternate_email</span> team@arfito.dev</p>
+    </div>
+
+    <div class="footer-section social">
+      <h4>ما را دنبال کنید</h4>
+      <a href="https://github.com/arfito" target="_blank" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" class="social-icon"><path d="M12 0.3c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8.1 11.3 0.6 0.1 0.8-0.2 0.8-0.5v-2c-3.3 0.7-4-1.5-4-1.5-0.5-1.3-1.2-1.6-1.2-1.6-1-0.6 0.1-0.6 0.1-0.6 1 0.1 1.5 1 1.5 1 1 1.5 2.6 1.1 3.2 0.8 0.1-0.7 0.4-1.1 0.7-1.4-2.7-0.3-5.5-1.3-5.5-5.9 0-1.3 0.5-2.3 1.1-3.2 0-0.3-0.5-1.4 0.1-2.9 0 0 0.9-0.3 2.9 1.1 0.8-0.2 1.7-0.4 2.6-0.4s1.8 0.1 2.6 0.4c2-1.4 2.9-1.1 2.9-1.1 0.6 1.5 0.1 2.6 0.1 2.9 0.7 0.9 1.1 2 1.1 3.2 0 4.6-2.8 5.6-5.5 5.9 0.4 0.3 0.8 1 0.8 2v2.9c0 0.3 0.2 0.6 0.8 0.5 4.7-1.6 8.1-6 8.1-11.3 0-6.6-5.4-12-12-12z" /></svg>
+      </a>
+      <a href="https://t.me/arfito" target="_blank" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" class="social-icon"><path d="M9.8 17.6l-0.4 4.3c0.6 0 0.8-0.2 1.1-0.5l2.6-2.4 5.4 3.9c1 0.5 1.8 0.2 2.1-0.9l3.9-18.1c0.3-1.3-0.5-1.9-1.6-1.6l-22 8.4c-1.3 0.5-1.3 1.2-0.2 1.6l5.6 1.8 13.1-8.3c0.6-0.3 1.2 0 0.7 0.3l-10.6 9.6z"/></svg>
+      </a>
+    </div>
+    
+  </div>
+  
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> Arfito. تمام حقوق محفوظ است.</p>
+  </div>
+</footer>
+
+<!-- آیکون‌ها -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+
+<!-- آیکون‌های گوگل -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+ 
   <!-- فوتر -->
   <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="600">
     © 2025 Arfito — ساخته شده با عشق و سطرهای کد 💻✨
@@ -332,6 +431,10 @@
 
   <!-- اسکریپت‌ها -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  
   <script>
     AOS.init({
       duration: 800,
@@ -368,47 +471,5 @@
       applyTheme(isLight ? 'dark' : 'light');
     });
   </script>
-  <script>
-    const apiURL = "https://arfito-api-v1.vercel.app/api/ask";
-    
-    function toggleChat() {
-      const box = document.getElementById("chatBox");
-      box.style.display = box.style.display === "flex" ? "none" : "flex";
-      box.style.flexDirection = "column";
-    }
-    
-    function extractSiteContent() {
-      const tags = document.querySelectorAll("h1, h2, h3, p, li");
-      return Array.from(tags).map(el => el.textContent.trim()).join("\n");
-    }
-    
-    async function sendMessage() {
-      const input = document.getElementById("userInput");
-      const msg = input.value.trim();
-      if (!msg) return;
-    
-      const chatBody = document.getElementById("chatBody");
-      chatBody.innerHTML += `<div class="user-message">${msg}</div>`;
-    
-      const context = extractSiteContent();
-    
-      try {
-        const res = await fetch(apiURL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: msg, context })
-        });
-        const data = await res.json();
-        const reply = data.reply || "پاسخی دریافت نشد.";
-        chatBody.innerHTML += `<div class="bot-message">${reply}</div>`;
-      } catch {
-        chatBody.innerHTML += `<div class="bot-message">❌ خطا در ارتباط با سرور</div>`;
-      }
-    
-      input.value = "";
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-  </script>
-    
 </body>
 </html>

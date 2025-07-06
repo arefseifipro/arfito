@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>English Page with Left-Aligned Logo & Menu</title>
+  <style>
+    body {
+      direction: ltr;
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: flex-start; /* لوگو و منو چپ‌چین */
+      align-items: center;
+      gap: 30px;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 28px;
+      color: #007acc;
+      cursor: pointer;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li {
+      cursor: pointer;
+      font-size: 18px;
+      color: #555;
+      transition: color 0.3s ease;
+    }
+    nav ul li:hover {
+      color: #007acc;
+      text-decoration: underline;
+    }
+    .icon {
+      font-size: 22px;
+      cursor: pointer;
+      color: #555;
+      margin-left: auto; /* آیکون‌ها را به انتهای هدر می‌فرستد */
+      display: flex;
+      gap: 15px;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      padding: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+    p {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #444;
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #999;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">MyLogo</div>
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Services</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+    <div class="icon">
+      <span title="Search">🔍</span>
+      <span title="Settings">⚙️</span>
+    </div>
+  </header>
+
+  <main>
+    <h1>Welcome to Our Website</h1>
+    <p>
+      This website is designed to provide you with the best experience. 
+      Our services are tailored to meet your needs, and our team is dedicated 
+      to helping you achieve your goals. Feel free to explore and contact us 
+      for any questions or support.
+    </p>
+    <p>
+      We constantly update our content and improve our platform to ensure 
+      you have access to the latest information and tools. Thank you for 
+      visiting, and we hope you enjoy your stay!
+    </p>
+  </main>
+
+  <footer>
+    &copy; 2025 MyCompany. All rights reserved.
+  </footer>
+</body>
+</html>

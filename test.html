@@ -2,273 +2,473 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>Arfito | صفحه اصلی</title>
+  <title>Arfito | تیم برنامه‌نویسی</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+
+  <!-- فونت گوگلی Vazirmatn -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+
+  <!-- AOS Animation -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+  <!-- استایل اختصاصی -->
+  <link rel="stylesheet" href="css/style.css" />
+
   <style>
     :root {
-      --bg-dark: #1e1b2e;
-      --bg-light: #f8f9fa;
-      --text-dark: #ffffff;
-      --text-light: #212529;
-      --accent: #facc15;
-      --glass: rgba(255, 255, 255, 0.05);
-    }
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-      font-family: 'Vazirmatn', sans-serif;
-      transition: background-color 0.4s, color 0.4s;
+      --bg-color: #1a2238;
+      --text-color: #ffffff;
     }
     body.light-mode {
-      background-color: var(--bg-light);
-      color: var(--text-light);
+      --bg-color: #f8f9fa;
+      --text-color: #212529;
     }
-    body.en {
-      font-family: 'Inter', sans-serif;
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+      font-family: 'Vazirmatn', sans-serif;
     }
 
     .navbar-custom {
-      background-color: transparent;
-      backdrop-filter: blur(10px);
+      background-color: var(--bg-color);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    .nav-link {
-      color: inherit;
-      font-weight: 500;
-      position: relative;
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background: var(--text-color);
+      margin: 4px 0;
       transition: all 0.3s ease;
     }
-    .nav-link::after {
+
+    .menu-toggle.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .menu-toggle.open .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .custom-nav {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      opacity: 0;
+      animation: fadeInNav 1s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    .custom-nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .custom-nav a::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      right: 0;
       width: 0%;
       height: 2px;
-      background-color: var(--accent);
+      bottom: -4px;
+      right: 0;
+      background-color: #f0c040;
       transition: width 0.3s ease;
     }
-    .nav-link:hover {
-      color: var(--accent);
+
+    .custom-nav a:hover {
+      color: #f0c040;
     }
-    .nav-link:hover::after {
+
+    .custom-nav a:hover::after {
       width: 100%;
     }
 
-    .controls {
-      display: flex;
-      gap: 10px;
+    @keyframes fadeInNav {
+      to {
+        opacity: 1;
+      }
     }
-    .controls button {
+
+    .toggle-theme {
+      cursor: pointer;
       background: none;
       border: none;
       font-size: 1.3rem;
-      color: inherit;
-      cursor: pointer;
+      color: var(--text-color);
+      margin-right: 10px;
     }
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, #2e1065, #1e1b2e);
-      padding: 100px 20px 60px;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--accent);
-      animation: fadeInDown 1s ease;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-      max-width: 600px;
-      margin-inline: auto;
-      animation: fadeInUp 1.2s ease;
-    }
-    .btn-hero {
-      margin-top: 2rem;
-      padding: 10px 24px;
-      font-size: 0.95rem;
-      border-radius: 8px;
-      font-weight: 500;
-      animation: fadeIn 1.5s ease;
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      .custom-nav {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: -250px;
+        background: var(--bg-color);
+        width: 200px;
+        padding: 20px;
+        transition: right 0.4s ease;
+        z-index: 999;
+        transform: translateX(100%);
+      }
+      .custom-nav.active {
+        right: 0;
+        transform: translateX(0);
+      }
     }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+ 
+  .p-4.border:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+  background: #2b2f40;
+  }
+  .shoutout {
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+  }
 
-    .lang-fa { display: block; }
-    .lang-en { display: none; }
-    body.en .lang-fa { display: none; }
-    body.en .lang-en { display: block; }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
   </style>
+  <style>
+    .technologies {
+      background-color: var(--bg-color, #f9f9f9);
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .technologies h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .tech-item {
+      background-color: #1e1e2f;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+    .tech-item:hover {
+      transform: scale(1.05);
+    }
+    </style>
+    <style>
+
+      .welcome-banner {
+        background: linear-gradient(to right, #071223, #081527, #0F1E30);
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+        position: relative;
+        border-radius: 6%;
+        transition: background-color 0.3s ease;
+      }
+      .welcome-banner:hover{
+        transform: scale(0.95);
+        transition: transform 0.4s ease;
+      }
+      #namebanner{
+        color:#f0c040;
+      }
+      .banner-overlay {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .welcome-banner h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+      .welcome-banner p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+      @media (max-width: 768px) {
+        .welcome-banner h1 {
+          font-size: 2rem;
+        }
+      }
+      </style>
 </head>
 <body>
-  <!-- کنترل‌ها -->
-  <div class="position-absolute top-0 start-0 p-3 controls">
-    <button id="toggle-theme" aria-label="تغییر تم">🌙</button>
-    <button id="toggle-lang" aria-label="تغییر زبان">🇬🇧</button>
-  </div>
 
-  <!-- منو -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom px-4">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold text-warning" href="#">Arfito</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#">خانه</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">پروژه‌ها</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">درباره ما</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">تماس</a></li>
-        </ul>
-      </div>
+  <!-- ناوبری -->
+  <nav class="navbar navbar-dark px-4 py-3 navbar-custom" data-aos="fade-down">
+    <div class="d-flex align-items-center">
+      <a class="navbar-brand fs-3 fw-bold text-warning me-3" href="#">Arfito</a>
+      <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم">🌙</button>
+      <button class="lang-toggle">🌐 EN</button>
+
+      
+      
     </div>
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="custom-nav" id="main-nav">
+      <li><a href="index.html">خانه</a></li>
+      <li><a href="about.html">درباره ما</a></li>
+      <li><a href="projects.html">پروژه‌ها</a></li>
+      <li><a href="contact.html">تماس</a></li>
+    </ul>
   </nav>
 
-  <!-- هدر -->
-  <section class="hero" data-aos="fade-up">
-    <div>
-      <h1 class="lang-fa">Arfito</h1>
-      <h1 class="lang-en">Arfito</h1>
-      <p class="lang-fa">جایی برای پروژه‌های واقعی، یادگیری عمیق و طراحی حرفه‌ای</p>
-      <p class="lang-en">A place for real projects, deep learning, and clean design</p>
-      <a href="#" class="btn btn-warning btn-hero lang-fa">مشاهده پروژه‌ها</a>
-      <a href="#" class="btn btn-warning btn-hero lang-en">View Projects</a>
+  <!-- معرفی -->
+  <main class="container py-5 text-center">
+    <!-- Welcome Banner -->
+<section class="welcome-banner" dir="rtl">
+  <div class="banner-overlay">
+    <h1 id="namebanner">سلام! به آرفیتو خوش آمدید 👋</h1>
+    <p class="lead mb-4 px-md-5" data-aos="fade-up" data-aos-delay="200">
+      آرفیتو؟ یه تیم برنامه‌نویسی خلاق و پیگیر که عاشق دنیای کده. از طراحی فرانت‌اند‌های خوش‌دست گرفته تا الگوریتم‌های سنگین سمت سرور و طراحی و اجرای پروژه های بزرگ صنعتی  پشت هر پروژه‌ای، یه دنیا شور و شوق گذاشتیم.
+    </p>
+    <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3" data-aos="fade-up" data-aos-delay="400">پروژه های ما</a>
+  </div>
+  <!-- آیکون‌های معلق روی بنر -->
+<div class="floating-icons">
+  <span class="icon material-symbols-rounded">laptop</span>
+  <span class="icon material-symbols-rounded">terminal</span>
+  <span class="icon material-symbols-rounded">memory</span>
+  <span class="icon material-symbols-rounded">code</span>
+  <span class="icon material-symbols-rounded">data_object</span>
+</div>
+
+<!-- لینک فونت آیکون -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+
+  <!-- لینک فونت آیکون -->
+  
+
+</section>
+
+
+
+    
+  </main>
+
+  <section class="container py-5 text-center" data-aos="fade-up">
+    <h2 class="text-warning mb-4">🤞 از خودمون بگیم</h2>
+    <p class="lead mb-4 px-md-5">
+      ما چندتا دوستیم که کد برامون فقط یه شغل نیست — یه مدل زندگیه!  
+      از بحث سر فونت پیش‌فرض گرفته تا دیباگ کردن نصفه‌شب،  
+      پشت Arfito یه تیم کوچیک اما با عشق به جزئیاته 💛 <br>
+      تیم آرفیتو با افتخار و البته تلاش های زیاد موفق به حضور و ایفای نقش در پروژه های صنعتی بزرگ و تاثیرگذار بوده که کاملاً تخصصی و ماهرانه کدنویسی شده بودند و لیاقت تحسین رو داشتن.
+    <br>
+      خلاصه تموم هدف ما پیشرفت و ارائه بهترین پروژه ها و خلاقانه ترین برنامه هاست♥️
+    
+    </p>
+  </section>
+  <section class="container py-5" data-aos="fade-up" data-aos-delay="100">
+    <h2 class="text-warning text-center mb-5">🚀 چرا آرفیتو رو انتخاب کنیم</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
+          <div class="fs-2 text-warning mb-2">🧠</div>
+          <h5 class="text-light">ترکیب خلاقیت + تجربه</h5>
+          <p class="text-secondary small">ما فقط بلد نیستیم — دوست داریم چیز متفاوتی بسازیم!</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
+          <div class="fs-2 text-warning mb-2">⏱️</div>
+          <h5 class="text-light">سریع و قابل اعتماد</h5>
+          <p class="text-secondary small">ما واقعاً به ددلاین‌ها احترام می‌ذاریم، چون می‌دونیم وقت شما طلاست</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
+          <div class="fs-2 text-warning mb-2">🧩</div>
+          <h5 class="text-light">پروژه‌محور و منعطف</h5>
+          <p class="text-secondary small">سفارشی‌سازی، یادگیری سریع، و سازگاری با پروژه‌تون جزو DNA ماست</p>
+        </div>
+      </div>
     </div>
   </section>
-    <!-- معرفی -->
-    <section class="container py-5 text-center" data-aos="fade-up">
-      <h4 class="text-warning lang-fa">ما کی هستیم؟</h4>
-      <h4 class="text-warning lang-en">Who Are We?</h4>
-      <p class="lang-fa">Arfito یه مجموعه مستقل از پروژه‌های آموزشی و صنعتی با تمرکز روی طراحی تمیز، کد قابل فهم و یادگیری مداومه.</p>
-      <p class="lang-en">Arfito is an independent collection of educational and industrial projects focused on clean design, readable code, and continuous learning.</p>
-    </section>
+  <!-- Technologies Section -->
+<section class="technologies" dir="rtl">
+  <h2 id="techeader">🔧 تکنولوژی‌های مورد استفاده ما</h2>
+  <div class="tech-grid">
+    <div class="tech-item">Python</div>
+    <div class="tech-item">Ladder</div>
+    <div class="tech-item">FBD</div>
+    <div class="tech-item">SFC</div>
+    <div class="tech-item">STL</div>
+    <div class="tech-item">HTML5</div>
+    <div class="tech-item">CSS3</div>
+    <div class="tech-item">JavaScript</div>
+    <div class="tech-item">React</div>
+    <div class="tech-item">Node.js</div>
+    <div class="tech-item">Django</div>
+    <div class="tech-item">Java</div>
+    <div class="tech-item">Git & GitHub</div>
+    <div class="tech-item">Tailwind CSS</div>
+    <div class="tech-item">MongoDB</div>
+  </div>
+</section>
+
+
   
-    <!-- پروژه‌های ویژه -->
-    <section class="container py-5" data-aos="fade-up">
-      <h4 class="text-warning text-center mb-4 lang-fa">⭐ پروژه‌های ویژه</h4>
-      <h4 class="text-warning text-center mb-4 lang-en">⭐ Featured Projects</h4>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 p-4 text-center shadow-lg border-0" style="background: var(--glass); backdrop-filter: blur(12px); transition: transform 0.4s;">
-            <span class="material-icons-outlined text-warning mb-2" style="font-size: 2rem;">smart_toy</span>
-            <h5 class="text-warning">بازی دوز</h5>
-            <p class="small lang-fa">پروژه CLI با پایتون</p>
-            <p class="small lang-en">Python CLI Tic Tac Toe</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 p-4 text-center shadow-lg border-0" style="background: var(--glass); backdrop-filter: blur(12px); transition: transform 0.4s;">
-            <span class="material-icons-outlined text-warning mb-2" style="font-size: 2rem;">login</span>
-            <h5 class="text-warning">فرم لاگین</h5>
-            <p class="small lang-fa">طراحی واکنش‌گرا با HTML و CSS</p>
-            <p class="small lang-en">Responsive Login Form (HTML/CSS)</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 p-4 text-center shadow-lg border-0" style="background: var(--glass); backdrop-filter: blur(12px); transition: transform 0.4s;">
-            <span class="material-icons-outlined text-warning mb-2" style="font-size: 2rem;">flight_takeoff</span>
-            <h5 class="text-warning">رزرو پرواز</h5>
-            <p class="small lang-fa">پروژه صنعتی با Bootstrap</p>
-            <p class="small lang-en">Flight Reservation UI with Bootstrap</p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <!-- Services Section -->
+<<section class="services-section" dir="rtl">
+  <h2 id="techeader">🛠️ خدمات ما</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="material-symbols-rounded">design_services</span>
+      <p>طراحی پروژه های صنعتی و اپلیکیشن ها</p>
+    </div>
+    <div class="service-card">
+      <span class="material-symbols-rounded">code</span>
+      <p>کدنویسی پروژه های صنعتی و اپلیکیشن ها</p>
+    </div>
+    <div class="service-card">
+      <span class="material-symbols-rounded">security</span>
+      <p>امنیت و تست نفوذ انواع وبسایت ها</p>
+    </div>
+    <div class="service-card">
+      <span class="material-symbols-rounded">cloud</span>
+      <p>خدمات سئو و طراحی و کدنویسی وبسایت ها</p>
+    </div>
+  </div>
+</section>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+<section class="container py-5 text-center" data-aos="zoom-in" data-aos-delay="200">
+  <h4 class="fw-bold text-warning shoutout">ما فقط کد نمی‌زنیم — ما چیزی می‌سازیم که دوست داریم بهش افتخار کنیم 💻✨</h4>
+</section>
+<footer class="site-footer" dir="rtl">
+  <div class="footer-content">
+    <div class="footer-section links">
+      <h4>لینک‌های مهم</h4>
+      <a href="index.html"><span class="material-symbols-rounded">home</span> صفحه اصلی</a>
+      <a href="services.html"><span class="material-symbols-rounded">widgets</span> خدمات</a>
+      <a href="projects.html"><span class="material-symbols-rounded">folder</span> پروژه‌ها</a>
+      <a href="contact.html"><span class="material-symbols-rounded">mail</span> تماس با ما</a>
+    </div>
+
+    <div class="footer-section contact">
+      <h4>تماس با ما</h4>
+      <p><span class="material-symbols-rounded">call</span> +98 912 000 1234</p>
+      <p><span class="material-symbols-rounded">alternate_email</span> team@arfito.dev</p>
+    </div>
+
+    <div class="footer-section social">
+      <h4>ما را دنبال کنید</h4>
+      <a href="https://github.com/arfito" target="_blank" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" class="social-icon"><path d="M12 0.3c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8.1 11.3 0.6 0.1 0.8-0.2 0.8-0.5v-2c-3.3 0.7-4-1.5-4-1.5-0.5-1.3-1.2-1.6-1.2-1.6-1-0.6 0.1-0.6 0.1-0.6 1 0.1 1.5 1 1.5 1 1 1.5 2.6 1.1 3.2 0.8 0.1-0.7 0.4-1.1 0.7-1.4-2.7-0.3-5.5-1.3-5.5-5.9 0-1.3 0.5-2.3 1.1-3.2 0-0.3-0.5-1.4 0.1-2.9 0 0 0.9-0.3 2.9 1.1 0.8-0.2 1.7-0.4 2.6-0.4s1.8 0.1 2.6 0.4c2-1.4 2.9-1.1 2.9-1.1 0.6 1.5 0.1 2.6 0.1 2.9 0.7 0.9 1.1 2 1.1 3.2 0 4.6-2.8 5.6-5.5 5.9 0.4 0.3 0.8 1 0.8 2v2.9c0 0.3 0.2 0.6 0.8 0.5 4.7-1.6 8.1-6 8.1-11.3 0-6.6-5.4-12-12-12z" /></svg>
+      </a>
+      <a href="https://t.me/arfito" target="_blank" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" class="social-icon"><path d="M9.8 17.6l-0.4 4.3c0.6 0 0.8-0.2 1.1-0.5l2.6-2.4 5.4 3.9c1 0.5 1.8 0.2 2.1-0.9l3.9-18.1c0.3-1.3-0.5-1.9-1.6-1.6l-22 8.4c-1.3 0.5-1.3 1.2-0.2 1.6l5.6 1.8 13.1-8.3c0.6-0.3 1.2 0 0.7 0.3l-10.6 9.6z"/></svg>
+      </a>
+    </div>
+    
+  </div>
   
-    <!-- شمارنده -->
-    <section class="container text-center py-5" data-aos="fade-up">
-      <div class="row g-4">
-        <div class="col-md-4">
-          <h2 class="text-warning">+20</h2>
-          <p class="lang-fa">پروژه آموزشی</p>
-          <p class="lang-en">Educational Projects</p>
-        </div>
-        <div class="col-md-4">
-          <h2 class="text-warning">+10</h2>
-          <p class="lang-fa">پروژه صنعتی</p>
-          <p class="lang-en">Industrial Projects</p>
-        </div>
-        <div class="col-md-4">
-          <h2 class="text-warning">+5</h2>
-          <p class="lang-fa">مشتری راضی</p>
-          <p class="lang-en">Happy Clients</p>
-        </div>
-      </div>
-    </section>
-  
-    <!-- شعار -->
-    <section class="text-center py-4" data-aos="fade-up">
-      <blockquote class="blockquote">
-        <p class="mb-0 lang-fa">«ما فقط کد نمی‌زنیم — ما آینده رو می‌سازیم.»</p>
-        <p class="mb-0 lang-en">"We don’t just write code — we build the future."</p>
-      </blockquote>
-    </section>
-  
-    <!-- دعوت به ارتباط -->
-    <section class="text-center py-4" data-aos="fade-up">
-      <p class="lang-fa">سوالی داری؟ پروژه‌ای در ذهنته؟ <a href="#" class="text-warning fw-bold">با ما تماس بگیر</a></p>
-      <p class="lang-en">Got a question or a project in mind? <a href="#" class="text-warning fw-bold">Contact us</a></p>
-    </section>
-      <!-- فوتر -->
-  <footer class="text-center text-secondary py-3 small">
-    <span class="lang-fa">© 2025 Arfito — طراحی و توسعه با ❤️</span>
-    <span class="lang-en">© 2025 Arfito — Designed & built with ❤️</span>
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> Arfito. تمام حقوق محفوظ است.</p>
+  </div>
+</footer>
+
+<!-- آیکون‌ها -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+
+<!-- آیکون‌های گوگل -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+
+ 
+  <!-- فوتر -->
+  <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="600">
+    © 2025 Arfito — ساخته شده با عشق و سطرهای کد 💻✨
   </footer>
 
   <!-- اسکریپت‌ها -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
 
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const nav = document.getElementById('main-nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      menuToggle.classList.toggle('open');
+    });
+
+    // Theme toggle
     const toggleThemeBtn = document.getElementById('toggle-theme');
-    const toggleLangBtn = document.getElementById('toggle-lang');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme');
 
-    // تم تاریک/روشن
-    const storedTheme = localStorage.getItem('theme') || 'dark';
     const applyTheme = (mode) => {
       document.body.classList.toggle('light-mode', mode === 'light');
       toggleThemeBtn.textContent = mode === 'light' ? '☀️' : '🌙';
       localStorage.setItem('theme', mode);
     };
-    applyTheme(storedTheme);
+
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else {
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+
     toggleThemeBtn.addEventListener('click', () => {
       const isLight = document.body.classList.contains('light-mode');
       applyTheme(isLight ? 'dark' : 'light');
-    });
-
-    // زبان
-    const storedLang = localStorage.getItem('lang') || 'fa';
-    const applyLang = (lang) => {
-      document.body.classList.toggle('en', lang === 'en');
-      toggleLangBtn.textContent = lang === 'fa' ? '🇬🇧' : '🇮🇷';
-      localStorage.setItem('lang', lang);
-    };
-    applyLang(storedLang);
-    toggleLangBtn.addEventListener('click', () => {
-      const currentLang = document.body.classList.contains('en') ? 'en' : 'fa';
-      applyLang(currentLang === 'fa' ? 'en' : 'fa');
     });
   </script>
 </body>
