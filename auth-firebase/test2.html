@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>login-arfito</title>
+  <link rel="stylesheet" href="../css/style-user.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <form id="email-form" class="form active">
+  <div class="container">
+    <h2 align="center">ورود به حساب کاربری</h2>
+    <h3 class="txt">کاربر گرامی ورود یا ثبت نام به دلیل شرایط امنیتی موقتا غیرفعال می باشد و این صفحه تنها برای تست است.</h3>
+    <div class="tabs">
+      <button class="tab active" data-tab="email">ورود با ایمیل</button>
+      <button class="tab" data-tab="mobile">ورود با موبایل</button>
+    </div>
+  
+    <form id="email-form" class="form active">
+      <input type="email" placeholder="ایمیل مثال: example@gmail.com" required id="email"/>
+      <div class="password-wrapper">
+        <input type="password" placeholder="رمز عبور" required />
+        <span class="toggle-password">👁️</span>
+      </div>
+      <div class="password-rules-wrapper" style="display: flex; align-items: center; gap: 10px; justify-content: flex-start;">
+        <div class="password-rules">
+          <ul>
+            <li id="rule-length" class="invalid">۸+ کاراکتر</li>
+            <li id="rule-uppercase" class="invalid">حرف بزرگ (A-Z)</li>
+            <li id="rule-lowercase" class="invalid">حرف کوچک (a-z)</li>
+            <li id="rule-number" class="invalid">عدد (0-9)</li>
+            <li id="rule-symbol" class="invalid">یک نماد (_ / % - . &)</li>
+          </ul>
+        </div>
+        <button type="button" id="generate-password" class="btn-generate-pass">تولید رمز</button>
+      </div>
+      <button type="submit">ورود</button>
+      <div class="divider">یا</div>
+      <button class="github-login" type="button">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+        ورود با GitHub
+      </button>
+    </form>
+
+      <form id="mobile-form" class="form">
+      <input type="tel" name="mobile" placeholder="شماره موبایل مثال: 09121234567" required pattern="^09\d{9}$" />
+      <div class="password-wrapper">
+        <input type="password" name="password" placeholder="رمز عبور" required />
+        <span class="toggle-password">👁️</span>
+      </div>
+      <div class="password-rules" id="mobile-password-rules" style="display: flex; align-items: center; gap: 10px; justify-content: flex-start;">
+        <ul>
+          <li id="mobile-rule-length" class="invalid">حداقل ۸ کاراکتر</li>
+          <li id="mobile-rule-uppercase" class="invalid">یک حرف بزرگ (A-Z)</li>
+          <li id="mobile-rule-lowercase" class="invalid">یک حرف کوچک (a-z)</li>
+          <li id="mobile-rule-number" class="invalid">یک عدد (0-9)</li>
+          <li id="mobile-rule-symbol" class="invalid">یک نماد (_ / % - . &)</li>
+        </ul>
+        <button type="button" id="mobile-generate-password" class="generate-btn">تولید رمز</button>
+      </div>
+
+      <button type="submit">ورود</button>
+      <div class="divider">یا</div>
+      <button class="github-login" type="button">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+        ورود با GitHub
+      </button>
+    </form>
+
+
+
+    <div class="status-message"></div>
+
+    <div id="recaptcha-container"></div>
+  </div>
+    <form id="email-verify-form" class="form modern-form" style="display:none; max-width: 400px; margin:auto; text-align:center;" autocomplete="off">
+    <h2>تایید ایمیل</h2>
+    <p>لطفا کد 6 رقمی ارسال شده به ایمیل خود را وارد کنید:</p>
+    
+    <div class="otp-inputs" style="display:flex; justify-content:center; gap:10px; margin: 1rem 0;">
+      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" class="otp-input" required />
+      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" class="otp-input" required />
+      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" class="otp-input" required />
+      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" class="otp-input" required />
+      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" class="otp-input" required />
+      <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" class="otp-input" required />
+    </div>
+
+    <button type="submit" id="verify-code-btn" disabled>تایید کد</button>
+
+    <div style="margin-top: 1rem;">
+      <button type="button" id="resend-code-btn" disabled>ارسال مجدد کد (<span id="resend-timer">30</span>s)</button>
+    </div>
+
+    <div class="status-message" style="margin-top: 1rem; min-height: 1.5em;"></div>
+  </form>
+
+    <form class="complete-profile-form" style="display: none; max-width: 400px; margin: auto;" autocomplete="off">
+    <h2>تکمیل پروفایل</h2>
+
+    <!-- نام و نام خانوادگی -->
+    <div class="form-group">
+      <label for="full_name">نام و نام خانوادگی</label>
+      <input type="text" id="full_name" required />
+    </div>
+
+    <!-- ایمیل -->
+    <div class="form-group">
+      <label for="email">ایمیل</label>
+      <input type="email" id="email" required />
+    </div>
+
+    <!-- شماره موبایل -->
+    <div class="form-group">
+      <label for="mobile">شماره موبایل</label>
+      <input type="tel" id="mobile" required />
+    </div>
+
+    <!-- رمز عبور -->
+    <div class="form-group">
+      <label for="password">رمز عبور</label>
+      <input type="password" id="password" required />
+    </div>
+
+    <!-- تکرار رمز عبور -->
+    <div class="form-group">
+      <label for="confirm_password">تکرار رمز عبور</label>
+      <input type="password" id="confirm_password" required />
+    </div>
+
+    <!-- چک‌لیست رمز امن -->
+    <div class="password-checklist" style="font-size: 14px; margin-bottom: 1rem;">
+      <p>رمز باید شامل موارد زیر باشد:</p>
+      <ul>
+        <li id="len" style="color: red;">حداقل ۸ کاراکتر</li>
+        <li id="lower" style="color: red;">یک حرف کوچک</li>
+        <li id="upper" style="color: red;">یک حرف بزرگ</li>
+        <li id="digit" style="color: red;">یک عدد</li>
+        <li id="special" style="color: red;">یک کاراکتر خاص</li>
+      </ul>
+    </div>
+
+    <!-- دکمه ارسال -->
+    <button type="submit">ذخیره پروفایل</button>
+  </form>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>

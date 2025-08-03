@@ -208,34 +208,75 @@
     </style>
     <style>
 
+       /* متغیرهای پایه (دارک ولیت پیش‌فرض) */
+      body {
+        --banner-bg: linear-gradient(to right, #071223, #081527, #0F1E30);
+        --banner-text-color: #ffffff;
+        --banner-accent-color: #f0c040;
+        --banner-overlay-max-width: 800px;
+      }
+
+      /* متغیرهای لایت مود */
+      body.light-mode {
+        --banner-bg: linear-gradient(to right, #e6e9ff, #c3c9ff, #d5d7ec);
+        --banner-text-color: #1a1a4d;
+        --banner-accent-color: #a58bff;
+        --banner-overlay-max-width: 800px;
+      }
+
+      /* استایل بنر */
       .welcome-banner {
-        background: linear-gradient(to right, #071223, #081527, #0F1E30);
-        color: white;
+        background: var(--banner-bg);
+        color: var(--banner-text-color);
         padding: 100px 20px;
         text-align: center;
         position: relative;
         border-radius: 6%;
-        transition: background-color 0.3s ease;
+        transition:
+          background 0.4s ease,
+          color 0.4s ease,
+          transform 0.4s ease;
+        max-width: 100%;
+        margin: 0 auto;
+        will-change: transform;
       }
-      .welcome-banner:hover{
+
+      /* افکت هاور */
+      .welcome-banner:hover {
         transform: scale(0.95);
-        transition: transform 0.4s ease;
       }
-      #namebanner{
-        color:#f0c040;
+
+      /* رنگ متن ویژه */
+      #welcome-banner #namebanner,
+      #welcome-banner #namebanner * {
+        color: var(--banner-accent-color);
       }
+
+      /* اگر آی‌دی ندارید، این رو هم می‌تونید استفاده کنید */
+      #welcome-banner .highlight {
+        color: var(--banner-accent-color);
+      }
+
+      /* کلاس کانتینر اورلی */
       .banner-overlay {
-        max-width: 800px;
+        max-width: var(--banner-overlay-max-width);
         margin: 0 auto;
       }
+
+      /* تیتر */
       .welcome-banner h1 {
         font-size: 2.5rem;
         margin-bottom: 10px;
       }
+
+      /* متن */
       .welcome-banner p {
         font-size: 1.2rem;
         opacity: 0.9;
+        transition: color 0.4s ease;
       }
+
+      /* ریسپانسیو */
       @media (max-width: 768px) {
         .welcome-banner h1 {
           font-size: 2rem;
@@ -248,8 +289,14 @@
   <!-- ناوبری -->
   <nav class="navbar navbar-dark px-4 py-3 navbar-custom" data-aos="fade-down">
     <div class="d-flex align-items-center">
-      <img src="assets/images/lt.png" alt="لوگوی Arfito" class="navbar-brand fs-3 fw-bold text-warning me-3" href="#" width="112px" />
+      <img src="assets/images/nav_logo.png" alt="لوگوی Arfito" class="navbar-brand fs-3 fw-bold text-warning me-3" href="#" width="112px" />
       <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم">🌙</button>
+      <button id="open-auth-btn" class="btn-auth" aria-label="ورود یا عضویت" <a href="./auth-firebase/test2.html"></a>>
+        <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H3m12 0l-4-4m4 4l-4 4m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2v-1" />
+        </svg>
+        ورود | عضویت
+      </button>
 
 
       

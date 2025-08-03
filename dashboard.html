@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>داشبورد</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>خوش آمدید 🌟</h2>
+    <p id="welcomeText"></p>
+    <button onclick="logout()">خروج</button>
+  </div>
+
+  <script>
+    const username = localStorage.getItem('username');
+    document.getElementById('welcomeText').textContent = username
+      ? `سلام ${username} عزیز!`
+      : 'خوش آمدید!';
+
+    function logout() {
+      localStorage.removeItem('username');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
