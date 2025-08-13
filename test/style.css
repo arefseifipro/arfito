@@ -1,0 +1,80 @@
+:root{
+    --color-light-bg:#f0f8ff;
+    --color-light-btn:#2563eb;
+    --color-light-text:#000;
+    --color-dark-bg:#1e293b;
+    --color-dark-btn:#facc15;
+    --color-dark-text:#fff;
+}
+
+/* تم‌ها */
+.theme-light{
+    background-color: var(--color-light-bg);
+    color: var(--color-light-text);
+}
+.theme-dark{
+    background-color: var(--color-dark-bg);
+    color: var(--color-dark-text);
+}
+
+/* فرم‌ها */
+.login-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+.login-card, .register-card{
+    background-color:white;
+    padding:2rem;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    width:320px;
+    transition:all 0.3s ease;
+}
+.theme-dark .login-card, .theme-dark .register-card{
+    background-color: #334155;
+}
+
+.input-group{
+    margin-bottom:1rem;
+}
+.input-group input{
+    width:100%;
+    padding:0.5rem;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+.input-group small.error{
+    color:red;
+    font-size:0.8rem;
+    display:block;
+}
+
+button{
+    width:100%;
+    padding:0.6rem;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    background-color: var(--color-light-btn);
+    color:white;
+    transition:0.3s;
+}
+button:hover{
+    opacity:0.8;
+}
+.theme-dark button{
+    background-color: var(--color-dark-btn);
+}
+.switch-form{
+    margin-top:0.5rem;
+    font-size:0.9rem;
+}
+.switch-form a{
+    cursor:pointer;
+    color: var(--color-light-btn);
+}
+.theme-dark .switch-form a{
+    color: var(--color-dark-btn);
+}

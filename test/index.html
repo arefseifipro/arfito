@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورود / ثبت‌نام</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="login-container theme-light">
+    <div class="login-card">
+        <h2>ورود به پنل</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <label for="email">ایمیل یا شماره موبایل</label>
+                <input type="text" id="email" placeholder="ایمیل یا شماره موبایل">
+                <small class="error"></small>
+            </div>
+            <div class="input-group">
+                <label for="password">رمز عبور</label>
+                <input type="password" id="password" placeholder="رمز عبور">
+                <small class="error"></small>
+            </div>
+            <button type="submit">ورود</button>
+        </form>
+        <p class="switch-form">
+            هنوز ثبت‌نام نکرده‌اید؟ <a href="#" id="show-register">ثبت‌نام</a>
+        </p>
+        <p><a href="#">فراموشی رمز عبور</a></p>
+    </div>
+
+    <div class="register-card" style="display:none;">
+        <h2>ثبت‌نام</h2>
+        <form id="register-form">
+            <div class="input-group">
+                <label>نام</label>
+                <input type="text" id="reg-firstname" placeholder="نام">
+                <small class="error"></small>
+            </div>
+            <div class="input-group">
+                <label>نام خانوادگی</label>
+                <input type="text" id="reg-lastname" placeholder="نام خانوادگی">
+                <small class="error"></small>
+            </div>
+            <div class="input-group">
+                <label>ایمیل</label>
+                <input type="email" id="reg-email" placeholder="ایمیل">
+                <small class="error"></small>
+            </div>
+            <div class="input-group">
+                <label>شماره موبایل</label>
+                <input type="text" id="reg-phone" placeholder="شماره موبایل">
+                <small class="error"></small>
+            </div>
+            <div class="input-group">
+                <label>رمز عبور</label>
+                <input type="password" id="reg-password" placeholder="رمز عبور">
+                <small class="error"></small>
+            </div>
+            <button type="submit">ثبت‌نام</button>
+        </form>
+        <p class="switch-form">
+            قبلا ثبت‌نام کرده‌اید؟ <a href="#" id="show-login">ورود</a>
+        </p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
