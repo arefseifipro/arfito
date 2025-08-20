@@ -8,10 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <form id="email-form" class="form active">
   <div class="container">
     <h2 align="center">ورود به حساب کاربری</h2>
-    <h3 class="txt">کاربر گرامی ورود یا ثبت نام به دلیل شرایط امنیتی موقتا غیرفعال می باشد و این صفحه تنها برای تست است.</h3>
     <div class="tabs">
       <button class="tab active" data-tab="email">ورود با ایمیل</button>
       <button class="tab" data-tab="mobile">ورود با موبایل</button>
@@ -35,7 +33,8 @@
         </div>
         <button type="button" id="generate-password" class="btn-generate-pass">تولید رمز</button>
       </div>
-      <button type="submit">ورود</button>
+      <button id="forgot-password-btn" type="button">فراموشی رمز عبور؟</button>
+      <button type="submit" disabled>ورود | ثبت نام</button>
       <div class="divider">یا</div>
       <button class="github-login" type="button">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
@@ -49,18 +48,10 @@
         <input type="password" name="password" placeholder="رمز عبور" required />
         <span class="toggle-password">👁️</span>
       </div>
-      <div class="password-rules" id="mobile-password-rules" style="display: flex; align-items: center; gap: 10px; justify-content: flex-start;">
-        <ul>
-          <li id="mobile-rule-length" class="invalid">حداقل ۸ کاراکتر</li>
-          <li id="mobile-rule-uppercase" class="invalid">یک حرف بزرگ (A-Z)</li>
-          <li id="mobile-rule-lowercase" class="invalid">یک حرف کوچک (a-z)</li>
-          <li id="mobile-rule-number" class="invalid">یک عدد (0-9)</li>
-          <li id="mobile-rule-symbol" class="invalid">یک نماد (_ / % - . &)</li>
-        </ul>
-        <button type="button" id="mobile-generate-password" class="generate-btn">تولید رمز</button>
-      </div>
-
+      
+      <button id="forgot-password-btn" type="button">فراموشی رمز عبور؟</button>
       <button type="submit">ورود</button>
+
       <div class="divider">یا</div>
       <button class="github-login" type="button">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
@@ -147,6 +138,6 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="script.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>

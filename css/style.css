@@ -75,7 +75,7 @@ body.light-mode {
   --banner-bg: linear-gradient(135deg, #d6e0ff, #eef1ff);
   --banner-text-color: #2a3a8c;
   --banner-accent-color: #7f8aff;
-  --banner-shadow: 0 8px 30px rgba(127, 138, 255, 0.4);
+  --banner-shadow: 0 8px 30px rgba(50, 54, 241, 0.4);
 }
 
 #techeader{
@@ -135,7 +135,7 @@ body.light-mode {
 body.light-mode {
   --section-bg: #f9f9f9;
   --text-color: #111;
-  --card-bg: rgba(0, 0, 0, 0.03);
+  --card-bg: rgba(221, 105, 105, 0.03);
   --card-border: rgba(0, 0, 0, 0.08);
   --accent-color: #0077ff;
 }

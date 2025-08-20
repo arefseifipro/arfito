@@ -469,3 +469,9 @@ button:hover:not(:disabled) {
   color:red;
   font-size: small;
 }
+.valid {
+  color: green;
+}
+.invalid {
+  color: red;
+}
