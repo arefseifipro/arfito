@@ -12,7 +12,7 @@ body {
     line-height: 1.9;
     font-size: 1.1rem;
   }
-  
+
   .nav-link:hover {
     color: #fca311 !important;
   }
@@ -78,9 +78,7 @@ body.light-mode {
   --banner-shadow: 0 8px 30px rgba(50, 54, 241, 0.4);
 }
 
-#techeader{
-  color: #f0c040;;
-}
+
 /* Services Styles */
 .services-section {
   padding: 60px 20px;
@@ -123,38 +121,7 @@ body.light-mode {
   opacity: 0.9;
 }
 
-:root {
 
-  --text-color: #f0f0f0;
-  --card-bg: rgba(255, 255, 255, 0.04);
-  --card-border: rgba(255, 255, 255, 0.07);
-  --accent-color: #00ffe5;
-}
-
-
-body.light-mode {
-  --section-bg: #f9f9f9;
-  --text-color: #111;
-  --card-bg: rgba(221, 105, 105, 0.03);
-  --card-border: rgba(0, 0, 0, 0.08);
-  --accent-color: #0077ff;
-}
-/* 🌑 تم دارک (پیش‌فرض) */
-:root {
-
-  --text-color: #fff;
-  --card-bg: rgba(255, 255, 255, 0.04);
-  --card-border: rgba(255, 255, 255, 0.07);
-  --accent-color: #00ffe5;
-}
-
-body.light {
-  --section-bg: #f9f9f9;
-  --text-color: #111;
-  --card-bg: rgba(0, 0, 0, 0.03);
-  --card-border: rgba(0, 0, 0, 0.08);
-  --accent-color: #0077ff;
-}
 
 /* تم پیش‌فرض: دارک */
 :root {
@@ -339,95 +306,9 @@ body.light-mode {
 }
 
 /* استایل دکمه */
-.btn-auth {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 26px;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: 'Vazirmatn', sans-serif;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  background: var(--btn-bg);
-  color: var(--btn-color);
-  box-shadow: var(--btn-shadow);
-  transition:
-    background 0.4s ease,
-    color 0.3s ease,
-    box-shadow 0.4s ease,
-    transform 0.3s ease;
-}
 
-.btn-auth:hover {
-  background: var(--btn-hover-bg);
-  color: var(--btn-hover-color);
-  box-shadow: var(--btn-hover-shadow);
-  transform: translateY(-3px) scale(1.07);
-}
-
-.btn-auth:active {
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  transform: translateY(1px) scale(0.97);
-}
-
-/* آیکون داخل دکمه */
-.btn-icon {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  transition: stroke 0.3s ease;
-}
-
-.btn-auth:hover .btn-icon {
-  stroke: var(--btn-hover-color);
-}
-
-/* ریسپانسیو برای موبایل */
-@media (max-width: 480px) {
-  .btn-auth {
-    padding: 8px 20px;
-    font-size: 0.9rem;
-    border-radius: 26px;
-    gap: 6px;
-  }
-  .btn-icon {
-    width: 16px;
-    height: 16px;
-  }
-}
 /* متغیرهای رنگی (دارک مود پیش‌فرض) */
-body {
-  --bg-color: #121629;
-  --container-bg: #1f2235;
-  --text-color: #e0e0ff;
-  --input-bg: #2a2e49;
-  --input-border: #3f436b;
-  --input-focus-border: #7f8aff;
-  --btn-bg: linear-gradient(90deg, #3b2f72, #5e4f9b);
-  --btn-hover-bg: linear-gradient(90deg, #504a84, #7865bc);
-  --btn-color: #e0e0ff;
-  --btn-shadow: 0 8px 20px rgba(79, 74, 146, 0.6);
-  --error-color: #ff6b6b;
-  --success-color: #5cb85c;
-}
 
-/* لایت مود */
-body.light-mode {
-  --bg-color: #f5f7ff;
-  --container-bg: #ffffff;
-  --text-color: #2a2a72;
-  --input-bg: #e5e8ff;
-  --input-border: #aab2ff;
-  --input-focus-border: #7f8aff;
-  --btn-bg: linear-gradient(90deg, #7f8aff, #a48bff);
-  --btn-hover-bg: linear-gradient(90deg, #5e72d7, #8b85ff);
-  --btn-color: #2a2a72;
-  --btn-shadow: 0 8px 20px rgba(124, 124, 255, 0.4);
-  --error-color: #e03e3e;
-  --success-color: #3ca63c;
-}
 body {
   background-color: #101010;
   color: #eee;

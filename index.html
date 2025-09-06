@@ -33,6 +33,9 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
+     html {
+      scroll-behavior: smooth;
+    }
     :root {
       --bg-color: #1a2238;
       --text-color: #ffffff;
@@ -110,15 +113,21 @@
       background-color: #f0c040;
       transition: width 0.3s ease;
     }
-
     .custom-nav a:hover {
       color: #f0c040;
     }
-
+    body.light-mode{
+      --custom-nav-bg: blue;
+    }
     .custom-nav a:hover::after {
       width: 100%;
     }
-
+    body.light-mode .custom-nav a::after {
+      background-color: #2563eb;
+    }
+  body.light-mode .custom-nav a:hover {
+  color: #2563eb;
+}
     @keyframes fadeInNav {
       to {
         opacity: 1;
@@ -203,6 +212,14 @@
       font-weight: bold;
       transition: transform 0.3s ease;
     }
+    body.light-mode .tech-item{
+      background-color: #efefef;
+      color: #2563eb;
+      font-weight: 750;
+    }
+    body.light-mode h2{
+      color: #2563eb;
+    }
     .tech-item:hover {
       transform: scale(1.05);
     }
@@ -283,21 +300,242 @@
           font-size: 2rem;
         }
       }
-      </style>
+
+
+:root{
+  --radius: 999px;
+  --pad-inline: 1.1rem;
+  --pad-block: .7rem;
+  --gap: .65rem;
+  /* لایت مود (پیش‌فرض) */
+  --btn-bg: transparent;
+  --btn-border: #2563eb; /* آبی */
+  --btn-text: #2563eb;
+  --btn-icon: #2563eb;
+  --btn-hover-bg: rgba(37,99,235,.05);
+  --btn-focus: 0 0 0 3px rgba(37,99,235,.35);
+}
+
+/* دارک مود */
+@media (prefers-color-scheme: dark){
+  :root{
+    --btn-bg: transparent;
+    --btn-border:  #f0c040; /* زرد */
+    --btn-text:  #f0c040;
+    --btn-icon:  #f0c040;
+    --btn-focus: 0 0 0 3px rgba(250,204,21,.4);
+  }
+}
+
+/* امکان اجبار تم با data-theme روی <html> */
+body.light-mode{
+  --btn-bg: transparent;
+  --btn-border: #2563eb;
+  --btn-text: #2563eb;
+  --btn-icon: #2563eb;
+  --btn-hover-bg: rgba(37,99,235,.05);
+  --btn-focus: 0 0 0 3px rgba(37,99,235,.35);
+}
+html[data-theme="dark"]{
+  --btn-bg: transparent;
+  --btn-border:  #f0c040;
+  --btn-text:  #f0c040;
+  --btn-icon:  #f0c040;
+  --btn-hover-bg: rgba(250,204,21,.1);
+  --btn-focus: 0 0 0 3px rgba(250,204,21,.4);
+}
+
+.login-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: var(--pad-block) var(--pad-inline);
+  border-radius: var(--radius);
+  border: 2px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  cursor: pointer;
+  font-family: Vazirmatn, sans-serif;
+  font-weight: 800;
+  transition: all .25s ease;
+ 
+}
+.login-btn:hover{ background: var(--btn-hover-bg); }
+.login-btn:focus-visible{ outline: none; box-shadow: var(--btn-focus); }
+.login-btn__icon{ width: 20px; height: 20px; }
+.login-btn__icon svg{
+  width: 100%; height: 100%;
+  stroke: var(--btn-icon);
+  stroke-width: 1.8;
+  fill: none;
+  transition: transform .3s ease, stroke .2s ease;
+}
+.login-btn:hover .login-btn__icon svg{ transform: scale(1.1) rotate(-6deg); }
+
+.login-btn__label{ font-size: .95rem; white-space: nowrap; }
+
+/* موبایل: فقط آیکون */
+@media (max-width: 480px){
+  .login-btn__label{ display: none; }
+  .login-btn{ padding-inline: .9rem; }
+  .login-btn__icon{ width: 22px; height: 22px; }
+}
+
+:root {
+
+  --text-color: #f0f0f0;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --accent-color:  #f0c040;
+}
+
+
+body.light-mode {
+  --section-bg: #f9f9f9;
+  --text-color: #111;
+  --card-bg: rgba(221, 105, 105, 0.03);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --accent-color: #0077ff;
+}
+/* 🌑 تم دارک (پیش‌فرض) */
+:root {
+
+  --text-color: #fff;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --accent-color: #f0c040;
+}
+
+body.light {
+  --section-bg: #f9f9f9;
+  --text-color: #111;
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --accent-color: #0077ff;
+}
+#toggle-theme {
+  color: #fca311; /* رنگ آفتاب در لایت مود */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.5s ease;
+  transition: transform 0.5s ease;
+}
+#toggle-theme hover{
+  transform: rotate(360deg);
+}
+body.light-mode #toggle-theme {
+  color: #2563eb; /* آبی برای لایت مود */
+}
+
+/* وقتی دارک مود هست */
+body.dark-mode #toggle-theme {
+  color: #fca311; /* زرد برای دارک مود */
+}
+body.light-mode #toggle-theme:hover{
+  color: #2563eb; /* آبی برای لایت مود */
+  transform: rotate(360deg);
+}
+/* هاور روی دکمه */
+#toggle-theme svg path {
+  transition: stroke 0.5s ease, fill 0.5s ease;
+}
+.smile-icon{
+  width: 3rem;
+  height: auto;
+}
+.smile-icon{
+  color:#f0c040;
+}
+body.light-mode .smile-icon{
+  color:#0077ff;
+}
+.arfito-welcome-change{
+  color:#f0c040;
+}
+body.light-mode .arfito-welcome-change{
+  color:#0077ff;
+}
+.project-btn-icon{
+  width: 1.5rem;
+  height: auto;
+  color: #1a281a;
+  transform:rotate(360deg);
+}
+body.light-mode .project-btn-icon{
+  color: white;
+}
+body.light-mode .btn{
+  background-color: #2785f1;
+  color: white;
+}
+.about-main-icon{
+  width: 3rem;
+  height: auto;
+  color: #f0c040;
+}
+.about-main-text{
+  color: #f0c040;
+}
+body.light-mode  .about-main-icon{
+  color:#0077ff;
+}
+body.light-mode .about-main-text{
+  color:#0077ff;
+}
+.services-icon{
+  width: 3rem;
+  height: auto;
+  color:  #f0c040;
+}
+.services-title{
+  color:   #f0c040;
+  text-align: center;
+}
+body.light-mode .services-icon{
+  color: #0077ff;
+}
+body.light-mode .services-title{
+  color: #0077ff;
+}
+    </style>
 </head>
 <body>
 
   <!-- ناوبری -->
   <nav class="navbar navbar-dark px-4 py-3 navbar-custom" data-aos="fade-down">
     <div class="d-flex align-items-center">
-      <img src="assets/images/nav_logo.png" alt="لوگوی Arfito" class="navbar-brand fs-3 fw-bold text-warning me-3" href="#" width="112px" />
-      <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم">🌙</button>
-      <button id="open-auth-btn" class="btn-auth" aria-label="ورود یا عضویت" onclick="location.href='./test/panel/panel.html'">
-        <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H3m12 0l-4-4m4 4l-4 4m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2v-1" />
+      <img src="assets/images/nav_logo.webp" alt="لوگوی Arfito" class="navbar-logo" href="www.arfito.ir" width="5%" margin=""/>
+      <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg class="icon-sun" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path  d="M7.28451 10.3333C7.10026 10.8546 7 11.4156 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C11.4156 7 10.8546 7.10026 10.3333 7.28451" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12 2V4" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12 20V22" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M4 12L2 12" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M22 12L20 12" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M19.7778 4.22266L17.5558 6.25424" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M4.22217 4.22266L6.44418 6.25424" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M6.44434 17.5557L4.22211 19.7779" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M19.7778 19.7773L17.5558 17.5551" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        ورود | عضویت
       </button>
+        
+    <!-- ... بقیه هدر ... -->
+    <button class="login-btn" id="loginBtn" onclick="window.location.href='./Login/index.html'">
+  <span class="login-btn__icon">
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"></circle>
+      <path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path>
+    </svg>
+  </span>
+  <span class="login-btn__label">ورود | عضویت</span>
+</button>
+
+
 
 
       
@@ -320,11 +558,23 @@
     <!-- Welcome Banner -->
 <section class="welcome-banner" dir="rtl">
   <div class="banner-overlay">
-    <h1 id="namebanner">سلام! به آرفیتو خوش آمدید 👋</h1>
+    <h1 id="namebanner"> به <span class="arfito-welcome-change">آرفیتو</span> خوش آمدید <svg class="smile-icon" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M16 10.5C16 11.3284 15.5523 12 15 12C14.4477 12 14 11.3284 14 10.5C14 9.67157 14.4477 9 15 9C15.5523 9 16 9.67157 16 10.5Z" fill="currentColor"/>
+  <ellipse cx="9" cy="10.5" rx="1" ry="1.5" fill="currentColor"/>
+  <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+</h1>
     <p class="lead mb-4 px-md-5" data-aos="fade-up" data-aos-delay="200">
       آرفیتو؟ یه تیم برنامه‌نویسی خلاق و پیگیر که عاشق دنیای کده. از طراحی فرانت‌اند‌های خوش‌دست گرفته تا الگوریتم‌های سنگین سمت سرور و طراحی و اجرای پروژه های بزرگ صنعتی  پشت هر پروژه‌ای، یه دنیا شور و شوق گذاشتیم.
     </p>
-    <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3" data-aos="fade-up" data-aos-delay="400">پروژه های ما</a>
+    <a href="projects.html" class="btn btn-warning px-4 py-2 mt-3" data-aos="fade-up" data-aos-delay="400"><svg class="project-btn-icon" width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 10L13 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M10 3H16.5C16.9644 3 17.1966 3 17.3916 3.02567C18.7378 3.2029 19.7971 4.26222 19.9743 5.60842C20 5.80337 20 6.03558 20 6.5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M22 11.7979C22 9.16554 22 7.84935 21.2305 6.99383C21.1598 6.91514 21.0849 6.84024 21.0062 6.76946C20.1506 6 18.8345 6 16.2021 6H15.8284C14.6747 6 14.0979 6 13.5604 5.84678C13.2651 5.7626 12.9804 5.64471 12.7121 5.49543C12.2237 5.22367 11.8158 4.81578 11 4L10.4497 3.44975C10.1763 3.17633 10.0396 3.03961 9.89594 2.92051C9.27652 2.40704 8.51665 2.09229 7.71557 2.01738C7.52976 2 7.33642 2 6.94975 2C6.06722 2 5.62595 2 5.25839 2.06935C3.64031 2.37464 2.37464 3.64031 2.06935 5.25839C2 5.62595 2 6.06722 2 6.94975M21.9913 16C21.9554 18.4796 21.7715 19.8853 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+      پروژه های ما
+    </a>
   </div>
   <!-- آیکون‌های معلق روی بنر -->
 <div class="floating-icons">
@@ -350,7 +600,14 @@
   </main>
 
   <section class="container py-5 text-center" data-aos="fade-up">
-    <h2 class="text-warning mb-4">🤞 از خودمون بگیم</h2>
+    <h2 class="about-main-text">
+<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg class="about-main-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.9901 14.3082L11.435 13.7045H11.435L10.9901 14.3082ZM12 8.10615L11.4641 8.63086C11.6052 8.77495 11.7983 8.85615 12 8.85615C12.2017 8.85615 12.3948 8.77495 12.5359 8.63086L12 8.10615ZM13.0099 14.3082L12.565 13.7045L12.565 13.7045L13.0099 14.3082ZM12 14.8103L12 14.0603H12L12 14.8103ZM11.435 13.7045C10.7914 13.2302 9.96746 12.5568 9.31176 11.808C8.63279 11.0325 8.25 10.3064 8.25 9.71476H6.75C6.75 10.8757 7.44886 11.9574 8.18323 12.7961C8.94088 13.6614 9.86191 14.4085 10.5451 14.912L11.435 13.7045ZM8.25 9.71476C8.25 8.60703 8.74454 8.02373 9.25333 7.83348C9.77052 7.6401 10.5951 7.74331 11.4641 8.63086L12.5359 7.58145C11.38 6.40091 9.95456 5.96985 8.72797 6.42849C7.49299 6.89028 6.75 8.14533 6.75 9.71476H8.25ZM13.4549 14.912C14.1381 14.4085 15.0591 13.6614 15.8168 12.7961C16.5511 11.9574 17.25 10.8758 17.25 9.71475H15.75C15.75 10.3064 15.3672 11.0326 14.6882 11.808C14.0325 12.5568 13.2086 13.2302 12.565 13.7045L13.4549 14.912ZM17.25 9.71475C17.25 8.14532 16.507 6.89027 15.272 6.42849C14.0454 5.96985 12.62 6.40091 11.4641 7.58145L12.5359 8.63086C13.4049 7.74331 14.2295 7.6401 14.7467 7.83348C15.2555 8.02373 15.75 8.60702 15.75 9.71475H17.25ZM10.5451 14.912C10.9368 15.2007 11.3752 15.5603 12 15.5603L12 14.0603C11.9852 14.0603 11.9682 14.0626 11.899 14.0252C11.8008 13.972 11.678 13.8836 11.435 13.7045L10.5451 14.912ZM12.565 13.7045C12.322 13.8836 12.1992 13.972 12.101 14.0252C12.0318 14.0626 12.0148 14.0603 12 14.0603L12 15.5603C12.6248 15.5603 13.0632 15.2007 13.4549 14.912L12.565 13.7045Z" fill="currentColor"/>
+<path d="M13.0867 21.3877L13.7321 21.7697L13.0867 21.3877ZM13.6288 20.4718L12.9833 20.0898L13.6288 20.4718ZM10.3712 20.4718L9.72579 20.8539H9.72579L10.3712 20.4718ZM10.9133 21.3877L11.5587 21.0057L10.9133 21.3877ZM1.25 10.5C1.25 10.9142 1.58579 11.25 2 11.25C2.41421 11.25 2.75 10.9142 2.75 10.5H1.25ZM3.07351 15.6264C2.915 15.2437 2.47627 15.062 2.09359 15.2205C1.71091 15.379 1.52918 15.8177 1.68769 16.2004L3.07351 15.6264ZM7.78958 18.9915L7.77666 19.7413L7.78958 18.9915ZM5.08658 18.6194L4.79957 19.3123H4.79957L5.08658 18.6194ZM21.6194 15.9134L22.3123 16.2004V16.2004L21.6194 15.9134ZM16.2104 18.9915L16.1975 18.2416L16.2104 18.9915ZM18.9134 18.6194L19.2004 19.3123H19.2004L18.9134 18.6194ZM19.6125 2.7368L19.2206 3.37628L19.6125 2.7368ZM21.2632 4.38751L21.9027 3.99563V3.99563L21.2632 4.38751ZM4.38751 2.7368L3.99563 2.09732V2.09732L4.38751 2.7368ZM2.7368 4.38751L2.09732 3.99563H2.09732L2.7368 4.38751ZM9.40279 19.2098L9.77986 18.5615L9.77986 18.5615L9.40279 19.2098ZM13.7321 21.7697L14.2742 20.8539L12.9833 20.0898L12.4412 21.0057L13.7321 21.7697ZM9.72579 20.8539L10.2679 21.7697L11.5587 21.0057L11.0166 20.0898L9.72579 20.8539ZM12.4412 21.0057C12.2485 21.3313 11.7515 21.3313 11.5587 21.0057L10.2679 21.7697C11.0415 23.0767 12.9585 23.0767 13.7321 21.7697L12.4412 21.0057ZM10.5 2.75H13.5V1.25H10.5V2.75ZM21.25 10.5V11.5H22.75V10.5H21.25ZM7.8025 18.2416C6.54706 18.2199 5.88923 18.1401 5.37359 17.9265L4.79957 19.3123C5.60454 19.6457 6.52138 19.7197 7.77666 19.7413L7.8025 18.2416ZM1.68769 16.2004C2.27128 17.6093 3.39066 18.7287 4.79957 19.3123L5.3736 17.9265C4.33223 17.4951 3.50486 16.6678 3.07351 15.6264L1.68769 16.2004ZM21.25 11.5C21.25 12.6751 21.2496 13.5189 21.2042 14.1847C21.1592 14.8438 21.0726 15.2736 20.9265 15.6264L22.3123 16.2004C22.5468 15.6344 22.6505 15.0223 22.7007 14.2868C22.7504 13.5581 22.75 12.6546 22.75 11.5H21.25ZM16.2233 19.7413C17.4786 19.7197 18.3955 19.6457 19.2004 19.3123L18.6264 17.9265C18.1108 18.1401 17.4529 18.2199 16.1975 18.2416L16.2233 19.7413ZM20.9265 15.6264C20.4951 16.6678 19.6678 17.4951 18.6264 17.9265L19.2004 19.3123C20.6093 18.7287 21.7287 17.6093 22.3123 16.2004L20.9265 15.6264ZM13.5 2.75C15.1512 2.75 16.337 2.75079 17.2619 2.83873C18.1757 2.92561 18.7571 3.09223 19.2206 3.37628L20.0044 2.09732C19.2655 1.64457 18.4274 1.44279 17.4039 1.34547C16.3915 1.24921 15.1222 1.25 13.5 1.25V2.75ZM22.75 10.5C22.75 8.87781 22.7508 7.6085 22.6545 6.59611C22.5572 5.57256 22.3554 4.73445 21.9027 3.99563L20.6237 4.77938C20.9078 5.24291 21.0744 5.82434 21.1613 6.73809C21.2492 7.663 21.25 8.84876 21.25 10.5H22.75ZM19.2206 3.37628C19.7925 3.72672 20.2733 4.20752 20.6237 4.77938L21.9027 3.99563C21.4286 3.22194 20.7781 2.57144 20.0044 2.09732L19.2206 3.37628ZM10.5 1.25C8.87781 1.25 7.6085 1.24921 6.59611 1.34547C5.57256 1.44279 4.73445 1.64457 3.99563 2.09732L4.77938 3.37628C5.24291 3.09223 5.82434 2.92561 6.73809 2.83873C7.663 2.75079 8.84876 2.75 10.5 2.75V1.25ZM2.75 10.5C2.75 8.84876 2.75079 7.663 2.83873 6.73809C2.92561 5.82434 3.09223 5.24291 3.37628 4.77938L2.09732 3.99563C1.64457 4.73445 1.44279 5.57256 1.34547 6.59611C1.24921 7.6085 1.25 8.87781 1.25 10.5H2.75ZM3.99563 2.09732C3.22194 2.57144 2.57144 3.22194 2.09732 3.99563L3.37628 4.77938C3.72672 4.20752 4.20752 3.72672 4.77938 3.37628L3.99563 2.09732ZM11.0166 20.0898C10.8136 19.7468 10.6354 19.4441 10.4621 19.2063C10.2795 18.9559 10.0702 18.7304 9.77986 18.5615L9.02572 19.8582C9.07313 19.8857 9.13772 19.936 9.24985 20.0898C9.37122 20.2564 9.50835 20.4865 9.72579 20.8539L11.0166 20.0898ZM7.77666 19.7413C8.21575 19.7489 8.49387 19.7545 8.70588 19.7779C8.90399 19.7999 8.98078 19.832 9.02572 19.8582L9.77986 18.5615C9.4871 18.3912 9.18246 18.3215 8.87097 18.287C8.57339 18.2541 8.21375 18.2487 7.8025 18.2416L7.77666 19.7413ZM14.2742 20.8539C14.4916 20.4865 14.6287 20.2564 14.7501 20.0898C14.8622 19.936 14.9268 19.8857 14.9742 19.8582L14.2201 18.5615C13.9298 18.7304 13.7204 18.9559 13.5379 19.2063C13.3646 19.4441 13.1864 19.7468 12.9833 20.0898L14.2742 20.8539ZM16.1975 18.2416C15.7862 18.2487 15.4266 18.2541 15.129 18.287C14.8175 18.3215 14.5129 18.3912 14.2201 18.5615L14.9742 19.8582C15.0192 19.832 15.096 19.7999 15.2941 19.7779C15.5061 19.7545 15.7842 19.7489 16.2233 19.7413L16.1975 18.2416Z" fill="currentColor"/>
+</svg>
+
+      از خودمون بگیم</h2><br>
     <p class="lead mb-4 px-md-5">
       ما چندتا دوستیم که کد برامون فقط یه شغل نیست — یه مدل زندگیه!  
       از بحث سر فونت پیش‌فرض گرفته تا دیباگ کردن نصفه‌شب،  
@@ -362,7 +619,18 @@
     </p>
   </section>
   <section class="container py-5" data-aos="fade-up" data-aos-delay="100">
-    <h2 class="text-warning text-center mb-5">🚀 چرا آرفیتو رو انتخاب کنیم</h2>
+    <h2 class="services-title" id="services-title">
+      <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+      <svg class="services-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon">
+        <path d="M10 16L12 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M14 12.5C14 13.3284 13.5523 14 13 14C12.4477 14 12 13.3284 12 12.5C12 11.6716 12.4477 11 13 11C13.5523 11 14 11.6716 14 12.5Z" fill="currentColor"/>
+        <ellipse cx="9" cy="12.5" rx="1" ry="1.5" fill="currentColor"/>
+        <path d="M17 7L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M17.9811 2.35316C18.1668 1.88228 18.8332 1.88228 19.0189 2.35316L19.6733 4.01242C19.73 4.15618 19.8438 4.26998 19.9876 4.32668L21.6468 4.98108C22.1177 5.16679 22.1177 5.83321 21.6468 6.01892L19.9876 6.67332C19.8438 6.73002 19.73 6.84382 19.6733 6.98758L19.0189 8.64684C18.8332 9.11772 18.1668 9.11772 17.9811 8.64684L17.3267 6.98758C17.27 6.84382 17.1562 6.73002 17.0124 6.67332L15.3532 6.01892C14.8823 5.83321 14.8823 5.16679 15.3532 4.98108L17.0124 4.32668C17.1562 4.26998 17.27 4.15618 17.3267 4.01242L17.9811 2.35316Z" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M5.75 8.00337C6.85315 7.36523 8.13392 7 9.5 7C13.6421 7 17 10.3579 17 14.5C17 18.6421 13.6421 22 9.5 22C5.35786 22 2 18.6421 2 14.5C2 13.1339 2.36523 11.8532 3.00337 10.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+
+      چرا آرفیتو رو انتخاب کنیم</h2><br>
     <div class="row g-4 text-center">
       <div class="col-md-4">
         <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
@@ -509,26 +777,46 @@
     });
 
     // Theme toggle
-    const toggleThemeBtn = document.getElementById('toggle-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const storedTheme = localStorage.getItem('theme');
+   const toggleThemeBtn = document.getElementById('toggle-theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const storedTheme = localStorage.getItem('theme');
 
-    const applyTheme = (mode) => {
-      document.body.classList.toggle('light-mode', mode === 'light');
-      toggleThemeBtn.textContent = mode === 'light' ? '☀️' : '🌙';
-      localStorage.setItem('theme', mode);
-    };
+// SVG خورشید و ماه شما
+const sunSVG = `
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.28451 10.3333C7.10026 10.8546 7 11.4156 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C11.4156 7 10.8546 7.10026 10.3333 7.28451" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M12 2V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M12 20V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M4 12L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M22 12L20 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M19.7778 4.22266L17.5558 6.25424" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M4.22217 4.22266L6.44418 6.25424" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M6.44434 17.5557L4.22211 19.7779" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M19.7778 19.7773L17.5558 17.5551" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>`;
 
-    if (storedTheme) {
-      applyTheme(storedTheme);
-    } else {
-      applyTheme(prefersDark ? 'dark' : 'light');
-    }
+const moonSVG = `
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.0672 11.8568L20.4253 11.469L21.0672 11.8568ZM12.1432 2.93276L11.7553 2.29085V2.29085L12.1432 2.93276ZM7.37554 20.013C7.017 19.8056 6.5582 19.9281 6.3508 20.2866C6.14339 20.6452 6.26591 21.104 6.62446 21.3114L7.37554 20.013ZM2.68862 17.3755C2.89602 17.7341 3.35482 17.8566 3.71337 17.6492C4.07191 17.4418 4.19443 16.983 3.98703 16.6245L2.68862 17.3755ZM21.25 12C21.25 17.1086 17.1086 21.25 12 21.25V22.75C17.9371 22.75 22.75 17.9371 22.75 12H21.25ZM2.75 12C2.75 6.89137 6.89137 2.75 12 2.75V1.25C6.06294 1.25 1.25 6.06294 1.25 12H2.75ZM15.5 14.25C12.3244 14.25 9.75 11.6756 9.75 8.5H8.25C8.25 12.5041 11.4959 15.75 15.5 15.75V14.25ZM20.4253 11.469C19.4172 13.1373 17.5882 14.25 15.5 14.25V15.75C18.1349 15.75 20.4407 14.3439 21.7092 12.2447L20.4253 11.469ZM9.75 8.5C9.75 6.41182 10.8627 4.5828 12.531 3.57467L11.7553 2.29085C9.65609 3.5593 8.25 5.86509 8.25 8.5H9.75ZM12 2.75C11.9115 2.75 11.8077 2.71008 11.7324 2.63168C11.6686 2.56527 11.6538 2.50244 11.6503 2.47703C11.6461 2.44587 11.6482 2.35557 11.7553 2.29085L12.531 3.57467C13.0342 3.27065 13.196 2.71398 13.1368 2.27627C13.0754 1.82126 12.7166 1.25 12 1.25V2.75ZM21.7092 12.2447C21.6444 12.3518 21.5541 12.3539 21.523 12.3497C21.4976 12.3462 21.4347 12.3314 21.3683 12.2676C21.2899 12.1923 21.25 12.0885 21.25 12H22.75C22.75 11.2834 22.1787 10.9246 21.7237 10.8632C21.286 10.804 20.7293 10.9658 20.4253 11.469L21.7092 12.2447ZM12 21.25C10.3139 21.25 8.73533 20.7996 7.37554 20.013L6.62446 21.3114C8.2064 22.2265 10.0432 22.75 12 22.75V21.25ZM3.98703 16.6245C3.20043 15.2647 2.75 13.6861 2.75 12H1.25C1.25 13.9568 1.77351 15.7936 2.68862 17.3755L3.98703 16.6245Z" fill="currentColor"/>
+</svg>`;
 
-    toggleThemeBtn.addEventListener('click', () => {
-      const isLight = document.body.classList.contains('light-mode');
-      applyTheme(isLight ? 'dark' : 'light');
-    });
+const applyTheme = (mode) => {
+  document.body.classList.toggle('light-mode', mode === 'light');
+  toggleThemeBtn.innerHTML = mode === 'light' ? moonSVG : sunSVG;
+  localStorage.setItem('theme', mode);
+};
+
+if (storedTheme) {
+  applyTheme(storedTheme);
+} else {
+  applyTheme(prefersDark ? 'dark' : 'light');
+}
+
+toggleThemeBtn.addEventListener('click', () => {
+  const isLight = document.body.classList.contains('light-mode');
+  applyTheme(isLight ? 'dark' : 'light');
+});
+
   </script>
 </body>
 </html>
