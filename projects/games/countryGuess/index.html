@@ -98,18 +98,18 @@
       <div class="left">
         <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
           <div>
-            <button class="back-btn" id="backBtn">
+            <button class="back-btn" id="backBtn" onclick="window.location.href='../'">
               <svg viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               بازگشت
             </button>
           </div>
-          <img src="logo.png" alt="لوگوی آرفیتو" style="height:40px;">
+          <img src="../../../assets/images/nav_logo.webp" alt="لوگوی آرفیتو" style="height:40px;">
         </div>
 
         <header style="margin-top:14px">
-          <h1 class="project-title">بازی حدس کشور — Country Guess</h1>
+          <h1 class="project-title" style="color:#fca311;">بازی حدس کشور</h1>
           <p class="lead">یک بازی جذاب و آموزشی برای شناخت کشورهای دنیا. شما باید نام کشورها را حدس بزنید، رکورد خود را ثبت کنید و مهارت جغرافیایی خود را افزایش دهید. این بازی به‌طور کامل با HTML، CSS و JavaScript ساخته شده و سبک و قابل انتشار است.</p>
-          <p class="lead">قابلیت انتخاب تم دارک یا لایت، پیش‌نمایش سریع و دانلود سورس تک‌فایل یا پکیج ZIP از ویژگی‌های این پروژه است. همچنین می‌توانید از نسخه دموی آنلاین برای تجربه بازی قبل از دانلود استفاده کنید.</p>
+          <p class="lead">قابلیت انتخاب تم دارک و لایت، انتخاب درجه سختی بازی به صورت چک باکس و ثبت رکورد با ذخیره سازی نام کشور،تاریخ، تعداد فرصت های باقیمانده و درجه سختی بازی، افکت های صوتی آنلاین، همچنین دو حالت انتخاب نام کشور توسط کامپیوتر به صورت رندوم یا وارد کردن این مقدار به صورت مخفی، به شما بازی ای جذاب را هدیه میدهد. آرفیتو در تلاش است در ورژن های بعدی، این بازی را جذاب تر کند.</p>
         </header>
 
         <section class="desc">
@@ -120,11 +120,11 @@
             </div>
             <div class="feature">
               <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              <div><h4>قابل دانلود</h4><p>دانلود سورس تک‌فایل یا ZIP با قوانین ساده و واضح.</p></div>
+              <div><h4>قابل دانلود</h4><p>دانلود سورس تک‌فایل یا ZIP با قوانین واضح.</p></div>
             </div>
             <div class="feature">
               <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.6"/></svg>
-              <div><h4>ریسپانسیو</h4><p>کاملاً سازگار با موبایل و دسکتاپ و دو تم دارک و لایت.</p></div>
+              <div><h4>سورس کد</h4><p>برای علاقمندان به کدنویسی، فایل سورس کد این پروژه به صورت جداگانه و کاملا کامنت دار و رایگان قابل دانلود است.</p></div>
             </div>
             <div class="feature">
               <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -142,20 +142,20 @@
         </section>
 
         <div class="meta-row">
-          <div>طراحی: آرفیتو</div>
-          <div>نسخه: 1.0</div>
+          <div style="color:#fca311;">طراحی: آرفیتو</div>
+          <div  style="color:#fca311;">نسخه: 1.0</div>
         </div>
       </div>
 
       <!-- right -->
       <aside class="right">
         <div class="preview">
-          <img src="preview.png" alt="پیش نمایش بازی">
+          <img src="../../../assets/images/country_guess_demo.png" alt="پیش نمایش بازی">
         </div>
 
         <div class="actions">
           <button class="btn" id="demoBtn">مشاهده دمو</button>
-          <button class="btn download" id="downloadHtmlBtn">دانلود تک‌فایل HTML</button>
+          <button class="btn download" id="downloadHtmlBtn">دانلود تک‌ فایل HTML</button>
           <button class="btn ghost" id="downloadZipBtn">دانلود ZIP</button>
         </div>
       </aside>
@@ -174,6 +174,7 @@
         <li>برای استفاده شخصی یا آموزشی است.</li>
         <li>انتشار تجاری نیازمند ذکر منبع است.</li>
         <li>آرفیتو مسئولیتی در قبال تغییرات و عملکرد در مرورگرهای مختلف ندارد.</li>
+        <li>هرگونه تکثیر و اشتراک گذاری این فایل به صورت سورس کد و یا فایل، با ذکر منبع بلامانع است.</li>
       </ol>
     </div>
     <div class="term-actions">
@@ -197,9 +198,9 @@
     acceptBtn.addEventListener('click',()=>{
       if(!pendingDownload){ hideTerms(); return;}
       if(pendingDownload.type==='html'){
-        triggerDownloadFile('countryguess/index.html', 'country-guess.html');
+        triggerDownload('./countryguess/index.html','countryguess.html');
       } else if(pendingDownload.type==='zip'){
-        triggerDownload('arfito_countryguess.zip','arfito_countryguess.zip');
+        triggerDownload('./arfito_countryguess.zip','arfito_countryguess.zip');
       }
       hideTerms();
     });
@@ -210,7 +211,7 @@
 
     document.getElementById('downloadHtmlBtn').addEventListener('click',()=>{ showTermsFor({type:'html'}); });
     document.getElementById('downloadZipBtn').addEventListener('click',()=>{ showTermsFor({type:'zip'}); });
-    document.getElementById('demoBtn').addEventListener('click',()=>{ window.open('countryguess/index.html', '_blank');});
+    document.getElementById('demoBtn').addEventListener('click',()=>{ window.open('./countryguess/index.html','_blank'); });
     document.getElementById('backBtn').addEventListener('click',()=>{ window.history.back(); });
   </script>
 </body>

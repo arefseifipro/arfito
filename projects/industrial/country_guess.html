@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>country guess game</title>
+
+  <!-- فونت وزیرمتن -->
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v36/Vazirmatn-font-face.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-light: #f6f8fb;
+      --card-light: #ffffff;
+      --text-light: #0b1220;
+      --bg-dark:#071127;
+      --card-dark:#071827;
+      --text-dark:#dbeafe;
+      --primary:#06b6d4;
+      --accent:#fca311;
+      --danger:#ef4444;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+    }
+    /* base */
+    *{box-sizing:border-box;font-family:"Vazirmatn",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+    html,body{height:100%;margin:0;padding:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+    body.light{
+      background: linear-gradient(180deg, rgba(6,182,212,0.02), rgba(252,163,17,0.01)), var(--bg-light);
+      color:var(--text-light);
+    }
+    body.dark{
+      background: linear-gradient(180deg, rgba(6,182,212,0.03), rgba(252,163,17,0.02)), var(--bg-dark);
+      color:var(--text-dark);
+    }
+    .wrap{max-width:980px;margin:36px auto;padding:18px;}
+    .card{border-radius:var(--radius); padding:18px; box-shadow: 0 8px 32px rgba(2,6,23,0.45); border:1px solid rgba(255,255,255,0.02);}
+    body.light .card{background:var(--card-light)}
+    body.dark .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));}
+    h1{font-size:20px;margin:0 0 8px;}
+    .muted{color:var(--muted);font-size:13px;}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--primary),#7dd3fc); border:none; padding:10px 14px;border-radius:10px;color:#032; font-weight:800; cursor:pointer;box-shadow:0 8px 24px rgba(6,182,212,0.12); transition:transform .12s ease,opacity .12s;}
+    .btn:active{transform:translateY(2px)}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.04); color:var(--accent); box-shadow:none}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;color:inherit;cursor:pointer}
+    .input{background:transparent;border:1px solid rgba(255,255,255,0.04); border-radius:10px;padding:8px 10px; color:inherit; outline:none; min-height:40px}
+    .row{display:flex;gap:12px;align-items:center;margin-top:12px}
+    .hidden{display:none !important;opacity:0;transform:translateY(-8px);transition:all .22s ease;}
+    /* game */
+    .big-emoji{font-size:46px; width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg, rgba(237, 241, 221, 0.02), rgba(255, 255, 255, 0.01)); display:flex;align-items:center;justify-content:center;box-shadow: 0 8px 24px rgba(167, 181, 241, 0.5);}
+    .subtitle{font-size:13px;color:var(--muted)}
+    .word-line{display:flex;gap:10px;flex-wrap:wrap; align-items:center; direction:rtl; justify-content:center; margin-top:18px;}
+    .char-box{min-width:22px;height:40px;border-bottom:2px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;letter-spacing:1px;transition:all .18s ease;border-radius:6px;padding:0 6px;background:transparent}
+    .char-space{min-width:12px;height:40px}
+    .char-filled{color:var(--primary); transform:translateY(-6px); opacity:0; animation:reveal .28s forwards;}
+    @keyframes reveal {to{transform:none; opacity:1;}}
+    .status{display:flex;gap:8px;align-items:center}
+    .attempts{font-weight:900;color:var(--accent);font-size:15px;padding:6px 10px;border-radius:10px;background:rgba(252,163,17,0.07);border:1px solid rgba(252,163,17,0.06)}
+    .wrong-list{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-start}
+    .wrong-pill{padding:6px 8px;border-radius:8px;background:rgba(239,68,68,0.08);color:var(--danger);display:flex;gap:8px;align-items:center;border:1px solid rgba(239,68,68,0.06);font-weight:800}
+    .controls-guess{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap;justify-content:center}
+    .result-msg{padding:12px;border-radius:10px;margin-top:12px;font-weight:800}
+    .win{background:linear-gradient(90deg, rgba(34,197,94,0.1), rgba(6,182,212,0.04)); color:var(--text-dark)}
+    .lose{background:linear-gradient(90deg, rgba(239,68,68,0.06), rgba(255,255,255,0.01)); color:var(--text-dark)}
+    .records{margin-top:12px;padding:10px;border-radius:10px;border:1px dashed rgba(255,255,255,0.03);font-size:13px}
+    .small{font-size:12px;color:var(--muted)}
+    .toggle{display:flex;gap:8px;align-items:center}
+    /* responsive */
+    @media (max-width:680px){
+      .word-line{gap:6px}
+      .char-box{min-width:18px;height:36px;font-size:16px}
+      .big-emoji{width:54px;height:54px;font-size:36px}
+    }
+    .char-box {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    direction: rtl;
+    justify-content: center;
+    margin-top: 18px;
+    font-weight: 200;
+    }
+
+    .char-box{
+        border-color: #444; /* پیش‌فرض برای لایت */
+    }
+
+    body.dark .char-box{
+        color: #ddd; /* دارک مود */
+        border-color: #ddd;
+        box-shadow: #f6f8fb;
+    }
+
+  </style>
+</head>
+<body class="dark">
+  <div class="wrap">
+    <div class="card" id="root">
+
+      <!-- header -->
+      <div class="topbar">
+        <div>
+          <h1>بازی حدس کشور</h1>
+          
+        </div>
+
+        <div class="controls" style="align-items:center">
+          <div class="toggle small">
+            <label class="small" for="themeToggle">تم:</label>
+            <select id="themeToggle" class="input" style="min-width:120px">
+              <option value="dark">دارک</option>
+              <option value="light">لایت</option>
+            </select>
+          </div>
+
+          <div class="toggle small">
+            <label class="small" for="modeHard">حالت سخت</label>
+            <input id="modeHard" type="checkbox" />
+          </div>
+
+          <button class="btn-ghost" id="recordsBtn">نمایش رکوردها</button>
+        </div>
+      </div>
+
+      <!-- intro / انتخاب -->
+      <div id="intro" style="margin-top:14px">
+        <div class="row">
+          <div style="flex:1">
+            <label class="small">انتخاب دستی — نام کشور را وارد کن (مخفی می‌ماند)</label>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+              <input id="manualInput" class="input" placeholder="نام کشور (مخفی)" type="password" />
+              <button class="btn secondary" id="confirmManual">شروع</button>
+            </div>
+            <div class="small" style="margin-top:6px;color:var(--muted)">نام وارد شده مخفی می‌ماند و فقط برای بازی فعلی استفاده می‌شود.</div>
+          </div>
+
+          <div style="width:1px;background:rgba(255,255,255,0.03);height:86px;margin:0 12px;"></div>
+
+          <div style="min-width:260px;">
+            <label class="small">یا از لیست تصادفی انتخاب کن</label>
+            <div style="margin-top:8px;">
+              <button class="btn" id="randomBtn">انتخاب تصادفی کشور</button>
+            </div>
+            <div class="muted" style="margin-top:8px">کامپیوتر یک کشور از فهرست جهانی (فارسی) انتخاب می‌کند.</div>
+          </div>
+        </div>
+
+        <div id="recordsPanel" class="records hidden" aria-live="polite">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="small">رکوردها (محلی)</div>
+            <div style="display:flex;gap:8px">
+              <button class="btn-ghost" id="clearRecords">پاک کردن رکوردها</button>
+              <button class="btn-ghost" id="closeRecords">بستن</button>
+            </div>
+          </div>
+          <div id="recordsList" style="margin-top:10px"></div>
+        </div>
+      </div>
+
+      <!-- game area -->
+      <div id="game" class="hidden">
+        <div class="topbar" style="align-items:center">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div class="big-emoji" id="emojiBox">🌍</div>
+            <div>
+              <div style="display:flex;gap:12px;align-items:center">
+                <div style="font-weight:900" id="gameTitle">حدس بزن این کشور چیست؟</div>
+                <div class="status">
+                  <div class="small">فرصت‌ها</div>
+                  <div class="attempts" id="attemptsBox">--</div>
+                </div>
+              </div>
+              <div class="subtitle" id="hintText">فاصله‌ها و علائم نگارشی حفظ می‌شوند.</div>
+            </div>
+          </div>
+
+          <div style="min-width:220px;text-align:left">
+            <div class="small">حروف اشتباه</div>
+            <div class="wrong-list" id="wrongList" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <div class="word-line" id="wordLine" aria-hidden="false"></div>
+
+        <div class="controls-guess">
+          <div style="display:flex;gap:8px;align-items:center">
+            <input id="letterInput" class="input" maxlength="2" placeholder="حدس حرف" style="width:110px;text-align:center" />
+            <button class="btn" id="guessLetter">حدس حرف</button>
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:center">
+            <input id="wordInput" class="input" placeholder="حدس نام کامل کشور" style="min-width:260px" />
+            <button class="btn" id="guessWord">حدس کل اسم</button>
+          </div>
+        </div>
+
+        <div id="result" class="hidden"></div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+          <div style="display:flex;gap:8px">
+            <button class="btn-ghost" id="revealBtn">نمایش کشور</button>
+            <button class="btn" id="newBtn">بازی جدید</button>
+          </div>
+          <div class="small">تعداد حروف (بدون فاصله): <span id="lettersCount">-</span></div>
+        </div>
+
+        <div class="records" style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="small">رکوردهای برتر</div>
+            <div class="small">(ذخیرهٔ محلی)</div>
+          </div>
+          <div id="topRecords" style="margin-top:8px"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /******************************************
+     * نسخهٔ فارسی بازی حدس کشور — تک‌فایل
+     * امکانات:
+     * - همه چیز فارسی
+     * - لیست کشورها به فارسی
+     * - رفع باگ جابه‌جایی حروف با نرمال‌سازی و نگهداری اندیس‌ها
+     * - ذخیره رکوردها در localStorage
+     * - حالت سخت (تعداد فرصت کمتر + غیرفعال کردن دکمهٔ نمایش)
+     * - صداهای کوتاه با WebAudio (بدون فایل خارجی)
+     * - نمایش ایموجی/پرچم (قابل توسعه)
+     *******************************************/
+
+    /* ---------- لیست کشورها (فارسی) ---------- */
+    const COUNTRIES = [
+"افغانستان","البانی","الجزایر","اندورا","انگولا","ارژانتین","ارمنستان","استرالیا","اتریش","اذربایجان",
+"باهاما","بحرین","بنگلادش","بلاروس","بلژیک","بلیز","بنین","بوتان","بولیوی",
+"بوتسوانا","برزیل","برونئی","بلغارستان","بوروندی","کامبوج","کامرون","کانادا",
+"شیلی","چین","کلمبیا","کومور","کاستاریکا","کرواسی","کوبا","قبرس","جمهوری چک","دانمارک","جیبوتی",
+"دومینیکا","دومینیکن","اکوادور","مصر","السالوادور","استونی","اسواتینی","اتیوپی","فیجی","فنلاند",
+"فرانسه","گابن","گامبیا","گرجستان","المان","غنا","یونان","گرنادا","گواتمالا","گینه","گویان","هائیتی",
+"هندوراس","مجارستان","ایسلند","هند","اندونزی","ایران","عراق","ایرلند","ایتالیا","جامایکا","ژاپن",
+"اردن","قزاقستان","کنیا","کوزوو","کویت","قرقیزستان","لائوس","لتونی","لبنان","لسوتو",
+"لیبریا","لیبی","لتوانی","ماداگاسکار","مالاوی","مالزی","مالدیو","مالی",
+"مالت","موریتانی","موریس","مکزیک","مولداوی","موناکو","مغولستان","مونته‌نگرو","مراکش","موزامبیک","میانمار",
+"نامیبیا","نائورو","نپال","هلند","نیوزیلند","نیکاراگوئه","نیجر","نیجریه","کره شمالی","مقدونیه شمالی",
+"نروژ","عمان","پاکستان","پالائو","پاناما","پاپوآ گینه نو","پاراگوئه","پرو","فیلیپین","لهستان","پرتغال",
+"قطر","رومانی","روسیه","رواندا","سنت کیتس و نویس","سنت لوسیا","ساموآ","سان مارینو","عربستان","سنگال",
+"صربستان","سیشل","سیرالئون","سنگاپور","اسلواکی","اسلوونی","سومالی","افریقای جنوبی",
+"کره جنوبی","اسپانیا","سریلانکا","سودان","سورینام","سوئد","سوئیس","سوریه","تایوان","تاجیکستان","تانزانیا",
+"تایلند","توگو","تونگا","تونس","ترکیه","ترکمنستان","تووالو","اوگاندا","اوکراین",
+"امارات","بریتانیا","امریکا","اروگوئه","ازبکستان","وانواتو","واتیکان","ونزوئلا",
+"ویتنام","یمن","زامبیا","زیمباوه"
+    ];
+
+    /* ---------- نگهداری وضعیت بازی ---------- */
+    const intro = document.getElementById('intro');
+    const game = document.getElementById('game');
+    const manualInput = document.getElementById('manualInput');
+    const confirmManual = document.getElementById('confirmManual');
+    const randomBtn = document.getElementById('randomBtn');
+    const emojiBox = document.getElementById('emojiBox');
+    const wordLine = document.getElementById('wordLine');
+    const attemptsBox = document.getElementById('attemptsBox');
+    const wrongList = document.getElementById('wrongList');
+    const letterInput = document.getElementById('letterInput');
+    const guessLetterBtn = document.getElementById('guessLetter');
+    const wordInput = document.getElementById('wordInput');
+    const guessWordBtn = document.getElementById('guessWord');
+    const result = document.getElementById('result');
+    const revealBtn = document.getElementById('revealBtn');
+    const newBtn = document.getElementById('newBtn');
+    const lettersCountSpan = document.getElementById('lettersCount');
+    const themeToggle = document.getElementById('themeToggle');
+    const modeHardCheckbox = document.getElementById('modeHard');
+    const recordsBtn = document.getElementById('recordsBtn');
+    const recordsPanel = document.getElementById('recordsPanel');
+    const recordsList = document.getElementById('recordsList');
+    const clearRecordsBtn = document.getElementById('clearRecords');
+    const closeRecordsBtn = document.getElementById('closeRecords');
+    const topRecordsDiv = document.getElementById('topRecords');
+
+    let target = "";
+    let normalized = ""; // برای مقایسهٔ کلی
+    let displayChars = []; // {char, norm, isSpace/sep, revealed}
+    let attempts = 0;
+    let wrongGuesses = new Set();
+    let correctGuesses = new Set();
+    let finished = false;
+    let isHard = false;
+
+    /* ---------- تنظیمات محلی (localStorage) ---------- */
+    const STORAGE_KEY = 'arfito_country_guess_records_v1';
+    const PREFS_KEY = 'arfito_country_guess_prefs_v1';
+
+    function loadPrefs(){
+      try{
+        const p = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
+        if(p.theme) document.body.className = p.theme;
+        if(p.theme) themeToggle.value = p.theme;
+        if(p.hard) modeHardCheckbox.checked = true;
+      }catch(e){}
+    }
+    function savePrefs(){
+      const p = { theme: document.body.className, hard: modeHardCheckbox.checked };
+      localStorage.setItem(PREFS_KEY, JSON.stringify(p));
+    }
+
+    /* ---------- نرمال‌سازی حروف (برطرف‌کنندهٔ باگ ترتیب) ---------- */
+    function normalizeString(s){
+      if(!s) return '';
+      // حذف کاراکترهای مخفی / فاصلهٔ زائد، تبدیل به lowercase
+      let t = String(s).trim().replace(/\u200B/g,'').replace(/\u200C/g,'').replace(/\u200D/g,'');
+      // تبدیل برخی حروف عربی به معادل فارسی برای تطابق بهتر
+      t = t.replace(/ي/g,'ی').replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/ۀ/g,'ه').replace(/ؤ/g,'و').replace(/ء/g,'').replace(/ٱ/g,'ا');
+      // حذف اعراب کوچک (Tashkeel)
+      t = t.replace(/[\u064B-\u065F\u0670]/g,'');
+      return t.toLowerCase();
+    }
+
+    function normalizeChar(ch){
+      return normalizeString(ch);
+    }
+
+    /* ---------- آماده‌سازی آرایهٔ نمایش (حفظ اندیس‌ها) ---------- */
+    function prepareDisplayArr(name){
+      displayChars = [];
+      // استفاده از Array.from برای پشتیبانی از کاراکترهای یونی‌کد
+      const arr = Array.from(name);
+      arr.forEach(ch => {
+        // فاصله یا خط تیره یا اسلش یا پرانتز را به‌عنوان جداکننده در نظر می‌گیریم و نمایش‌شده قرار می‌دهیم
+        const isSeparator = /\s|[-–—,()\/،]/.test(ch);
+        const norm = normalizeChar(ch);
+        displayChars.push({
+          char: ch,
+          norm: norm, // برای مقایسه حرف به حرف
+          isSep: isSeparator,
+          revealed: isSeparator
+        });
+      });
+    }
+
+    function countLettersOnly(){
+      return displayChars.filter(it => !it.isSep && /\p{L}/u.test(it.char)).length;
+    }
+
+    /* ---------- رندر کردن کلمه (بدون جابه‌جایی اندیس) ---------- */
+    function renderWordLine(){
+      wordLine.innerHTML = '';
+      displayChars.forEach(item => {
+        const box = document.createElement('div');
+        box.className = item.isSep ? 'char-space' : 'char-box';
+        if(item.isSep){
+          box.innerHTML = '&nbsp;';
+        } else if(item.revealed){
+          const span = document.createElement('span');
+          span.className = 'char-filled';
+          span.textContent = item.char;
+          box.appendChild(span);
+        } else {
+          box.textContent = '';
+        }
+        wordLine.appendChild(box);
+      });
+    }
+
+    /* ---------- به‌روز‌رسانی UI و لیست اشتباهات ---------- */
+    function updateUI(){
+      attemptsBox.textContent = attempts;
+      lettersCountSpan.textContent = countLettersOnly();
+      wrongList.innerHTML = '';
+      Array.from(wrongGuesses).forEach(ch => {
+        const pill = document.createElement('div');
+        pill.className = 'wrong-pill';
+        pill.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" style="opacity:0.95"><path fill="currentColor" d="M18.3 5.71a1 1 0 00-1.41 0L12 10.59 7.11 5.7A1 1 0 105.7 7.11L10.59 12l-4.9 4.89a1 1 0 101.41 1.42L12 13.41l4.89 4.9a1 1 0 001.42-1.41L13.41 12l4.9-4.89a1 1 0 000-1.4z"/></svg> ${ch.toUpperCase()}`;
+        wrongList.appendChild(pill);
+      });
+    }
+
+    /* ---------- بررسی برد/باخت ---------- */
+    function checkWin(){
+      const all = displayChars.every(it => it.isSep || it.revealed);
+      if(all){
+        finished = true;
+        onWin();
+      }
+    }
+
+    function showResultMessage(isWin, text){
+      result.className = '';
+      result.classList.add(isWin ? 'win' : 'lose');
+      result.classList.remove('hidden');
+      result.textContent = text;
+    }
+
+    function revealAll(){
+      displayChars.forEach(it => { if(!it.isSep) it.revealed = true; });
+      renderWordLine();
+    }
+
+    /* ---------- شروع بازی با یک نام ---------- */
+    function startGameWith(name){
+      target = name;
+      normalized = normalizeString(name);
+      prepareDisplayArr(name);
+      const letters = countLettersOnly();
+      // تعیین تعداد فرصت
+      attempts = isHard ? Math.max(1, Math.ceil(letters / 2)) : (letters + 2);
+      wrongGuesses = new Set();
+      correctGuesses = new Set();
+      finished = false;
+      // ایموجی/پرچم
+      emojiBox.textContent = chooseEmojiForCountry(name);
+      result.classList.add('hidden');
+      // نمایش/مخفی
+      intro.classList.add('hidden');
+      game.classList.remove('hidden');
+      renderWordLine();
+      updateUI();
+      letterInput.value = '';
+      wordInput.value = '';
+      setTimeout(() => letterInput.focus(), 120);
+      refreshTopRecordsUI();
+    }
+
+    /* ---------- انتخاب تصادفی ---------- */
+    function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    /* ---------- ایموجی/پرچم ساده (قابل توسعه با API) ---------- */
+    const EMOJI_MAP = {
+      "ملانونیا":"IP"
+    };
+    function chooseEmojiForCountry(name){
+      const key = normalizeString(name);
+      for(const k in EMOJI_MAP){
+        if(key.includes(normalizeString(k))) return EMOJI_MAP[k];
+      }
+      if(key.includes('متحد')) return '🌐';
+      return '🌍';
+    }
+
+    /* ---------- صداها (WebAudio) ---------- */
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+    function playTone(freq, duration=0.12, type='sine'){
+      if(!AudioCtx) return;
+      if(!audioCtx) audioCtx = new AudioCtx();
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = type;
+      o.frequency.value = freq;
+      o.connect(g);
+      g.connect(audioCtx.destination);
+      g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.01);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+      setTimeout(()=>{ try{ o.stop(); }catch(e){} }, (duration+0.02)*1000);
+    }
+    function playSuccess(){ playTone(880, 0.15, 'sine'); playTone(1320, 0.12, 'sine'); }
+    function playError(){ playTone(220, 0.18, 'sawtooth'); }
+
+    /* ---------- منطق حدس حرف ---------- */
+    function handleLetterGuess(){
+      if(finished) return;
+      const raw = letterInput.value.trim();
+      letterInput.value = '';
+      if(!raw) return;
+      const guess = normalizeChar(raw[0] || raw); // اولین کاراکتر
+      if(!guess) return;
+      // اگر قبلاً حدس زده شده
+      if(correctGuesses.has(guess) || wrongGuesses.has(guess)) return;
+      // بررسی وجود در نام (مقایسه‌ی norm هر المنت)
+      let found = false;
+      for(let i=0;i<displayChars.length;i++){
+        const it = displayChars[i];
+        // مقایسه نرمال‌شدهٔ هر کاراکتر با حدس
+        if(!it.isSep && it.norm && it.norm === guess){
+          it.revealed = true;
+          found = true;
+        }
+      }
+      if(found){
+        correctGuesses.add(guess);
+        renderWordLine();
+        updateUI();
+        playSuccess();
+        checkWin();
+      } else {
+        wrongGuesses.add(guess.toUpperCase());
+        attempts = Math.max(0, attempts - 1);
+        updateUI();
+        playError();
+        if(attempts <= 0){
+          finished = true;
+          revealAll();
+          onLose();
+        }
+      }
+    }
+
+    /* ---------- منطق حدس کلمه کامل ---------- */
+    function handleWordGuess(){
+      if(finished) return;
+      const raw = wordInput.value.trim();
+      wordInput.value = '';
+      if(!raw) return;
+      const guessNorm = normalizeString(raw);
+      if(guessNorm === normalized){
+        // برد
+        displayChars.forEach(it => { if(!it.isSep) it.revealed = true; });
+        renderWordLine();
+        finished = true;
+        onWin();
+      } else {
+        // اشتباه: کسر یک فرصت و ثبت اشتباه (نمایش کلمهٔ اشتباه در لیست)
+        attempts = Math.max(0, attempts - 1);
+        wrongGuesses.add(guessNorm.toUpperCase());
+        updateUI();
+        playError();
+        if(attempts <= 0){
+          finished = true;
+          revealAll();
+          onLose();
+        }
+      }
+    }
+
+    /* ---------- رفتار هنگام برد/باخت و ذخیره رکورد ---------- */
+    function onWin(){
+      const msg = `آفرین! درست حدس زدی — «${target}».`;
+      showResultMessage(true, msg);
+      playSuccess();
+      saveRecord({ country: target, attemptsLeft: attempts, letters: countLettersOnly(), mode: isHard ? 'سخت' : 'عادی', at: new Date().toISOString() });
+      refreshTopRecordsUI();
+    }
+
+    function onLose(){
+      const msg = `متاسفانه باختی — کشور «${target}» بود.`;
+      showResultMessage(false, msg);
+      playError();
+      saveRecord({ country: target, attemptsLeft: 0, letters: countLettersOnly(), mode: isHard ? 'سخت' : 'عادی', at: new Date().toISOString() });
+      refreshTopRecordsUI();
+    }
+
+    /* ---------- ذخیره و نمایش رکوردها (localStorage) ---------- */
+    function loadRecords(){
+      try{
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      }catch(e){
+        return [];
+      }
+    }
+    function saveRecords(arr){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+    }
+    function saveRecord(rec){
+      try{
+        const arr = loadRecords();
+        arr.push(rec);
+        // مرتب‌سازی بر اساس attemptsLeft (بیشتر بهتر) و سپس تعداد حروف کمتر (توی مساوی)
+        arr.sort((a,b)=> {
+          if(b.attemptsLeft !== a.attemptsLeft) return b.attemptsLeft - a.attemptsLeft;
+          return a.letters - b.letters;
+        });
+        // نگه داشتن تا 20 رکورد آخر
+        const sliced = arr.slice(0,20);
+        saveRecords(sliced);
+      }catch(e){}
+    }
+    function renderRecordsList(){
+      const arr = loadRecords();
+      if(!arr.length){
+        recordsList.innerHTML = '<div class="small muted">هنوز رکوردی ثبت نشده است.</div>';
+        return;
+      }
+      recordsList.innerHTML = '';
+      arr.forEach((r, idx) => {
+        const el = document.createElement('div');
+        el.className = 'small';
+        const date = (new Date(r.at)).toLocaleString();
+        el.textContent = `${idx+1}. ${r.country} — فرصت باقی: ${r.attemptsLeft} — حالت: ${r.mode} — ${date}`;
+        recordsList.appendChild(el);
+      });
+    }
+
+    function refreshTopRecordsUI(){
+      const arr = loadRecords().slice(0,5);
+      topRecordsDiv.innerHTML = '';
+      if(!arr.length){
+        topRecordsDiv.innerHTML = '<div class="small muted">هنوز رکوردی ثبت نشده است.</div>';
+        return;
+      }
+      arr.forEach((r, idx) => {
+        const div = document.createElement('div');
+        div.className = 'small';
+        div.textContent = `${idx+1}. ${r.country} — فرصت: ${r.attemptsLeft} — ${r.mode}`;
+        topRecordsDiv.appendChild(div);
+      });
+    }
+
+    /* ---------- event listeners ---------- */
+    confirmManual.addEventListener('click', () => {
+      const v = manualInput.value.trim();
+      if(!v){ alert('لطفاً نام یک کشور وارد کنید.'); return; }
+      startGameWith(v);
+    });
+
+    randomBtn.addEventListener('click', () => {
+      const c = pickRandom(COUNTRIES);
+      startGameWith(c);
+    });
+
+    guessLetterBtn.addEventListener('click', handleLetterGuess);
+    letterInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') handleLetterGuess(); });
+
+    guessWordBtn.addEventListener('click', handleWordGuess);
+    wordInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') handleWordGuess(); });
+
+    revealBtn.addEventListener('click', () => {
+      if(isHard) return; // در حالت سخت غیر فعال باشد
+      revealAll();
+      showResultMessage(false, `کشور: «${target}» (نمایش داده شد).`);
+      finished = true;
+    });
+
+    newBtn.addEventListener('click', () => {
+      // بازگشت به صفحهٔ اول
+      intro.classList.remove('hidden');
+      game.classList.add('hidden');
+      manualInput.value = '';
+      result.classList.add('hidden');
+    });
+
+    // prevent multi-char in letter input (پشتیبانی از حرف‌های ترکیبی تا 2)
+    letterInput.addEventListener('input', () => {
+      if(letterInput.value.length > 2) letterInput.value = letterInput.value.slice(0,2);
+    });
+
+    // theme & mode
+    themeToggle.addEventListener('change', () => {
+      document.body.className = themeToggle.value;
+      savePrefs();
+    });
+    modeHardCheckbox.addEventListener('change', () => {
+      isHard = modeHardCheckbox.checked;
+      savePrefs();
+    });
+
+    // records panel
+    recordsBtn.addEventListener('click', () => {
+      recordsPanel.classList.toggle('hidden');
+      if(!recordsPanel.classList.contains('hidden')) renderRecordsList();
+    });
+    closeRecordsBtn.addEventListener('click', () => recordsPanel.classList.add('hidden'));
+    clearRecordsBtn.addEventListener('click', () => {
+      if(confirm('آیا مطمئنی رکوردها حذف شوند؟')){ localStorage.removeItem(STORAGE_KEY); renderRecordsList(); refreshTopRecordsUI(); }
+    });
+
+    // keyboard shortcut: '/' برای فوکوس روی حدس حرف
+    document.addEventListener('keydown', (e) => {
+      if(e.key === '/' && !finished && !game.classList.contains('hidden')){ e.preventDefault(); letterInput.focus(); }
+    });
+
+    /* ---------- initial setup ---------- */
+    function init(){
+      loadPrefs();
+      isHard = modeHardCheckbox.checked;
+      savePrefs();
+      refreshTopRecordsUI();
+      renderRecordsList();
+      // small UX: اگر بخوان از اینپوت دستی استفاده کنند با Enter شروع شود
+      manualInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter') confirmManual.click(); });
+    }
+    init();
+
+  </script>
+</body>
+</html>

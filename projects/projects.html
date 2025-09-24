@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>پروژه‌ها | Arfito</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="icon" href="../assets/images/logo.png" type="image/png">
+  <link rel="stylesheet" href="../css/style.css">
+  
+
+
+  <style>
+    :root {
+      --bg-color: #1a2238;
+      --text-color: #ffffff;
+    }
+    body.light-mode {
+      --bg-color: #f8f9fa;
+      --text-color: #212529;
+    }
+    body.dark-mode {
+      --bg-color: #1a2238;
+      --text-color: #ffffff;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Vazirmatn', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .navbar-custom {
+      background-color: var(--bg-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .bar {
+      width: 25px;
+      height: 3px;
+      background: var(--text-color);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+    .custom-nav {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .custom-nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .custom-nav a:hover {
+      color: #f0c040;
+    }
+    .toggle-theme {
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--text-color);
+      margin-right: 10px;
+    }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+      .custom-nav {
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: -250px;
+        background: var(--bg-color);
+        width: 200px;
+        padding: 20px;
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+      .custom-nav.active {
+        right: 0;
+      }
+    }
+    .section-card {
+      background-color: #212b4a;
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+    }
+    .section-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .timeline-step {
+      border-right: 3px solid #f0c040;
+      padding-right: 20px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .timeline-step::before {
+      content: '';
+      position: absolute;
+      right: -9px;
+      top: 0;
+      width: 18px;
+      height: 18px;
+      background-color: #f0c040;
+      border-radius: 50%;
+    }
+    .project_his{
+      margin-left: 9%;
+    }
+    .project_his h2{
+      color:#f0c040;
+    }
+    .site-footer{
+      width: 100%;
+    }
+    .login-btn-2{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: var(--pad-block) var(--pad-inline);
+  border-radius: var(--radius);
+  border: 2px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  cursor: pointer;
+  font-family: Vazirmatn, sans-serif;
+  font-weight: 800;
+  transition: all .25s ease;
+ 
+}
+.login-btn-2:hover{ background: var(--btn-hover-bg); }
+.login-btn-2:focus-visible{ outline: none; box-shadow: var(--btn-focus); }
+.login-btn-2__icon{ width: 20px; height: 20px; }
+.login-btn-2__icon svg{
+  width: 100%; height: 100%;
+  stroke: var(--btn-icon);
+  stroke-width: 1.8;
+  fill: none;
+  transition: transform .3s ease, stroke .2s ease;
+}
+.login-btn-2:hover .login-btn-2__icon svg{ transform: scale(1.1) rotate(-6deg); }
+
+.login-btn-2__label{ font-size: .95rem; white-space: nowrap; }
+
+/* موبایل: فقط آیکون */
+@media (max-width: 480px){
+  .login-btn-2__label{ display: none; }
+  .login-btn-2{ padding-inline: .9rem; }
+  .login-btn-2__icon{ width: 22px; height: 22px; }
+}
+
+:root {
+
+  --text-color: #f0f0f0;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --accent-color:  #f0c040;
+}
+
+
+body.light-mode {
+  --section-bg: #f9f9f9;
+  --text-color: #111;
+  --card-bg: rgba(221, 105, 105, 0.03);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --accent-color: #0077ff;
+}
+/* 🌑 تم دارک (پیش‌فرض) */
+:root {
+
+  --text-color: #fff;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --accent-color: #f0c040;
+}
+
+body.light {
+  --section-bg: #f9f9f9;
+  --text-color: #111;
+  --card-bg: rgba(0, 0, 0, 0.03);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --accent-color: #0077ff;
+}
+#toggle-theme {
+  color: #fca311; /* رنگ آفتاب در لایت مود */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: color 0.5s ease;
+  transition: transform 0.5s ease;
+}
+#toggle-theme hover{
+  transform: rotate(360deg);
+}
+body.light-mode #toggle-theme {
+  color: #2563eb; /* آبی برای لایت مود */
+}
+
+/* وقتی دارک مود هست */
+body.dark-mode #toggle-theme {
+  color: #fca311; /* زرد برای دارک مود */
+}
+body.light-mode #toggle-theme:hover{
+  color: #2563eb; /* آبی برای لایت مود */
+  transform: rotate(360deg);
+}
+/* هاور روی دکمه */
+#toggle-theme svg path {
+  transition: stroke 0.5s ease, fill 0.5s ease;
+}
+.smile-icon{
+  width: 3rem;
+  height: auto;
+}
+.smile-icon{
+  color:#f0c040;
+}
+body.light-mode .smile-icon{
+  color:#0077ff;
+}
+.arfito-welcome-change{
+  color:#f0c040;
+}
+body.light-mode .arfito-welcome-change{
+  color:#0077ff;
+}
+.project-btn-icon{
+  width: 1.5rem;
+  height: auto;
+  color: #1a281a;
+  transform:rotate(360deg);
+}
+body.light-mode .project-btn-icon{
+  color: white;
+}
+body.light-mode .btn{
+  background-color: #2785f1;
+  color: white;
+}
+.about-main-icon{
+  width: 3rem;
+  height: auto;
+  color: #f0c040;
+}
+.about-main-text{
+  color: #f0c040;
+}
+
+.login-btn-2{
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: var(--pad-block) var(--pad-inline);
+  border-radius: var(--radius);
+  border: 2px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  cursor: pointer;
+  font-family: Vazirmatn, sans-serif;
+  font-weight: 800;
+  transition: all .25s ease;
+ 
+}
+.login-btn:hover{ background: var(--btn-hover-bg); }
+.login-btn:focus-visible{ outline: none; box-shadow: var(--btn-focus); }
+.login-btn__icon{ width: 20px; height: 20px; }
+.login-btn__icon svg{
+  width: 100%; height: 100%;
+  stroke: var(--btn-icon);
+  stroke-width: 1.8;
+  fill: none;
+  transition: transform .3s ease, stroke .2s ease;
+}
+.login-btn:hover .login-btn__icon svg{ transform: scale(1.1) rotate(-6deg); }
+
+.login-btn__label{ font-size: .95rem; white-space: nowrap; }
+
+/* موبایل: فقط آیکون */
+@media (max-width: 480px){
+  .login-btn__label{ display: none; }
+  .login-btn{ padding-inline: .9rem; }
+  .login-btn__icon{ width: 22px; height: 22px; }
+}
+
+
+  </style>
+</head>
+<body class="dark-mode">
+  <nav class="navbar navbar-dark px-4 py-3 navbar-custom">
+    <div class="d-flex align-items-center">
+      <img src="../assets/images/nav_logo.webp" alt="لوگوی Arfito" class="navbar-logo" href="www.arfito.ir" width="7%" margin="auto"/>
+      <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg class="icon-sun" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path  d="M7.28451 10.3333C7.10026 10.8546 7 11.4156 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C11.4156 7 10.8546 7.10026 10.3333 7.28451" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12 2V4" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12 20V22" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M4 12L2 12" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M22 12L20 12" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M19.7778 4.22266L17.5558 6.25424" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M4.22217 4.22266L6.44418 6.25424" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M6.44434 17.5557L4.22211 19.7779" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M19.7778 19.7773L17.5558 17.5551" stroke=" #f0c040" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    
+    <button class="login-btn-2" id="loginBtn" onclick="window.location.href='./Login'">
+  <span class="login-btn-2__icon">
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"></circle>
+      <path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path>
+    </svg>
+  </span>
+  <span class="login-btn-2__label">ورود | عضویت</span>
+</button>
+</div>
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="custom-nav" id="main-nav">
+      <li><a href="../index.html">خانه</a></li>
+      <li><a href="../about/">درباره ما</a></li>
+      <li><a href="../contact.html">تماس با ما</a></li>
+    </ul>
+  </nav>
+
+  <section class="container py-5">
+
+  
+  
+  
+  <main class="container py-5">
+    <h2 class="text-warning mb-5 text-center" data-aos="fade-up">دسته‌بندی پروژه‌ها</h2>
+    <div class="row g-4">
+      <!-- صنعتی -->
+      <div class="col-md-6" data-aos="fade-up">
+        <div class="section-card h-100">
+          <h4 class="text-warning">پروژه‌های صنعتی</h4>
+          <p class="text-light">پروژه‌هایی که برای شرکت‌ها، سازمان‌ها یا کسب‌وکارهای واقعی توسعه داده شده‌اند. شامل سیستم‌های رزرو، داشبوردهای مدیریتی و اپلیکیشن‌های تجاری.</p>
+          <a href="#" class="btn btn-outline-warning mt-3" style="background-color: rgb(236, 82, 82); color:#f0f0f0;">در حال انتشار</a>
+        </div>
+      </div>
+      <!-- آموزشی -->
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="section-card h-100">
+          <h4 class="text-warning">پروژه‌های آموزشی</h4>
+          <p class="text-light">پروژه‌هایی که برای یادگیری، تمرین و آموزش طراحی شده‌اند. شامل تمرین‌های فرانت‌اند، بک‌اند، الگوریتم‌ها و پروژه‌های تمرینی.</p>
+          <a href="#" class="btn btn-outline-warning mt-3"style="background-color: rgb(236, 82, 82); color:#f0f0f0;">در حال انتشار</a>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up">
+        <div class="section-card h-100">
+          <h4 class="text-warning">ابزار ها</h4>
+          <p class="text-light">ابزار های خلق شده توسط ما، مبتنی بر هوش مصنوعی و الگوریتم های به روز، شما را در کار های روزمره همراهی میکنند. ابزار های پر قابلیت ما به صورت رایگان و به صورت اشتراکی در اختیار کاربرانمان قرار میگیرد.</p>
+          <a href="#" class="btn btn-outline-warning mt-3" style="background-color: rgb(236, 82, 82); color:#f0f0f0;">در حال انتشار</a>
+        </div>
+      </div>
+      <div class="col-md-6" data-aos="fade-up">
+        <div class="section-card h-100">
+          <h4 class="text-warning">سرگرمی</h4>
+          <p class="text-light">بازی های آنلاین و آفلاین جذاب و مدرن با تکستچر بازی های فکری و اطلاعات عمومی، با خوانایی بالا و سبکی در اجرا و قابلیت اجرای دمو، کدنویسی شده توسط آرفیتو</p>
+          <a href="./games/" class="btn btn-outline-warning mt-3" >مشاهده بازی ها</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <section class="project_his" dir="rtl">
+    <h2 id="techeader">تاریخچه پروژه ها</h2>
+    <div class="timeline-step">
+        <p>ما در تیم آرفیتو از سال 2022 در حال توسعه پروژه های ارزشمند صنعتی و آموزشی بوده ایم. حاصل سال ها تلاش ما و میلیون ها خط کد ما برای هر پروژه، برنامه ها و نرم افزار هایی قدرتمند و سبک و جذاب است که قابلیت استفاده و به کارگیری سودمندانه ای دارند...</p>
+        <p>آرفیتو با توسعه و برنامه نویسی پروژه های بزرگ صنعتی همانند دستیار حسابداری، کنترل انبار، کنترل کمی و کیفی محصول و ... از سال 2024، به کمک کسب و کار ها و صنعت های کوچک آمده است. 
+          <br>همچنین پروژه های آموزشی ما که به دقت و به صورت کامنت دار با زبان های همچون پایتون، جاوا اسکریپت، جاوا و ... برنامه نویسی شده اند، سعی دارند که به شما در یادگیری و آشنایی با چگونگی طراحی و کد نویسی انواع برنامه ها کمک کنند. شما میتوانید این پروژه ها را در صفحه پروژه های آموزشی ما مشاهده و پس از خرید اشتراک هم به صورت سورس کد و هم به صورت نرم افزار آماده دانلود نمایید.
+        </p>
+        <p>ما با توسعه برنامه ها و ابزار های آفلاین سعی در جلب رضایت و اعتماد شما داریم. ابزار هایی که ما توسعه داده ایم هم به صورت رایگان و هم به صورت پلن های اشتراکی در اختیار مشتریانمان قرار دارد. </p>
+      </div>
+  
+  <section class="py-5 text-center" id="stats">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+        <div class="col-6 col-md-3">
+          <h2 class="text-warning display-5 counter" data-target="125">0</h2>
+          <p class="mt-2">پروژه آموزشی</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h2 class="text-warning display-5 counter" data-target="5">0</h2>
+          <p class="mt-2">پروژه صنعتی</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <h2 class="text-warning display-5 counter" data-target="350">0</h2>
+          <p class="mt-2">بازدیدکننده</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+  <footer class="site-footer" dir="rtl">
+    <div class="footer-content">
+      <div class="footer-section links">
+        <h4>لینک‌های مهم</h4>
+        <a href="index.html"><span class="material-symbols-rounded">home</span> صفحه اصلی</a>
+        <a href="projects.html"><span class="material-symbols-rounded">folder</span> پروژه‌ها</a>
+        <a href="contact.html"><span class="material-symbols-rounded">mail</span> تماس با ما</a>
+      </div>
+  
+      <div class="footer-section contact">
+        <h4>تماس با ما</h4>
+        <p><span class="material-symbols-rounded">call</span> 1259 467 991 98+</p>
+        <p><span class="material-symbols-rounded">alternate_email</span>arfitoteam.official@gmail.com</p>
+      </div>
+  
+      <div class="footer-section social">
+        <h4>ما را دنبال کنید</h4>
+        <a href="https://github.com/arfito" target="_blank" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" class="social-icon"><path d="M12 0.3c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.8 8.1 11.3 0.6 0.1 0.8-0.2 0.8-0.5v-2c-3.3 0.7-4-1.5-4-1.5-0.5-1.3-1.2-1.6-1.2-1.6-1-0.6 0.1-0.6 0.1-0.6 1 0.1 1.5 1 1.5 1 1 1.5 2.6 1.1 3.2 0.8 0.1-0.7 0.4-1.1 0.7-1.4-2.7-0.3-5.5-1.3-5.5-5.9 0-1.3 0.5-2.3 1.1-3.2 0-0.3-0.5-1.4 0.1-2.9 0 0 0.9-0.3 2.9 1.1 0.8-0.2 1.7-0.4 2.6-0.4s1.8 0.1 2.6 0.4c2-1.4 2.9-1.1 2.9-1.1 0.6 1.5 0.1 2.6 0.1 2.9 0.7 0.9 1.1 2 1.1 3.2 0 4.6-2.8 5.6-5.5 5.9 0.4 0.3 0.8 1 0.8 2v2.9c0 0.3 0.2 0.6 0.8 0.5 4.7-1.6 8.1-6 8.1-11.3 0-6.6-5.4-12-12-12z" /></svg>
+        </a>
+        <a href="#" target="_blank" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" class="social-icon"><path d="M9.8 17.6l-0.4 4.3c0.6 0 0.8-0.2 1.1-0.5l2.6-2.4 5.4 3.9c1 0.5 1.8 0.2 2.1-0.9l3.9-18.1c0.3-1.3-0.5-1.9-1.6-1.6l-22 8.4c-1.3 0.5-1.3 1.2-0.2 1.6l5.6 1.8 13.1-8.3c0.6-0.3 1.2 0 0.7 0.3l-10.6 9.6z"/></svg>
+        </a>
+      </div>
+      
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Arfito. تمام حقوق محفوظ است.</p>
+    </div>
+  </footer>
+  
+  <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="200">
+    © 2025 Arfito — طراحی شده با عشق و سطرهای کد 💻✨
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+
+  
+  <script>
+    const counters = document.querySelectorAll('.counter');
+    let started = false;
+  
+    const runCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute('data-target');
+          const count = +counter.innerText;
+          const increment = Math.ceil(target / 50);
+  
+          if (count < target) {
+            counter.innerText = count + increment;
+            setTimeout(updateCount, 30);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    };
+  
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !started) {
+        runCounters();
+        started = true;
+      }
+    }, { threshold: 0.5 });
+  
+    observer.observe(document.getElementById('stats'));
+  </script>
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const projectItems = document.querySelectorAll('.project-item');
+  
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      projectItems.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    const menuToggle = document.getElementById('mobile-menu');
+    const nav = document.getElementById('main-nav');
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      menuToggle.classList.toggle('open');
+    });
+
+    const toggleThemeBtn = document.getElementById('toggle-theme');
+    const storedTheme = localStorage.getItem('theme');
+
+
+const sunSVG_2 = `
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.28451 10.3333C7.10026 10.8546 7 11.4156 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C11.4156 7 10.8546 7.10026 10.3333 7.28451" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M12 2V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M12 20V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M4 12L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M22 12L20 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M19.7778 4.22266L17.5558 6.25424" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M4.22217 4.22266L6.44418 6.25424" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M6.44434 17.5557L4.22211 19.7779" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M19.7778 19.7773L17.5558 17.5551" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>`;
+
+const moonSVG_2 = `
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.0672 11.8568L20.4253 11.469L21.0672 11.8568ZM12.1432 2.93276L11.7553 2.29085V2.29085L12.1432 2.93276ZM7.37554 20.013C7.017 19.8056 6.5582 19.9281 6.3508 20.2866C6.14339 20.6452 6.26591 21.104 6.62446 21.3114L7.37554 20.013ZM2.68862 17.3755C2.89602 17.7341 3.35482 17.8566 3.71337 17.6492C4.07191 17.4418 4.19443 16.983 3.98703 16.6245L2.68862 17.3755ZM21.25 12C21.25 17.1086 17.1086 21.25 12 21.25V22.75C17.9371 22.75 22.75 17.9371 22.75 12H21.25ZM2.75 12C2.75 6.89137 6.89137 2.75 12 2.75V1.25C6.06294 1.25 1.25 6.06294 1.25 12H2.75ZM15.5 14.25C12.3244 14.25 9.75 11.6756 9.75 8.5H8.25C8.25 12.5041 11.4959 15.75 15.5 15.75V14.25ZM20.4253 11.469C19.4172 13.1373 17.5882 14.25 15.5 14.25V15.75C18.1349 15.75 20.4407 14.3439 21.7092 12.2447L20.4253 11.469ZM9.75 8.5C9.75 6.41182 10.8627 4.5828 12.531 3.57467L11.7553 2.29085C9.65609 3.5593 8.25 5.86509 8.25 8.5H9.75ZM12 2.75C11.9115 2.75 11.8077 2.71008 11.7324 2.63168C11.6686 2.56527 11.6538 2.50244 11.6503 2.47703C11.6461 2.44587 11.6482 2.35557 11.7553 2.29085L12.531 3.57467C13.0342 3.27065 13.196 2.71398 13.1368 2.27627C13.0754 1.82126 12.7166 1.25 12 1.25V2.75ZM21.7092 12.2447C21.6444 12.3518 21.5541 12.3539 21.523 12.3497C21.4976 12.3462 21.4347 12.3314 21.3683 12.2676C21.2899 12.1923 21.25 12.0885 21.25 12H22.75C22.75 11.2834 22.1787 10.9246 21.7237 10.8632C21.286 10.804 20.7293 10.9658 20.4253 11.469L21.7092 12.2447ZM12 21.25C10.3139 21.25 8.73533 20.7996 7.37554 20.013L6.62446 21.3114C8.2064 22.2265 10.0432 22.75 12 22.75V21.25ZM3.98703 16.6245C3.20043 15.2647 2.75 13.6861 2.75 12H1.25C1.25 13.9568 1.77351 15.7936 2.68862 17.3755L3.98703 16.6245Z" fill="currentColor"/>
+</svg>`;
+
+
+
+    const applyTheme = (mode) => {
+      document.body.classList.remove('light-mode', 'dark-mode');
+      document.body.classList.add(mode === 'light' ? 'light-mode' : 'dark-mode');
+     toggleThemeBtn.innerHTML = mode === 'light' ? moonSVG_2 : sunSVG_2;
+      localStorage.setItem('theme', mode);
+    };
+
+    if (storedTheme) {
+      applyTheme(storedTheme);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    toggleThemeBtn.addEventListener('click', () => {
+      const isLight = document.body.classList.contains('light-mode');
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+  
+  <style>
+    #stats h2 {
+      font-weight: bold;
+    }
+    #stats p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+    }
+  </style>
+  <style>
+    .form-control-lg {
+      background-color: #2e3a5e;
+      color: #fff;
+      border: none;
+    }
+    .form-control-lg::placeholder {
+      color: #ccc;
+    }
+    .card:hover {
+      transform: scale(1.02);
+      transition: 0.3s ease;
+    }
+    body.light-mode .form-control-lg {
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    body.light-mode .card.bg-dark {
+      background-color: #fff !important;
+      color: #212529 !important;
+    }
+  </style>
+  
+</body>
+</html>
