@@ -244,7 +244,7 @@ body.light-mode {
 }
 /* رنگ آیکون هماهنگ با تم */
 :root {
-  --icon-color: #00ffe5;
+  --icon-color: #e5ff00;
 }
 body.light {
   --icon-color: #0077ff;
@@ -285,24 +285,6 @@ body.light {
 }
 .navbar-brand fs-3 fw-bold text-warning me-3{
   border-radius: 12%;
-}
-body.dark-mode{
-  --btn-bg: linear-gradient(90deg, #ffffff, #3a3761);
-  --btn-color: #bfc0ff;
-  --btn-shadow: 0 6px 15px rgba(74, 74, 255, 0.4);
-  --btn-hover-bg: linear-gradient(90deg, #2c2a4d, #504a84);
-  --btn-hover-color: #e0e0ff;
-  --btn-hover-shadow: 0 12px 25px rgba(74, 74, 255, 0.7);
-}
-
-/* تغییر متغیرها در حالت لایت مود */
-body.light-mode {
-  --btn-bg: wihte;
-  --btn-color: #54a2c6;
-  --btn-shadow: 0 6px 15px rgba(124, 124, 255, 0.4);
-  --btn-hover-bg: linear-gradient(90deg, #44a5ef, #839192);
-  --btn-hover-color: #e0e0ff;
-  --btn-hover-shadow: 0 12px 25px rgba(2, 132, 132, 0.7);
 }
 
 /* استایل دکمه */

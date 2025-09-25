@@ -502,10 +502,30 @@ body.light-mode .services-icon{
 body.light-mode .services-title{
   color: #0077ff;
 }
+.techs-main-icon{
+  width: 3rem;
+  height: auto;
+  color: #f0c040;
+}
+body.light-mode .techs-main-icon{
+  color:#0077ff;
+}
+.tech-title{
+  color:  #f0c040;
+}
+.services-main-title{
+  color:  #f0c040;;
+}
+.arfito-footer{
+  color:#f0c040;
+}
+body.light-mode .arfito-footer{
+  color:#0077ff;
+}
+
     </style>
 </head>
 <body>
-
   <!-- ناوبری -->
   <nav class="navbar navbar-dark px-4 py-3 navbar-custom" data-aos="fade-down">
     <div class="d-flex align-items-center">
@@ -525,7 +545,7 @@ body.light-mode .services-title{
       </button>
         
     <!-- ... بقیه هدر ... -->
-    <button class="login-btn" id="loginBtn" onclick="window.location.href='./Login/index.html'">
+    <button class="login-btn" id="loginBtn" onclick="window.location.href='./Login'">
   <span class="login-btn__icon">
     <svg viewBox="0 0 24 24">
       <circle cx="12" cy="8" r="4"></circle>
@@ -630,7 +650,7 @@ body.light-mode .services-title{
         <path d="M5.75 8.00337C6.85315 7.36523 8.13392 7 9.5 7C13.6421 7 17 10.3579 17 14.5C17 18.6421 13.6421 22 9.5 22C5.35786 22 2 18.6421 2 14.5C2 13.1339 2.36523 11.8532 3.00337 10.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
 
-      چرا آرفیتو رو انتخاب کنیم</h2><br>
+      چرا آرفیتو رو انتخاب کنیم؟</h2><br>
     <div class="row g-4 text-center">
       <div class="col-md-4">
         <div class="p-4 border rounded-4 h-100" style="background:#212529; transition: all 0.3s;">
@@ -657,7 +677,14 @@ body.light-mode .services-title{
   </section>
   <!-- Technologies Section -->
 <section class="technologies" dir="rtl">
-  <h2 id="techeader">🔧 تکنولوژی‌های مورد استفاده ما</h2>
+  <h2 id="techeader" class="tech-title">
+    <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+    <svg class="techs-main-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M13.9868 5L12.9934 8.70743M11.8432 13L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    تکنولوژی‌های مورد استفاده ما</h2>
   <div class="tech-grid">
     <div class="tech-item">Python</div>
     <div class="tech-item">Ladder</div>
@@ -680,23 +707,62 @@ body.light-mode .services-title{
 
   
   <!-- Services Section -->
-<<section class="services-section" dir="rtl">
-  <h2 id="techeader">🛠️ خدمات ما</h2>
+<section class="services-section" dir="rtl">
+  <h2 id="techeader" class="services-main-title">
+    <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+    <svg width="3rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22 22L2 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M17 22V6C17 4.11438 17 3.17157 16.4142 2.58579C15.8284 2 14.8856 2 13 2H11C9.11438 2 8.17157 2 7.58579 2.58579C7 3.17157 7 4.11438 7 6V22" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M12 22V19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M10 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M5.5 11H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M5.5 14H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M17 11H18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M17 14H18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M5.5 8H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M17 8H18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="12" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M20.25 11.5C20.25 11.9142 20.5858 12.25 21 12.25C21.4142 12.25 21.75 11.9142 21.75 11.5H20.25ZM20.1111 8.33706L19.6945 8.96066L19.6945 8.96066L20.1111 8.33706ZM20.6629 8.88886L20.0393 9.30554L20.0393 9.30554L20.6629 8.88886ZM21.75 15.5C21.75 15.0858 21.4142 14.75 21 14.75C20.5858 14.75 20.25 15.0858 20.25 15.5H21.75ZM17.5 8.75C18.2178 8.75 18.6998 8.75091 19.0672 8.78828C19.422 8.82438 19.586 8.8882 19.6945 8.96066L20.5278 7.71346C20.1318 7.44886 19.6925 7.34415 19.219 7.29598C18.758 7.24909 18.1866 7.25 17.5 7.25V8.75ZM21.75 11.5C21.75 10.8134 21.7509 10.242 21.704 9.78102C21.6559 9.30755 21.5511 8.86818 21.2865 8.47218L20.0393 9.30554C20.1118 9.41399 20.1756 9.57796 20.2117 9.93283C20.2491 10.3002 20.25 10.7822 20.25 11.5H21.75ZM19.6945 8.96066C19.831 9.05186 19.9481 9.16905 20.0393 9.30554L21.2865 8.47218C21.0859 8.17191 20.8281 7.91409 20.5278 7.71346L19.6945 8.96066ZM20.25 15.5V22H21.75V15.5H20.25Z" fill="currentColor"/>
+    <path d="M3.88886 8.33706L4.30554 8.96066L4.30554 8.96066L3.88886 8.33706ZM3.33706 8.88886L3.96066 9.30554L3.96066 9.30554L3.33706 8.88886ZM3.75 20C3.75 19.5858 3.41421 19.25 3 19.25C2.58579 19.25 2.25 19.5858 2.25 20H3.75ZM2.25 16C2.25 16.4142 2.58579 16.75 3 16.75C3.41421 16.75 3.75 16.4142 3.75 16H2.25ZM6.5 7.25C5.81338 7.25 5.24196 7.24909 4.78102 7.29598C4.30755 7.34415 3.86818 7.44886 3.47218 7.71346L4.30554 8.96066C4.41399 8.8882 4.57796 8.82438 4.93283 8.78828C5.30023 8.75091 5.78216 8.75 6.5 8.75V7.25ZM3.75 11.5C3.75 10.7822 3.75091 10.3002 3.78828 9.93283C3.82438 9.57796 3.8882 9.41399 3.96066 9.30554L2.71346 8.47218C2.44886 8.86818 2.34415 9.30755 2.29598 9.78102C2.24909 10.242 2.25 10.8134 2.25 11.5H3.75ZM3.47218 7.71346C3.17191 7.91409 2.91409 8.17191 2.71346 8.47218L3.96066 9.30554C4.05186 9.16905 4.16905 9.05186 4.30554 8.96066L3.47218 7.71346ZM2.25 20V22H3.75V20H2.25ZM2.25 11.5V16H3.75V11.5H2.25Z" fill="currentColor"/>
+    <path d="M10 15H10.5M14 15H12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    خدمات ما</h2>
   <div class="services-grid">
     <div class="service-card">
-      <span class="material-symbols-rounded">design_services</span>
+      <span class="material-symbols-rounded"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg width="3rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.2535 19.4243C12.9606 19.1314 12.4857 19.1314 12.1928 19.4243C11.8999 19.7172 11.8999 20.1921 12.1928 20.485L13.2535 19.4243ZM15.6157 22V21.25V22ZM4.04537 5.49167L4.5757 6.022H4.5757L4.04537 5.49167ZM3.51504 11.8072C3.80794 12.1001 4.28281 12.1001 4.5757 11.8072C4.8686 11.5143 4.8686 11.0394 4.5757 10.7465L3.51504 11.8072ZM11.2769 4.04537L11.8072 4.5757C11.9478 4.43505 12.0269 4.24428 12.0269 4.04537C12.0269 3.84646 11.9478 3.65569 11.8072 3.51504L11.2769 4.04537ZM5.49167 4.04537L4.96134 3.51504L4.96134 3.51504L5.49167 4.04537ZM19.9546 12.7231L20.485 12.1928C20.3443 12.0522 20.1535 11.9731 19.9546 11.9731C19.7557 11.9731 19.565 12.0522 19.4243 12.1928L19.9546 12.7231ZM22 15.6157H22.75H22ZM8.33603 5.92553C8.04314 6.21843 8.04314 6.6933 8.33603 6.98619C8.62892 7.27909 9.1038 7.27909 9.39669 6.98619L8.33603 5.92553ZM17.0138 14.6033C16.7209 14.8962 16.7209 15.3711 17.0138 15.664C17.3067 15.9569 17.7816 15.9569 18.0745 15.664L17.0138 14.6033ZM18.4868 21.0343C18.7819 20.7435 18.7854 20.2687 18.4947 19.9736C18.204 19.6786 17.7291 19.675 17.4341 19.9657L18.4868 21.0343ZM19.9274 17.473C19.6363 17.7677 19.6393 18.2426 19.934 18.5336C20.2287 18.8247 20.7036 18.8217 20.9946 18.527L19.9274 17.473ZM4.96134 3.51504L3.51504 4.96134L4.5757 6.022L6.022 4.5757L4.96134 3.51504ZM12.1928 20.485C12.8596 21.1518 13.4119 21.7063 13.9081 22.0849C14.4217 22.4767 14.9622 22.75 15.6157 22.75V21.25C15.422 21.25 15.1981 21.1824 14.818 20.8924C14.4206 20.5892 13.9503 20.1211 13.2535 19.4243L12.1928 20.485ZM3.51504 4.96134C2.84824 5.62814 2.29367 6.18046 1.91508 6.67666C1.52328 7.19018 1.25 7.73073 1.25 8.38426H2.75C2.75 8.19057 2.81761 7.96662 3.10761 7.58654C3.41081 7.18914 3.87892 6.71878 4.5757 6.022L3.51504 4.96134ZM4.5757 10.7465C3.87892 10.0497 3.41081 9.57937 3.10761 9.18198C2.81761 8.8019 2.75 8.57795 2.75 8.38426H1.25C1.25 9.03779 1.52328 9.57835 1.91508 10.0919C2.29367 10.5881 2.84824 11.1404 3.51504 11.8072L4.5757 10.7465ZM11.8072 3.51504C11.1404 2.84824 10.5881 2.29367 10.0919 1.91508C9.57835 1.52328 9.03779 1.25 8.38426 1.25V2.75C8.57795 2.75 8.8019 2.81761 9.18199 3.10761C9.57938 3.41081 10.0497 3.87892 10.7465 4.5757L11.8072 3.51504ZM6.022 4.5757C6.71878 3.87892 7.18914 3.41081 7.58654 3.10761C7.96662 2.81762 8.19057 2.75 8.38426 2.75V1.25C7.73073 1.25 7.19018 1.52328 6.67666 1.91508C6.18046 2.29367 5.62814 2.84824 4.96134 3.51504L6.022 4.5757ZM19.4243 13.2535C20.1211 13.9503 20.5892 14.4206 20.8924 14.818C21.1824 15.1981 21.25 15.422 21.25 15.6157H22.75C22.75 14.9622 22.4767 14.4217 22.0849 13.9081C21.7063 13.4119 21.1518 12.8596 20.485 12.1928L19.4243 13.2535ZM10.7465 3.51504L8.33603 5.92553L9.39669 6.98619L11.8072 4.5757L10.7465 3.51504ZM19.4243 12.1928L17.0138 14.6033L18.0745 15.664L20.485 13.2535L19.4243 12.1928ZM17.4341 19.9657C16.9239 20.4684 16.5635 20.7975 16.2586 21.0043C15.9715 21.199 15.784 21.25 15.6157 21.25V22.75C16.173 22.75 16.6504 22.551 17.1005 22.2457C17.5329 21.9525 17.982 21.5316 18.4868 21.0343L17.4341 19.9657ZM20.9946 18.527C21.504 18.0112 21.9345 17.5549 22.2339 17.1178C22.5457 16.6628 22.75 16.1805 22.75 15.6157H21.25C21.25 15.7859 21.1978 15.9762 20.9966 16.2699C20.783 16.5815 20.4439 16.9499 19.9274 17.473L20.9946 18.527Z" fill="currentColor"/>
+        <path d="M14.3601 4.07866L15.2869 3.15178C16.8226 1.61607 19.3125 1.61607 20.8482 3.15178C22.3839 4.68748 22.3839 7.17735 20.8482 8.71306L19.9213 9.63993M14.3601 4.07866C14.3601 4.07866 14.4759 6.04828 16.2138 7.78618C17.9517 9.52407 19.9213 9.63993 19.9213 9.63993M14.3601 4.07866L12 6.43872M19.9213 9.63993L14.6607 14.9006L11.5613 18L11.4001 18.1612C10.8229 18.7383 10.5344 19.0269 10.2162 19.2751C9.84082 19.5679 9.43469 19.8189 9.00498 20.0237C8.6407 20.1973 8.25352 20.3263 7.47918 20.5844L4.19792 21.6782M4.19792 21.6782L3.39584 21.9456C3.01478 22.0726 2.59466 21.9734 2.31063 21.6894C2.0266 21.4053 1.92743 20.9852 2.05445 20.6042L2.32181 19.8021M4.19792 21.6782L2.32181 19.8021M2.32181 19.8021L3.41556 16.5208C3.67368 15.7465 3.80273 15.3593 3.97634 14.995C4.18114 14.5653 4.43213 14.1592 4.7249 13.7838C4.97308 13.4656 5.26166 13.1771 5.83882 12.5999L8.5 9.93872" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
       <p>طراحی پروژه های صنعتی و اپلیکیشن ها</p>
     </div>
     <div class="service-card">
-      <span class="material-symbols-rounded">code</span>
+      <span class="material-symbols-rounded"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg width="3rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 11L17.6965 12.5268C19.239 13.9151 20.0103 14.6093 20.0103 15.5C20.0103 16.3907 19.239 17.0849 17.6965 18.4732L16 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M8.00005 4.82959L6.30358 6.35641C4.76102 7.74471 3.98975 8.43886 3.98975 9.32959C3.98975 10.2203 4.76102 10.9145 6.30358 12.3028L8.00005 13.8296" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M13.9868 5L12.9934 8.70743M11.8432 13L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
       <p>کدنویسی پروژه های صنعتی و اپلیکیشن ها</p>
     </div>
     <div class="service-card">
-      <span class="material-symbols-rounded">security</span>
+      <span class="material-symbols-rounded"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg width="3rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.5 16H12.5C13.0523 16 13.5 15.5523 13.5 15V13.5987C14.3967 13.0799 15 12.1104 15 11C15 9.34315 13.6569 8 12 8C10.3431 8 9 9.34315 9 11C9 12.1104 9.6033 13.0799 10.5 13.5987V15C10.5 15.5523 10.9477 16 11.5 16Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M3 10.4167C3 7.21907 3 5.62028 3.37752 5.08241C3.75503 4.54454 5.25832 4.02996 8.26491 3.00079L8.83772 2.80472C10.405 2.26824 11.1886 2 12 2C12.8114 2 13.595 2.26824 15.1623 2.80472L15.7351 3.00079C18.7417 4.02996 20.245 4.54454 20.6225 5.08241C21 5.62028 21 7.21907 21 10.4167C21 10.8996 21 11.4234 21 11.9914C21 14.4963 20.1632 16.4284 19 17.9041M3.19284 14C4.05026 18.2984 7.57641 20.5129 9.89856 21.5273C10.62 21.8424 10.9807 22 12 22C13.0193 22 13.38 21.8424 14.1014 21.5273C14.6796 21.2747 15.3324 20.9478 16 20.5328" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
       <p>امنیت و تست نفوذ انواع وبسایت ها</p>
     </div>
     <div class="service-card">
-      <span class="material-symbols-rounded">cloud</span>
+      <span class="material-symbols-rounded"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg width="3rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 13.3529C22 16.0599 20.0726 18.3221 17.5 18.8722M6.28571 19C3.91878 19 2 17.1038 2 14.7647C2 12.4256 3.91878 10.5294 6.28571 10.5294C6.56983 10.5294 6.8475 10.5567 7.11616 10.6089M14.381 8.02721C14.9767 7.81911 15.6178 7.70588 16.2857 7.70588C16.9404 7.70588 17.5693 7.81468 18.1551 8.01498M7.11616 10.6089C6.88706 9.9978 6.7619 9.33687 6.7619 8.64706C6.7619 5.52827 9.32028 3 12.4762 3C15.4159 3 17.8371 5.19371 18.1551 8.01498M7.11616 10.6089C7.68059 10.7184 8.20528 10.9374 8.66667 11.2426M18.1551 8.01498C18.8381 8.24853 19.4623 8.60648 20 9.06141" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M14 19H12L10 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
       <p>خدمات سئو و طراحی و کدنویسی وبسایت ها</p>
     </div>
   </div>
@@ -705,16 +771,54 @@ body.light-mode .services-title{
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
 
 <section class="container py-5 text-center" data-aos="zoom-in" data-aos-delay="200">
-  <h4 class="fw-bold text-warning shoutout">ما فقط کد نمی‌زنیم — ما چیزی می‌سازیم که دوست داریم بهش افتخار کنیم 💻✨</h4>
+  <h4 class="fw-bold text-warning shoutout">ما فقط کد نمی‌زنیم — ما چیزی می‌سازیم که دوست داریم بهش افتخار کنیم</h4>
 </section>
+
+
+</main>
+
+
 <footer class="site-footer" dir="rtl">
   <div class="footer-content">
     <div class="footer-section links">
       <h4>لینک‌های مهم</h4>
-      <a href="index.html"><span class="material-symbols-rounded">home</span> صفحه اصلی</a>
-      <a href="#techeader"><span class="material-symbols-rounded">widgets</span> خدمات</a>
-      <a href="projects.html"><span class="material-symbols-rounded">folder</span> پروژه‌ها</a>
-      <a href="contact.html"><span class="material-symbols-rounded">mail</span> تماس با ما</a>
+      <a href="index.html"><span class="material-symbols-rounded"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg width="2rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 16C9.85038 16.6303 10.8846 17 12 17C13.1154 17 14.1496 16.6303 15 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg></span> 
+        صفحه اصلی</a>
+      <a href="#techeader"><span class="material-symbols-rounded"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg width="2rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 22L2 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M17 22V6C17 4.11438 17 3.17157 16.4142 2.58579C15.8284 2 14.8856 2 13 2H11C9.11438 2 8.17157 2 7.58579 2.58579C7 3.17157 7 4.11438 7 6V22" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M12 22V19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M10 12H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M5.5 11H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M5.5 14H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M17 11H18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M17 14H18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M5.5 8H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M17 8H18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="12" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M20.25 11.5C20.25 11.9142 20.5858 12.25 21 12.25C21.4142 12.25 21.75 11.9142 21.75 11.5H20.25ZM20.1111 8.33706L19.6945 8.96066L19.6945 8.96066L20.1111 8.33706ZM20.6629 8.88886L20.0393 9.30554L20.0393 9.30554L20.6629 8.88886ZM21.75 15.5C21.75 15.0858 21.4142 14.75 21 14.75C20.5858 14.75 20.25 15.0858 20.25 15.5H21.75ZM17.5 8.75C18.2178 8.75 18.6998 8.75091 19.0672 8.78828C19.422 8.82438 19.586 8.8882 19.6945 8.96066L20.5278 7.71346C20.1318 7.44886 19.6925 7.34415 19.219 7.29598C18.758 7.24909 18.1866 7.25 17.5 7.25V8.75ZM21.75 11.5C21.75 10.8134 21.7509 10.242 21.704 9.78102C21.6559 9.30755 21.5511 8.86818 21.2865 8.47218L20.0393 9.30554C20.1118 9.41399 20.1756 9.57796 20.2117 9.93283C20.2491 10.3002 20.25 10.7822 20.25 11.5H21.75ZM19.6945 8.96066C19.831 9.05186 19.9481 9.16905 20.0393 9.30554L21.2865 8.47218C21.0859 8.17191 20.8281 7.91409 20.5278 7.71346L19.6945 8.96066ZM20.25 15.5V22H21.75V15.5H20.25Z" fill="currentColor"/>
+        <path d="M3.88886 8.33706L4.30554 8.96066L4.30554 8.96066L3.88886 8.33706ZM3.33706 8.88886L3.96066 9.30554L3.96066 9.30554L3.33706 8.88886ZM3.75 20C3.75 19.5858 3.41421 19.25 3 19.25C2.58579 19.25 2.25 19.5858 2.25 20H3.75ZM2.25 16C2.25 16.4142 2.58579 16.75 3 16.75C3.41421 16.75 3.75 16.4142 3.75 16H2.25ZM6.5 7.25C5.81338 7.25 5.24196 7.24909 4.78102 7.29598C4.30755 7.34415 3.86818 7.44886 3.47218 7.71346L4.30554 8.96066C4.41399 8.8882 4.57796 8.82438 4.93283 8.78828C5.30023 8.75091 5.78216 8.75 6.5 8.75V7.25ZM3.75 11.5C3.75 10.7822 3.75091 10.3002 3.78828 9.93283C3.82438 9.57796 3.8882 9.41399 3.96066 9.30554L2.71346 8.47218C2.44886 8.86818 2.34415 9.30755 2.29598 9.78102C2.24909 10.242 2.25 10.8134 2.25 11.5H3.75ZM3.47218 7.71346C3.17191 7.91409 2.91409 8.17191 2.71346 8.47218L3.96066 9.30554C4.05186 9.16905 4.16905 9.05186 4.30554 8.96066L3.47218 7.71346ZM2.25 20V22H3.75V20H2.25ZM2.25 11.5V16H3.75V11.5H2.25Z" fill="currentColor"/>
+        <path d="M10 15H10.5M14 15H12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg></span> خدمات</a>
+      <a href="projects.html"><span class="material-symbols-rounded"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg width="2rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 10L13 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M10 3H16.5C16.9644 3 17.1966 3 17.3916 3.02567C18.7378 3.2029 19.7971 4.26222 19.9743 5.60842C20 5.80337 20 6.03558 20 6.5" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M22 11.7979C22 9.16554 22 7.84935 21.2305 6.99383C21.1598 6.91514 21.0849 6.84024 21.0062 6.76946C20.1506 6 18.8345 6 16.2021 6H15.8284C14.6747 6 14.0979 6 13.5604 5.84678C13.2651 5.7626 12.9804 5.64471 12.7121 5.49543C12.2237 5.22367 11.8158 4.81578 11 4L10.4497 3.44975C10.1763 3.17633 10.0396 3.03961 9.89594 2.92051C9.27652 2.40704 8.51665 2.09229 7.71557 2.01738C7.52976 2 7.33642 2 6.94975 2C6.06722 2 5.62595 2 5.25839 2.06935C3.64031 2.37464 2.37464 3.64031 2.06935 5.25839C2 5.62595 2 6.06722 2 6.94975M21.9913 16C21.9554 18.4796 21.7715 19.8853 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg></span> 
+        پروژه‌ها</a>
+      <a href="contact.html"><span class="material-symbols-rounded"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg width="2rem" height="auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 14.0001C22 17.7713 22 19.6569 20.8284 20.8285C19.6569 22.0001 17.7712 22.0001 14 22.0001H10C6.22876 22.0001 4.34315 22.0001 3.17157 20.8285C2 19.6569 2 17.7713 2 14.0001C2 10.2288 2 8.34322 3.17157 7.17164C3.82475 6.51846 4.69989 6.22944 6 6.10156M18 6.10156C19.3001 6.22944 20.1752 6.51846 20.8284 7.17164C21.4816 7.82481 21.7706 8.69993 21.8985 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M10 6H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 9H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M14 2.00195C15.7066 2.01642 16.6474 2.11117 17.2678 2.73158C18 3.46381 18 4.64232 18 6.99935V9.0626C18 9.52324 18 9.75356 17.9056 9.95513C17.8112 10.1567 17.6342 10.3041 17.2804 10.599L16.5607 11.1987M10 2.00195C8.29344 2.01642 7.35264 2.11117 6.73223 2.73158C6 3.46381 6 4.64232 6 6.99935V9.0626C6 9.52324 6 9.75356 6.09441 9.95513C6.18882 10.1567 6.36576 10.3041 6.71963 10.599L8.1589 11.7984C9.99553 13.329 10.9139 14.0942 12 14.0942C12.6493 14.0942 13.2386 13.8207 14 13.2738" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg></span> تماس با ما</a>
     </div>
 
     <div class="footer-section contact">
@@ -736,7 +840,7 @@ body.light-mode .services-title{
   </div>
   
   <div class="footer-bottom">
-    <p>© <span id="year"></span> Arfito. تمام حقوق محفوظ است.</p>
+    <p>تمام حقوق این وبسایت متعلق به تیم برنامه نویسی <span class="arfito-footer">آرفیتو</span> است.<br>© <span id="year"></span> Arfito</p>
   </div>
 </footer>
 
@@ -752,10 +856,6 @@ body.light-mode .services-title{
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
 
  
-  <!-- فوتر -->
-  <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="600">
-    © 2025 Arfito — ساخته شده با عشق و سطرهای کد 💻✨
-  </footer>
 
   <!-- اسکریپت‌ها -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>

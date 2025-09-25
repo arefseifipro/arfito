@@ -7,6 +7,8 @@
 
 <!-- فونت وزیرمتن -->
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v36/Vazirmatn-font-face.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+</head>
 
 <style>
 :root{
@@ -53,6 +55,8 @@ body{
   justify-content:center;
   padding:28px;
   transition: background .25s ease, color .25s ease;
+  max-height: 950px;
+  min-height: 912px;
 }
 body.dark-mode{
   background:linear-gradient(180deg,#071028 0%,#0b1320 100%);
@@ -312,14 +316,28 @@ body.dark-mode .input{
   <div class="logo">
     <img src="../assets/images/logo.png" alt="logo.png">
   </div>
-  <h1 id="title">ورود به آرفیتو</h1>
+  <h1 id="title">ثبت نام در آرفیتو</h1>
   <h2 style="color: red; font-size:larger;">همراه عزیز آرفیتو، این صفحه در حال توسعه است! لطفا از آن استفاده نکنید.</h2>
-  <form id="loginForm" novalidate>
-    <!-- ایمیل -->
+  <form id="registerForm" novalidate>
+    <div class="field">
+      <input id="firstName" class="input" type="text" placeholder=" " required>
+      <label for="firstName" class="label">نام</label>
+    </div>
+    <div class="field">
+      <input id="lastName" class="input" type="text" placeholder=" " required>
+      <label for="lastName" class="label">نام خانوادگی</label>
+    </div>
+    <div class="field">
+      <input id="phone" class="input" type="text" maxlength="11" placeholder=" " required>
+      <label for="phone" class="label">شماره تماس</label>
+    </div>
     <div class="field">
       <input id="email" class="input" type="email" placeholder=" " autocomplete="email" required>
       <label for="email" class="label">ایمیل</label>
     </div>
+
+
+
 
     <!-- رمز عبور + آیکون چشم -->
     <div class="field">
@@ -339,22 +357,15 @@ body.dark-mode .input{
       <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z" stroke="currentColor" stroke-width="1.5"/>
       </svg>
     </div>
+   
     </div>
+ <div class="field">
+      <input id="password" class="input" type="password" placeholder=" " autocomplete="current-password" required>
+      <label for="password" class="label">تایید رمز عبور</label>
+</div>
 
-    <div class="row">
-      <a href="#" id="forgot">رمز عبور از یادت رفته؟</a>
-      
-    </div>
+    <button type="submit" class="btn" id="loginBtn">ثبت نام</button>
 
-    <button type="submit" class="btn" id="loginBtn">ورود</button>
-
-    <div class="or" aria-hidden="true">
-      <div class="line"></div>
-      <div class="txt">یا</div>
-      <div class="line"></div>
-    </div>
-
-    <p class="muted">حساب ندارید؟ <a href="../Register/" id="signup">ثبت نام</a></p>
   </form>
   
 
@@ -393,14 +404,13 @@ body.dark-mode .input{
         toggleIcon.classList.remove("show"); // چشم بسته برگرده
       }
     });
-    const toggleThemeBtn = document.getElementById('toggle-theme');
+   
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const storedTheme = localStorage.getItem('theme');
 
     const applyTheme = (mode) => {
       document.body.classList.remove('light-mode', 'dark-mode');
       document.body.classList.add(mode === 'light' ? 'light-mode' : 'dark-mode');
-      toggleThemeBtn.textContent = mode === 'light' ? '☀️' : '🌙';
       localStorage.setItem('theme', mode);
     };
 
@@ -450,89 +460,91 @@ body.dark-mode .input{
     setTimeout(()=> ripple.remove(), 800);
   });
 
-  // فرم: اعتبارسنجی ساده و پیام‌ها (مانند نسخه قبل)
-  form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    const pass = pwd.value.trim();
-    if(!email || !email.includes('@')){
-      showMsg(error, 'ایمیل معتبر وارد کنید');
-      return;
-    }
-    if(pass.length < 6){
-      showMsg(error, 'رمز عبور باید حداقل ۶ کاراکتر باشد');
-      return;
-    }
-    showMsg(success, 'ورود موفق — در حال هدایت ...');
-    // در اپ واقعی اینجا redirect یا درخواست به سرور انجام می‌شود
-  });
-
-  // لینک‌های دمو
-  document.getElementById('forgot').addEventListener('click', (ev)=>{
-    ev.preventDefault(); showMsg(error,'فراموشی رمز (دمو)');
-  });
-  document.getElementById('signup').addEventListener('click', (ev)=>{
-    ev.preventDefault(); showMsg(success,'ثبت‌نام (دمو)');
-  });
 
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.0.0/dist/umd/supabase.min.js"></script>
+
 <script>
-(function(){
-  // تنظیمات Supabase
-  const SUPABASE_URL = "https://nhimvojqusfsqauhrkoa.supabase.co";
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5oaW12b2pxdXNmc3FhdWhya29hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQwNDI0MzMsImV4cCI6MjA2OTYxODQzM30.SAdp9xlzaTyAyp7shOuOFwW5K4jNkpfl7xWZeIR8FXw";
-  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // ایجاد اتصال به Supabase
+const supabase = supabase.createClient('https://prxdkfxsbkafyqjeufiu.supabase.co', 
+'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InByeGRrZnhzYmthZnlxamV1Zml1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg0NzIxMTAsImV4cCI6MjA3NDA0ODExMH0.OE7hTWnFE_sMYHv40FTkTKnLhUCthWP8MWB0PNcV9Bg');
 
-  const form = document.getElementById('loginForm');
-  const pwd = document.getElementById('password');
-  const success = document.getElementById('successMsg');
-  const error = document.getElementById('errorMsg');
+// فرم ثبت‌نام
+const registerForm = document.getElementById('registerForm');
+const firstNameInput = document.getElementById('firstName');
+const lastNameInput = document.getElementById('lastName');
+const phoneInput = document.getElementById('phone');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
 
-  function showMsg(el, text, duration=2500){
-    el.textContent = text;
-    el.style.display = 'block';
-    el.animate([{opacity:0, transform:'translateY(-6px)'},{opacity:1, transform:'translateY(0)'}], {duration:260, fill:'forwards'});
-    setTimeout(()=> {
-      el.animate([{opacity:1},{opacity:0}], {duration:260, fill:'forwards'});
-      setTimeout(()=> el.style.display='none', 260);
-    }, duration);
+// نمایش پیام‌ها
+function showMsg(el, text, duration = 2500) {
+  el.textContent = text;
+  el.style.display = 'block';
+  el.animate([{ opacity: 0, transform: 'translateY(-6px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 260, fill: 'forwards' });
+  setTimeout(() => {
+    el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 260, fill: 'forwards' });
+    setTimeout(() => el.style.display = 'none', 260);
+  }, duration);
+}
+
+// ثبت‌نام کاربر در Supabase
+async function registerUser(firstName, lastName, phone, email, password) {
+  try {
+    const { user, error } = await supabase.auth.signUp({ email, password });
+
+    if (error) {
+      showMsg(errorMsg, error.message);
+    } else {
+      // اطلاعات کاربر را به جدول profile اضافه می‌کنیم
+      const { data, error: insertError } = await supabase
+        .from('arfito-host')
+        .insert([{ first_name: firstName, last_name: lastName, phone: phone, email: email }]);
+
+      if (insertError) {
+        showMsg(errorMsg, insertError.message);
+      } else {
+        showMsg(successMsg, 'ثبت‌نام موفقیت‌آمیز بود!');
+        // هدایت به صفحه تایید ایمیل یا داشبورد
+        setTimeout(() => {
+          window.location.href = '/panel'; // تغییر مسیر به داشبورد یا صفحه تایید
+        }, 2000);
+      }
+    }
+  } catch (error) {
+    showMsg(errorMsg, 'خطای ناگهانی در اتصال');
+  }
+}
+
+// ارسال فرم
+registerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const firstName = firstNameInput.value.trim();
+  const lastName = lastNameInput.value.trim();
+  const phone = phoneInput.value.trim();
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if (!firstName || !lastName || !phone || !email || !password) {
+    showMsg(errorMsg, 'تمامی فیلدها را پر کنید.');
+    return;
   }
 
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    const pass = pwd.value.trim();
-    if(!email || !email.includes('@')){
-      showMsg(error,'ایمیل معتبر وارد کنید');
-      return;
-    }
-    if(pass.length < 6){
-      showMsg(error,'رمز عبور باید حداقل ۶ کاراکتر باشد');
-      return;
-    }
+  if (!email.includes('@')) {
+    showMsg(errorMsg, 'ایمیل معتبر وارد کنید');
+    return;
+  }
 
-    // تلاش برای ورود
-    const { data, error: loginError } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: pass
-    });
+  if (password.length < 6) {
+    showMsg(errorMsg, 'رمز عبور باید حداقل ۶ کاراکتر باشد');
+    return;
+  }
 
-    if(loginError){
-      if(loginError.message.includes('Invalid login credentials')){
-        showMsg(error, 'کاربری یافت نشد. لطفاً به صفحه ثبت نام بروید');
-      } else {
-        showMsg(error, loginError.message);
-      }
-      return;
-    }
+  registerUser(firstName, lastName, phone, email, password);
+});
 
-    showMsg(success,'ورود موفق! در حال هدایت ...');
-    setTimeout(()=> window.location.href='../Dashboard/', 1200);
-  });
-})();
 </script>
-
 </body>
 </html>
