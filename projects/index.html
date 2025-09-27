@@ -8,8 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <link rel="icon" href="/assets/images/logo.png" type="image/png">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="../assets/images/logo.png" type="image/png">
+  <link rel="stylesheet" href="../css/style.css">
   
 
 
@@ -301,21 +301,6 @@ body.light-mode .btn{
   .login-btn{ padding-inline: .9rem; }
   .login-btn__icon{ width: 22px; height: 22px; }
 }
-body.light-mode .section-card{
-      background-color: #efefef;
-      color: #2563eb;
-
-}
-body.light-mode .text-light{
-      color: #2563eb;
-}
-.section-card:hover {
-      transform: scale(1.05);
-}
-
-
-
-
 
 
   </style>
@@ -323,7 +308,7 @@ body.light-mode .text-light{
 <body class="dark-mode">
   <nav class="navbar navbar-dark px-4 py-3 navbar-custom">
     <div class="d-flex align-items-center">
-      <img src="assets/images/nav_logo.webp" alt="لوگوی Arfito" class="navbar-logo" href="www.arfito.ir" width="7%" margin="auto"/>
+      <img src="../assets/images/nav_logo.webp" alt="لوگوی Arfito" class="navbar-logo" href="www.arfito.ir" width="7%" margin="auto"/>
       <button id="toggle-theme" class="toggle-theme" aria-label="تغییر تم"><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
         <svg class="icon-sun" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path  d="M7.28451 10.3333C7.10026 10.8546 7 11.4156 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C11.4156 7 10.8546 7.10026 10.3333 7.28451" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
@@ -338,7 +323,15 @@ body.light-mode .text-light{
         </svg>
       </button>
     
-    
+    <button class="login-btn-2" id="loginBtn" onclick="window.location.href='./Login'">
+  <span class="login-btn-2__icon">
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"></circle>
+      <path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path>
+    </svg>
+  </span>
+  <span class="login-btn-2__label">ورود | عضویت</span>
+</button>
 </div>
     <div class="menu-toggle" id="mobile-menu">
       <span class="bar"></span>
@@ -346,9 +339,9 @@ body.light-mode .text-light{
       <span class="bar"></span>
     </div>
     <ul class="custom-nav" id="main-nav">
-      <li><a href="index.html">خانه</a></li>
-      <li><a href="about.html">درباره ما</a></li>
-      <li><a href="contact.html">تماس با ما</a></li>
+      <li><a href="../index.html">خانه</a></li>
+      <li><a href="../about/">درباره ما</a></li>
+      <li><a href="../contact.html">تماس با ما</a></li>
     </ul>
   </nav>
 
@@ -380,18 +373,20 @@ body.light-mode .text-light{
         <div class="section-card h-100">
           <h4 class="text-warning">ابزار ها</h4>
           <p class="text-light">ابزار های خلق شده توسط ما، مبتنی بر هوش مصنوعی و الگوریتم های به روز، شما را در کار های روزمره همراهی میکنند. ابزار های پر قابلیت ما به صورت رایگان و به صورت اشتراکی در اختیار کاربرانمان قرار میگیرد.</p>
-          <a href="#" class="btn btn-outline-warning mt-3" style="background-color: rgb(236, 82, 82); color:#f0f0f0;">در حال انتشار</a>
+          <a href="" class="btn btn-outline-warning mt-3" style="background-color: rgb(236, 82, 82); color:#f0f0f0;">در حال انتشار</a>
         </div>
       </div>
       <div class="col-md-6" data-aos="fade-up">
         <div class="section-card h-100">
           <h4 class="text-warning">سرگرمی</h4>
           <p class="text-light">بازی های آنلاین و آفلاین جذاب و مدرن با تکستچر بازی های فکری و اطلاعات عمومی، با خوانایی بالا و سبکی در اجرا و قابلیت اجرای دمو، کدنویسی شده توسط آرفیتو</p>
-          <a href="/" class="btn btn-outline-warning mt-3" >مشاهده بازی ها</a>
+          <a href="./games/" class="btn btn-outline-warning mt-3">مشاهده بازی ها</a>
+          
         </div>
       </div>
     </div>
   </main>
+</section>
   <section class="project_his" dir="rtl">
     <h2 id="techeader">تاریخچه پروژه ها</h2>
     <div class="timeline-step">
@@ -401,6 +396,7 @@ body.light-mode .text-light{
         </p>
         <p>ما با توسعه برنامه ها و ابزار های آفلاین سعی در جلب رضایت و اعتماد شما داریم. ابزار هایی که ما توسعه داده ایم هم به صورت رایگان و هم به صورت پلن های اشتراکی در اختیار مشتریانمان قرار دارد. </p>
       </div>
+  </section>
   
   <section class="py-5 text-center" id="stats">
     <div class="container">
@@ -453,6 +449,9 @@ body.light-mode .text-light{
     </div>
   </footer>
   
+  <footer class="text-center text-secondary py-3 small" data-aos="fade-up" data-aos-delay="200">
+    © 2025 Arfito — طراحی شده با عشق و سطرهای کد 💻✨
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
