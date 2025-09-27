@@ -378,9 +378,12 @@ html[data-theme="dark"]{
 @media (max-width: 480px){
   .login-btn__label{ display: none; }
   .login-btn{ padding-inline: .9rem; }
-  .login-btn__icon{ width: 22px; height: 22px; }
+  .login-btn__icon{ width: 18px; height: 18px; }
 }
-
+@media (max-width: 480px){
+  .navbar-logo{ margin-left: 0rem; }
+  .navbar-logo{ width: 25px; height: 22px; }
+}
 :root {
 
   --text-color: #f0f0f0;
@@ -388,8 +391,12 @@ html[data-theme="dark"]{
   --card-border: rgba(255, 255, 255, 0.07);
   --accent-color:  #f0c040;
 }
-
-
+.custom-nav.active{
+  border-radius: 15%;
+  background-blend-mode:darken;
+}
+    .custom-nav.active{position:fixed;background:var(--card-bg);backdrop-filter:blur(8px);border-radius:12px;padding:14px;border:1px solid var(--glass-border);box-shadow:0 12px 40px rgba(0,0,0,0.45);transform:translateY(12%);opacity:0;transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .28s;z-index:9999;}
+    .custom-nav.active.show{transform:translateY(0);opacity:1}
 body.light-mode {
   --section-bg: #f9f9f9;
   --text-color: #111;
@@ -552,7 +559,7 @@ body.light-mode .arfito-footer{
       <path d="M4 20c0-4 4-6 8-6s8 2 8 6"></path>
     </svg>
   </span>
-  <span class="login-btn__label">ورود | عضویت</span>
+  <span class="login-btn__label">ورود | عضویت</span><span style="color: chocolate; font-size: small;">غیرفعال</span>
 </button>
 
 
