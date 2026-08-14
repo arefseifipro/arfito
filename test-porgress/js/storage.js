@@ -1,7 +1,7 @@
 const GITHUB_CONFIG = {
     owner: "arefseifipro",       
     repo: "arfito",      
-    token: "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",      
+    token: "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",      
     path: 'data/db.json',      
     branch: 'main'
 };
