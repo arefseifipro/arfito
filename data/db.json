@@ -156,7 +156,13 @@
       "name": "هندسه 2",
       "icon": "pen",
       "color": "#35f500",
-      "sources": [],
+      "sources": [
+        {
+          "id": "mst9qy5f8wakw",
+          "title": "نشر آنلاین منیاز",
+          "chapters": []
+        }
+      ],
       "weeks": []
     }
   ]
