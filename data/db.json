@@ -160,7 +160,14 @@
         {
           "id": "mst9qy5f8wakw",
           "title": "نشر آنلاین منیاز",
-          "chapters": []
+          "chapters": [
+            {
+              "id": "mst9rx5w2f6il",
+              "name": "هر چهار فصل",
+              "total": 478,
+              "done": 0
+            }
+          ]
         }
       ],
       "weeks": []
