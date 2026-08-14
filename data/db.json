@@ -1,63 +1,12 @@
 {
   "lessons": [
     {
-      "id": "mst7eu1ruzefm",
-      "name": "فیزیک",
+      "id": "mst8ha5apaj4e",
+      "name": "vdhqwd",
       "icon": "flask",
-      "color": "#2563eb",
-      "sources": [
-        {
-          "id": "mst7f5abc0aq3",
-          "title": "نشرالگو",
-          "chapters": [
-            {
-              "id": "mst7fi5vk2yxn",
-              "name": "فصل اول",
-              "total": 250,
-              "done": 25
-            },
-            {
-              "id": "mst7fsdyf1bit",
-              "name": "فصل دوم",
-              "total": 312,
-              "done": 32
-            },
-            {
-              "id": "mst7gjyv4zftn",
-              "name": "فصل سوم",
-              "total": 174,
-              "done": 0
-            }
-          ]
-        }
-      ],
-      "weeks": [
-        {
-          "id": "mst7hixkgrt3n",
-          "label": "15",
-          "dateRange": "12 الی 18 مرداد",
-          "parts": [
-            {
-              "id": "mst7hsxgzcaeb",
-              "label": "1",
-              "day": "شنبه",
-              "done": true
-            },
-            {
-              "id": "mst7hyzcpzejr",
-              "label": "2",
-              "day": "یکشنبه",
-              "done": true
-            },
-            {
-              "id": "mst7i8x682xqc",
-              "label": "3",
-              "day": "دوشنبه",
-              "done": false
-            }
-          ]
-        }
-      ]
+      "color": "#eb24a2",
+      "sources": [],
+      "weeks": []
     }
   ]
 }
