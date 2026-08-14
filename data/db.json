@@ -193,6 +193,12 @@
               "label": "سوم",
               "day": "سه شنبه",
               "done": false
+            },
+            {
+              "id": "mst9vijxszvqr",
+              "label": "چهارم",
+              "day": "پنجشنبه",
+              "done": false
             }
           ]
         }
