@@ -48,14 +48,7 @@
           "id": "mst8vyflln5zp",
           "label": "هفته شانزدهم",
           "dateRange": "24 الی 30 مرداد",
-          "parts": [
-            {
-              "id": "mst8zp0ijdcn7",
-              "label": "پارت ششم",
-              "day": "پنجشنبه",
-              "done": false
-            }
-          ]
+          "parts": []
         }
       ]
     },
