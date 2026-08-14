@@ -113,7 +113,14 @@
           "id": "msta3h72nvhs1",
           "label": "هفته شانزدهم",
           "dateRange": "24 الی 30 مرداد",
-          "parts": []
+          "parts": [
+            {
+              "id": "msta3t6x3wtlt",
+              "label": "اول",
+              "day": "شنبه",
+              "done": false
+            }
+          ]
         }
       ]
     },
