@@ -137,6 +137,12 @@
               "label": "چهارم",
               "day": "چهارشنبه",
               "done": false
+            },
+            {
+              "id": "msta4p1m64dbg",
+              "label": "پنجم",
+              "day": "پنجشنبه",
+              "done": false
             }
           ]
         }
