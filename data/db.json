@@ -259,6 +259,14 @@
           ]
         }
       ]
+    },
+    {
+      "id": "msta6lpyyvcjf",
+      "name": "آمار و احتمال",
+      "icon": "music",
+      "color": "#ff0040",
+      "sources": [],
+      "weeks": []
     }
   ]
 }
