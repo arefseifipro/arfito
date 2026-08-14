@@ -9,7 +9,32 @@
         {
           "id": "mst8pw3li4p6t",
           "title": "پاورتست(مهر و ماه)",
-          "chapters": []
+          "chapters": [
+            {
+              "id": "mst8r0f73gltn",
+              "name": "فصل اول",
+              "total": 274,
+              "done": 0
+            },
+            {
+              "id": "mst8s5tndl0iu",
+              "name": "فصل دوم",
+              "total": 207,
+              "done": 0
+            },
+            {
+              "id": "mst8smuircs07",
+              "name": "فصل سوم",
+              "total": 212,
+              "done": 0
+            },
+            {
+              "id": "mst8tcwemv0i8",
+              "name": "فصل چهارم",
+              "total": 156,
+              "done": 0
+            }
+          ]
         }
       ],
       "weeks": []
