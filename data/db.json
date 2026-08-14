@@ -50,12 +50,6 @@
           "dateRange": "24 الی 30 مرداد",
           "parts": [
             {
-              "id": "mst8yn4l9nxvj",
-              "label": "پارت سوم",
-              "day": "دوشنبه",
-              "done": true
-            },
-            {
               "id": "mst8zawcbqqfp",
               "label": "پارت پنجم",
               "day": "چهارشنبه",
