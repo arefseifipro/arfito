@@ -68,12 +68,6 @@
               "done": false
             },
             {
-              "id": "mst8yzjguiba7",
-              "label": "پارت چهارم",
-              "day": "سه شنبه",
-              "done": false
-            },
-            {
               "id": "mst8zawcbqqfp",
               "label": "پارت پنجم",
               "day": "چهارشنبه",
@@ -103,11 +97,19 @@
               "id": "mst9hsgwmcsxx",
               "name": "هر سه فصل",
               "total": 862,
-              "done": 0
+              "done": 862
             }
           ]
         }
       ],
+      "weeks": []
+    },
+    {
+      "id": "mst9kpmzseerd",
+      "name": "فیزیک",
+      "icon": "globe",
+      "color": "#2563eb",
+      "sources": [],
       "weeks": []
     }
   ]
