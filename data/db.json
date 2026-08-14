@@ -109,7 +109,13 @@
       "name": "فیزیک",
       "icon": "globe",
       "color": "#2563eb",
-      "sources": [],
+      "sources": [
+        {
+          "id": "mst9l1m1n9812",
+          "title": "خیلی سبز",
+          "chapters": []
+        }
+      ],
       "weeks": []
     }
   ]
