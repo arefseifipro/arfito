@@ -5,7 +5,13 @@
       "name": "فیزیک",
       "icon": "flask",
       "color": "#2563eb",
-      "sources": [],
+      "sources": [
+        {
+          "id": "mst7f5abc0aq3",
+          "title": "نشرالگو",
+          "chapters": []
+        }
+      ],
       "weeks": []
     }
   ]
