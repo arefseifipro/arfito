@@ -53,7 +53,7 @@
               "id": "mst8yn4l9nxvj",
               "label": "پارت سوم",
               "day": "دوشنبه",
-              "done": false
+              "done": true
             },
             {
               "id": "mst8zawcbqqfp",
@@ -165,7 +165,7 @@
               "id": "mst9rx5w2f6il",
               "name": "هر چهار فصل",
               "total": 478,
-              "done": 415
+              "done": 478
             }
           ]
         }
