@@ -48,6 +48,12 @@
               "label": "1",
               "day": "شنبه",
               "done": false
+            },
+            {
+              "id": "mst7hyzcpzejr",
+              "label": "2",
+              "day": "یکشنبه",
+              "done": false
             }
           ]
         }
