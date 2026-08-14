@@ -175,7 +175,14 @@
           "id": "mst9udhf3rybx",
           "label": "هفته شانزدهم",
           "dateRange": "24 الی 30 مرداد",
-          "parts": []
+          "parts": [
+            {
+              "id": "mst9ulbo0j9f7",
+              "label": "اول",
+              "day": "شنبه",
+              "done": false
+            }
+          ]
         }
       ]
     }
