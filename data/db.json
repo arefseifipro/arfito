@@ -187,6 +187,12 @@
               "label": "دوم",
               "day": "یکشنبه",
               "done": false
+            },
+            {
+              "id": "mst9v5af3qijm",
+              "label": "سوم",
+              "day": "سه شنبه",
+              "done": false
             }
           ]
         }
