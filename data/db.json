@@ -5,7 +5,13 @@
       "name": "حسابان",
       "icon": "calculator",
       "color": "#07cbf2",
-      "sources": [],
+      "sources": [
+        {
+          "id": "mst8pw3li4p6t",
+          "title": "پاورتست(مهر و ماه)",
+          "chapters": []
+        }
+      ],
       "weeks": []
     }
   ]
