@@ -42,7 +42,14 @@
           "id": "mst7hixkgrt3n",
           "label": "15",
           "dateRange": "12 الی 18 مرداد",
-          "parts": []
+          "parts": [
+            {
+              "id": "mst7hsxgzcaeb",
+              "label": "1",
+              "day": "شنبه",
+              "done": false
+            }
+          ]
         }
       ]
     }
