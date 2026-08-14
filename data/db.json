@@ -9,7 +9,14 @@
         {
           "id": "mst7f5abc0aq3",
           "title": "نشرالگو",
-          "chapters": []
+          "chapters": [
+            {
+              "id": "mst7fi5vk2yxn",
+              "name": "فصل اول",
+              "total": 250,
+              "done": 0
+            }
+          ]
         }
       ],
       "weeks": []
