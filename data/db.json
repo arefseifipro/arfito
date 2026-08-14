@@ -265,7 +265,13 @@
       "name": "آمار و احتمال",
       "icon": "pen",
       "color": "#ff0040",
-      "sources": [],
+      "sources": [
+        {
+          "id": "msta7bm133m7s",
+          "title": "نشر انلاین منیاز",
+          "chapters": []
+        }
+      ],
       "weeks": []
     }
   ]
