@@ -119,6 +119,12 @@
               "label": "اول",
               "day": "شنبه",
               "done": false
+            },
+            {
+              "id": "msta45g2wdj5k",
+              "label": "دوم",
+              "day": "یکشنبه",
+              "done": false
             }
           ]
         }
