@@ -269,7 +269,14 @@
         {
           "id": "msta7bm133m7s",
           "title": "نشر انلاین منیاز",
-          "chapters": []
+          "chapters": [
+            {
+              "id": "msta7p0t258ik",
+              "name": "هر سه فصل",
+              "total": 214,
+              "done": 0
+            }
+          ]
         }
       ],
       "weeks": []
