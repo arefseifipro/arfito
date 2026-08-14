@@ -113,7 +113,14 @@
         {
           "id": "mst9l1m1n9812",
           "title": "خیلی سبز",
-          "chapters": []
+          "chapters": [
+            {
+              "id": "mst9lmgydq4x9",
+              "name": "هر چهار فصل",
+              "total": 315,
+              "done": 0
+            }
+          ]
         }
       ],
       "weeks": []
