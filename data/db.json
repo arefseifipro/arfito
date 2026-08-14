@@ -88,6 +88,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "mst9950usqu7w",
+      "name": "شیمی 2",
+      "icon": "book",
+      "color": "#f00ad1",
+      "sources": [
+        {
+          "id": "mst9gksmi6xfo",
+          "title": "نردبام",
+          "chapters": [
+            {
+              "id": "mst9hsgwmcsxx",
+              "name": "هر سه فصل",
+              "total": 862,
+              "done": 0
+            }
+          ]
+        }
+      ],
+      "weeks": []
     }
   ]
 }
