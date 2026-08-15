@@ -1,0 +1,474 @@
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../fonts/Vazirmatn.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --primary-bg: #eff6ff;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --green: #22c55e;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+
+.topbar {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.admin-link {
+  color: var(--text-muted);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.admin-link:hover { color: var(--primary); }
+
+.admin-link svg {
+  width: 22px;
+  height: 22px;
+}
+
+
+.lesson-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 20px 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.lesson-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.lesson-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lesson-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.lesson-info { flex: 1; }
+
+.lesson-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.lesson-meta {
+  display: flex;
+  gap: 16px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.meta-item svg {
+  width: 15px;
+  height: 15px;
+}
+
+.progress-ring {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: conic-gradient(var(--primary) calc(var(--progress) * 1%), var(--border) 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.progress-ring::before {
+  content: '';
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--card);
+}
+
+.progress-ring span {
+  position: relative;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.weeks-section {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.week-block {
+  margin-bottom: 14px;
+}
+
+.week-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.week-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.week-range {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.part-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.part-item.done {
+  border-color: var(--green);
+  background: #f0fdf4;
+}
+
+.part-item.pending {
+  border-color: var(--yellow);
+  background: #fefce8;
+}
+
+.part-status {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.part-status svg { width: 18px; height: 18px; }
+
+.part-item.done .part-status { color: var(--green); }
+.part-item.pending .part-status { color: var(--yellow); }
+
+.part-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.part-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.part-day {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sources-section {
+  padding: 16px 20px 20px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.section-title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
+}
+
+.source-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.source-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  text-align: right;
+  transition: background 0.2s;
+}
+
+.source-toggle:hover { background: var(--primary-bg); }
+
+.source-icon {
+  color: var(--primary);
+  display: flex;
+}
+
+.source-icon svg { width: 20px; height: 20px; }
+
+.source-title { flex: 1; font-weight: 600; }
+
+.source-total {
+  background: var(--primary-bg);
+  color: var(--primary);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.chevron {
+  color: var(--text-muted);
+  display: flex;
+  transition: transform 0.3s;
+}
+
+.chevron svg { width: 18px; height: 18px; }
+
+.source-card.open .chevron { transform: rotate(180deg); }
+
+.source-body {
+  display: none;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.source-card.open .source-body { display: block; }
+
+.chapter-row {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.chapter-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.chapter-name { font-weight: 600; font-size: 0.9rem; }
+
+.chapter-counts {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  flex: 1;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+.progress-pct {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 40px;
+  text-align: left;
+}
+
+.source-summary {
+  padding: 14px 0 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-muted);
+}
+
+.empty-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  color: var(--border);
+}
+
+.empty-icon svg { width: 100%; height: 100%; }
+
+.loading {
+  text-align: center;
+  padding: 60px;
+  color: var(--text-muted);
+}
+
+.footer {
+  margin-top: auto;
+  padding: 20px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+
+@media (max-width: 600px) {
+  .lesson-header { flex-wrap: wrap; }
+  .lesson-meta { flex-wrap: wrap; gap: 8px; }
+  .parts-grid { grid-template-columns: 1fr; }
+}
+
+.lesson-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: right;
+  padding: 0;
+}
+
+.lesson-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.lesson-toggle:hover .lesson-header {
+  background: var(--primary-bg);
+}
+
+.lesson-chevron {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.lesson-chevron svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lesson-card.open .lesson-chevron {
+  transform: rotate(180deg);
+}
+
+.lesson-body {
+  display: none;
+}
+
+.lesson-card.open .lesson-body {
+  display: block;
+}
