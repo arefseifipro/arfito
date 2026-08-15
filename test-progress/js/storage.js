@@ -11,13 +11,16 @@ let db = {
 
 async function initDB() {
   const local = localStorage.getItem(STORAGE_KEY);
+
   if (local) {
     try {
       db = JSON.parse(local);
-      return;
-    } catch(e) {}
+      renderLessons(); 
+    } catch {}
   }
-  await fetchFromGitHub();
+
+  await fetchFromGitHub(); 
+  renderLessons();
 }
 
 
