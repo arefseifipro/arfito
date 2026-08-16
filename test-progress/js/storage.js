@@ -15,7 +15,7 @@ async function initDB() {
  
 
   await fetchFromGitHub(); 
-  renderLessons();
+  
 }
 
 
