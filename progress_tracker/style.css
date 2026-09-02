@@ -1,0 +1,201 @@
+/* style.css */
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+    background: #f0f4ff;
+    min-height: 100vh;
+    color: #1e293b;
+}
+
+/* ====== صفحه ورود ====== */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.logo svg {
+    width: 48px;
+    height: 48px;
+}
+
+.auth-card h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Vazirmatn', sans-serif;
+    color: #64748b;
+    transition: all 0.2s;
+}
+
+.tab.active {
+    background: white;
+    color: #2563eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 13px;
+    color: #475569;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 16px;
+    padding-left: 44px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Vazirmatn', sans-serif;
+    direction: ltr;
+    text-align: left;
+    transition: border-color 0.2s;
+    background: #fafbfc;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.toggle-password {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.toggle-password:hover {
+    opacity: 1;
+}
+
+.toggle-password svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Vazirmatn', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.btn-primary:active {
+    background: #1e40af;
+}
+
+.error-msg {
+    color: #dc2626;
+    font-size: 13px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.hint {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.hidden {
+    display: none;
+}
