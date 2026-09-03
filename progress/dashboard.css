@@ -12,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== هدر داشبورد ===== */
+
 .admin-header {
     display: flex;
     justify-content: space-between;
@@ -32,7 +32,7 @@ body {
     gap: 12px;
 }
 
-/* آیکون ساده بدون باکس */
+
 .logo {
     display: flex;
     align-items: center;
@@ -45,7 +45,7 @@ body {
     height: 24px;
 }
 
-/* باکس نامحسوس برای h1 */
+
 .profile-badge {
     background: linear-gradient(135deg, #f8fafc, #f1f5f9);
     border: 1px solid #e2e8f0;
@@ -70,7 +70,7 @@ body {
     letter-spacing: -0.3px;
 }
 
-/* دکمه‌های هدر */
+
 .header-left {
     display: flex;
     gap: 8px;
@@ -119,7 +119,7 @@ body {
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
 }
 
-/* ریسپانسیو */
+
 @media (max-width: 768px) {
     .admin-header {
         padding: 10px 16px;
@@ -150,7 +150,7 @@ body {
     }
     
     .btn-outline span {
-        display: none; /* فقط آیکون روی موبایل */
+        display: none; 
     }
     
     .btn-outline {
@@ -204,7 +204,7 @@ body {
     }
 }
 
-/* ====== BUTTONS ====== */
+
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -291,7 +291,7 @@ body {
     border-color: #dc2626;
     background: #fef2f2;
 }
-
+/*
 .admin-tabs {
     display: flex;
     gap: 2px;
@@ -350,7 +350,8 @@ body {
     border-bottom-color: #2563eb;
 }
 */
-/* ====== CONTENT ====== */
+
+
 .admin-main {
     padding: 16px;
     max-width: 1200px;
@@ -403,7 +404,7 @@ body {
     }
 }
 
-/* ====== LESSON CARD (ACCORDION) ====== */
+
 .lesson-card {
     background: white;
     border: 1px solid #e2e8f0;
@@ -521,7 +522,7 @@ body {
     transform: rotate(180deg);
 }
 
-/* ====== ACCORDION BODY ====== */
+
 .lesson-body {
     max-height: 0;
     overflow: hidden;
@@ -546,7 +547,7 @@ body {
     }
 }
 
-/* ====== PROGRESS BAR ====== */
+
 .lesson-progress {
     margin-bottom: 16px;
 }
@@ -574,7 +575,6 @@ body {
     margin-top: 4px;
 }
 
-/* ====== SOURCES ====== */
 .sources-section {
     border-top: 1px solid #f1f5f9;
     padding-top: 12px;
@@ -645,7 +645,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* ====== CHAPTERS ====== */
+
 .chapters-list {
     margin-top: 8px;
     padding-right: 12px;
@@ -690,7 +690,7 @@ body {
     height: 5px;
 }
 
-/* ====== BUTTONS SMALL ====== */
+
 .btn-sm {
     padding: 4px 8px;
     border: 1px solid #e2e8f0;
@@ -729,7 +729,7 @@ body {
     border-color: #16a34a;
 }
 
-/* ====== TAB 2: WEEK SELECTOR ====== */
+
 .lesson-selector {
     display: flex;
     flex-direction: column;
@@ -784,7 +784,7 @@ body {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
 }
 
-/* ====== WEEK CARD ====== */
+
 .week-card {
     background: white;
     border: 1px solid #e2e8f0;
@@ -823,7 +823,7 @@ body {
     color: #64748b;
 }
 
-/* ====== PARTS ====== */
+
 .parts-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -910,7 +910,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* ====== MODAL ====== */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -986,7 +986,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* ====== FORM ====== */
+
 .form-group {
     margin-bottom: 14px;
 }
@@ -1024,7 +1024,7 @@ body {
     text-align: left;
 }
 
-/* ====== ICON PICKER ====== */
+
 .icon-picker {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1086,7 +1086,7 @@ body {
     border: 2px dashed #e2e8f0;
     border-radius: 12px;
 }
-/* ====== کوچیک کردن آیکون‌ها ====== */
+
 .stat svg,
 .stat-done svg,
 .stat-remaining svg {
@@ -1153,7 +1153,7 @@ body {
     vertical-align: middle;
     margin-left: 4px;
 }
-/* ====== دکمه شناور راهنما ====== */
+
 #help-fab {
     position: fixed;
     bottom: 24px;
@@ -1201,7 +1201,7 @@ body {
     }
 }
 
-/* ====== اوورلی ====== */
+
 .help-overlay {
     position: fixed;
     top: 0;
@@ -1221,7 +1221,6 @@ body {
     visibility: visible;
 }
 
-/* ====== اسلاید راهنما ====== */
 .help-slide {
     position: fixed;
     top: 0;
@@ -1248,7 +1247,7 @@ body {
     }
 }
 
-/* ====== هدر اسلاید ====== */
+
 .help-slide-header {
     display: flex;
     justify-content: space-between;
@@ -1291,7 +1290,7 @@ body {
     color: #dc2626;
 }
 
-/* ====== بدنه اسلاید ====== */
+
 .help-slide-body {
     flex: 1;
     overflow-y: auto;
@@ -1311,7 +1310,7 @@ body {
     border-radius: 10px;
 }
 
-/* ====== بخش‌های راهنما ====== */
+
 .help-section {
     display: flex;
     gap: 14px;
@@ -1362,7 +1361,7 @@ body {
     color: #64748b;
     line-height: 1.7;
 }
-/* ====== هدر با لبه منحنی ====== */
+
 .admin-header {
     background: white;
     padding: 16px 20px;
@@ -1386,8 +1385,8 @@ body {
         top: 16px;
     }
 }
+/*
 
-/* ====== تب‌های دندانه‌ای / گنبدی شکل ====== */
 .admin-tabs {
     display: flex;
     gap: 0;
@@ -1397,13 +1396,14 @@ body {
     border-bottom: none;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    justify-content: center;
+    justify-content:center;
 }
 
 @media (min-width: 768px) {
     .admin-tabs {
         padding: 0 32px;
         margin-top: 12px;
+        
     }
 }
 
@@ -1467,7 +1467,7 @@ body {
     stroke: white;
 }
 
-/* ====== محتوای اصلی با فاصله از هدر ====== */
+*/
 .admin-main {
     padding: 24px 16px 80px;
     max-width: 1200px;
@@ -1480,7 +1480,7 @@ body {
     }
 }
 
-/* ====== فوتر ====== */
+
 .admin-footer {
     background: white;
     border-top: 1px solid #e2e8f0;
@@ -1547,7 +1547,7 @@ body {
     color: #cbd5e1;
 }
 
-/* ====== لودینگ جذاب ====== */
+
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -1639,7 +1639,7 @@ body {
     50% { opacity: 1; }
 }
 
-/* ====== لودینگ خطی برای بارگذاری بخش‌ها ====== */
+
 .skeleton-loader {
     padding: 16px;
 }
@@ -1678,7 +1678,7 @@ body {
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
 }
-/* ====== فوتر ثابت (fixed) ====== */
+
 .admin-footer {
     position: fixed;
     bottom: 0;
@@ -1745,7 +1745,7 @@ body {
     height: 14px;
 }
 
-/* ====== فاصله بدنه از فوتر ثابت ====== */
+
 .admin-main {
     padding: 24px 16px 80px;
     max-width: 1200px;
@@ -1758,7 +1758,7 @@ body {
     }
 }
 
-/* ====== صفحه View عمومی ====== */
+
 .public-view {
     max-width: 900px;
     margin: 0 auto;
@@ -1949,7 +1949,7 @@ body {
     height: 20px;
 }
 
-/* ====== دکمه بازگشت ====== */
+
 .back-btn {
     display: inline-flex;
     align-items: center;
@@ -1977,7 +1977,7 @@ body {
     width: 16px;
     height: 16px;
 }
-/* ====== Toast ====== */
+
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -1989,9 +1989,8 @@ body {
     }
 }
 
-/* ===== تب‌های دندونه‌ای و گنبدی ===== */
-/* ===== تب‌های دندونه‌ای نرم ===== */
-.tabs {
+/* 
+.admin-tab {
     display: flex;
     gap: 4px;
     margin: 20px 20px 0 20px;
@@ -1999,8 +1998,11 @@ body {
     position: relative;
     z-index: 1;
 }
-
-.tab-btn {
+.admin-tab svg {
+    width: 16px;
+    height: 16px;
+}
+.admin-tab {
     position: relative;
     padding: 12px 28px;
     font-family: 'Vazirmatn', sans-serif;
@@ -2015,29 +2017,29 @@ body {
     z-index: 1;
 }
 
-.tab-btn:first-child {
+.admin-tab:first-child {
     border-radius: 14px 0 0 0;
 }
 
-.tab-btn:last-child {
+.admin-tab:last-child {
     border-radius: 0 14px 0 0;
 }
 
-.tab-btn:hover {
+.admin-tab:hover {
     background: #cbd5e1;
     color: #1e40af;
 }
 
-.tab-btn.active {
+.admin-tab.active {
     background: #2563eb;
     color: white;
     z-index: 3;
     box-shadow: 0 -2px 8px rgba(37, 99, 235, 0.2);
 }
 
-/* دندونه‌های نرم با border-radius */
-.tab-btn::before,
-.tab-btn::after {
+
+.admin-tab::before,
+.admin-tab::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -2047,35 +2049,157 @@ body {
     z-index: -1;
 }
 
-.tab-btn::before {
+.admin-tab::before {
     left: -12px;
     border-bottom-right-radius: 10px;
     box-shadow: 4px 4px 0 4px #e2e8f0;
 }
 
-.tab-btn::after {
+.admin-tab::after {
     right: -12px;
     border-bottom-left-radius: 10px;
     box-shadow: -4px 4px 0 4px #e2e8f0;
 }
 
-.tab-btn.active::before {
+.admin-tab.active::before {
     box-shadow: 4px 4px 0 4px #2563eb;
 }
 
-.tab-btn.active::after {
+.admin-tab.active::after {
     box-shadow: -4px 4px 0 4px #2563eb;
 }
 
-.tab-btn:first-child::before {
+.admin-tab:first-child::before {
     display: none;
 }
 
-.tab-btn:last-child::after {
+.admin-tab:last-child::after {
+    display: none;
+}
+/* ===== Admin Tabs ===== */
+
+.admin-tabs {
+    display: flex;
+    gap: 4px;
+    margin: 12px 16px 0;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-right: 6%;
+}
+
+.admin-tabs::-webkit-scrollbar {
     display: none;
 }
 
-/* ===== محتوای تب‌ها ===== */
+.admin-tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    flex-shrink: 0;
+
+    padding: 12px 18px;
+
+    background: #e2e8f0;
+    color: #64748b;
+
+    border: none;
+    border-radius: 14px 14px 0 0;
+
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.admin-tab svg {
+    width: 16px;
+    height: 16px;
+}
+
+.admin-tab:hover {
+    background: #cbd5e1;
+    color: #1e40af;
+}
+
+.admin-tab.active {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 -2px 8px rgba(37,99,235,.25);
+}
+
+.admin-tab.active svg {
+    stroke: currentColor;
+}
+
+
+.admin-tab::before,
+.admin-tab::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 12px;
+    height: 12px;
+    z-index: -1;
+}
+
+.admin-tab::before {
+    left: -12px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 4px 4px 0 4px #e2e8f0;
+}
+
+.admin-tab::after {
+    right: -12px;
+    border-bottom-left-radius: 10px;
+    box-shadow: -4px 4px 0 4px #e2e8f0;
+}
+
+.admin-tab.active::before {
+    box-shadow: 4px 4px 0 4px #2563eb;
+}
+
+.admin-tab.active::after {
+    box-shadow: -4px 4px 0 4px #2563eb;
+}
+
+.admin-tab:first-child::before {
+    display: none;
+}
+
+.admin-tab:last-child::after {
+    display: none;
+}
+
+
+@media (min-width: 768px) {
+    .admin-tabs {
+        margin: 16px 32px 0;
+        justify-content: right;
+        margin-right: 7%;
+    }
+
+    .admin-tab {
+        padding: 14px 28px;
+        font-size: 14px;
+    }
+}
+.admin-main {
+    background: white;
+    border-radius: 16px 16px 16px 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    padding: 24px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+
 .tab-content {
     display: none;
     padding: 20px;
@@ -2094,7 +2218,7 @@ body {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
 }
-/* ===== مودال اشتراک ===== */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -2230,7 +2354,7 @@ body {
     font-size: 20px;
 }
 
-/* انیمیشن‌ها */
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -2247,7 +2371,7 @@ body {
     }
 }
 
-/* ریسپانسیو مودال */
+
 @media (max-width: 480px) {
     .modal-content {
         padding: 16px;
@@ -2263,3 +2387,23 @@ body {
         justify-content: center;
     }
 }
+
+.view-header {
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.view-header .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+

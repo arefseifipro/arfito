@@ -1,4 +1,4 @@
-
+// auth.js
 
 function showTab(tab) {
     const loginForm = document.getElementById('login-form');
@@ -35,17 +35,17 @@ function togglePassword(inputId, btn) {
             </svg>`;
 }
 
-
+// اعتبارسنجی نام کاربری (فقط انگلیسی)
 function isValidUsername(u) {
     return /^[a-zA-Z0-9_]+$/.test(u);
 }
 
-
+// اعتبارسنجی رمز عبور (حداقل ۸ کاراکتر، حاوی عدد)
 function isValidPassword(p) {
     return p.length >= 8 && /\d/.test(p);
 }
 
-
+// ====== ورود ======
 document.getElementById('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const username = document.getElementById('login-username').value.trim();
@@ -76,7 +76,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         errorEl.textContent = '❌ خطا در اتصال به سرور';
     }
 });
-
+// رفتن به مرحله دوم
 async function goToStep2() {
     const username = document.getElementById('reg-username').value;
     const password = document.getElementById('reg-password').value;
@@ -84,6 +84,7 @@ async function goToStep2() {
     const errorEl = document.getElementById('reg-error');
     errorEl.textContent = '';
 
+    // اعتبارسنجی
     if (!username || !password || !password2) {
         errorEl.textContent = 'همه فیلدها رو پر کن';
         return;
@@ -99,7 +100,7 @@ async function goToStep2() {
         return;
     }
 
-   
+    // چک تکراری نبودن یوزرنیم
     try {
         const { data: existing } = await sb
             .from('profiles')
@@ -111,7 +112,7 @@ async function goToStep2() {
             return;
         }
 
-        
+        // اگه همه چی اوکی بود برو مرحله دوم
         document.getElementById('step-1').style.display = 'none';
         document.getElementById('step-2').style.display = 'block';
         errorEl.textContent = '';
@@ -120,14 +121,14 @@ async function goToStep2() {
     }
 }
 
-
+// بازگشت به مرحله اول
 function backToStep1() {
     document.getElementById('step-1').style.display = 'block';
     document.getElementById('step-2').style.display = 'none';
     document.getElementById('reg-error-2').textContent = '';
 }
 
-
+// فعال/غیرفعال کردن رشته بر اساس پایه
 document.getElementById('grade').addEventListener('change', function() {
     const fieldGroup = document.getElementById('field-group');
     if (this.value === 'متوسطه اول' || this.value === '') {
@@ -138,17 +139,17 @@ document.getElementById('grade').addEventListener('change', function() {
     }
 });
 
-
+// توی تابع submit فرم اصلی
 document.getElementById('register-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    
+    // اگه مرحله اول فعاله، اجبار به رفتن به مرحله دوم
     if (document.getElementById('step-1').style.display !== 'none') {
         goToStep2();
         return;
     }
     
-    
+    // اینجا ثبت‌نام نهایی انجام بشه
     const username = document.getElementById('reg-username').value;
     const password = document.getElementById('reg-password').value;
     const firstName = document.getElementById('first-name').value;
@@ -156,11 +157,11 @@ document.getElementById('register-form').addEventListener('submit', async functi
     const grade = document.getElementById('grade').value;
     const field = document.getElementById('field').value || '';
     
-  
+   // ====== ثبت‌ام نهایی ======
 document.getElementById('register-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
-   
+    // اگه مرحله اول فعاله، برو مرحله دوم
     if (document.getElementById('step-1').style.display !== 'none') {
         goToStep2();
         return;
@@ -175,14 +176,14 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
     const errorEl = document.getElementById('reg-error-2');
     errorEl.textContent = '';
 
-   
+    // اعتبارسنجی
     if (!firstName || !lastName || !grade) {
         errorEl.textContent = '❌ لطفا همه فیلدها رو پر کن';
         return;
     }
 
     try {
-       
+        // اول چک کن کاربر قبلا ثبت نام کرده؟
         const { data: existing } = await sb
             .from('profiles')
             .select('id')
@@ -193,7 +194,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
             return;
         }
 
-       
+        // ثبت‌ام با اطلاعات کامل
         const { data, error } = await sb
             .from('profiles')
             .insert([{ 

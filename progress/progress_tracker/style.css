@@ -199,3 +199,130 @@ body {
 .hidden {
     display: none;
 }
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+#step-2 .form-group {
+    margin-bottom: 16px;
+}
+
+#step-2 select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+#step-2 select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.btn-secondary {
+     width: 100%;
+    background: #e2e8f0;
+    color: #475569;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+    font-weight: ‌600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e1;
+}
+/* ===== استایل فرم دو مرحله‌ای ثبت‌ام ==== */
+#step-2 .form-group {
+    margin-bottom: 18px;
+}
+
+#step-2 label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+#step-2 input[type="text"],
+#step-2 select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+    color: #1e293b;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+#step-2 input[type="text"]:focus,
+#step-2 select:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: white;
+    box-shadow: ‌0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+#step-2 input[type="text"]::placeholder {
+    color: #94a3b8;
+}
+
+/* استایل فرم-رو (کنار هم) */
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+/* استایل سلکت */
+#step-2 select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 12px center;
+    padding-left: 36px;
+    cursor: pointer;
+}
+
+/* استایل دکمه بازگشت */
+.btn-secondary {
+    background: #e2e8f0;
+    color: #475569;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e1;
+}
+.hidden {
+    display: none !important;
+}

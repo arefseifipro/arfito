@@ -1,10 +1,10 @@
-// admin.js
+
 let currentUser = null;
 let selectedIcon = null;
 let currentEditId = null;
 let currentEditType = null;
 
-// ====== چک لاگین ======
+
 function checkAuth() {
     const user = localStorage.getItem('user');
     if (!user) {
@@ -14,7 +14,6 @@ function checkAuth() {
     currentUser = JSON.parse(user);
 }
 
-// ====== TAB SWITCH ======
 document.querySelectorAll('.admin-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
@@ -27,14 +26,14 @@ document.querySelectorAll('.admin-tab').forEach(tab => {
     });
 });
 
-// ====== TOGGLE ACCORDION ======
+
 function toggleAccordion(lessonId) {
     const body = document.getElementById('lesson-body-' + lessonId);
     const toggle = document.getElementById('toggle-' + lessonId);
     body.classList.toggle('open');
     toggle.classList.toggle('open');
 }
-// ====== LOAD LESSONS ======
+
 async function loadLessons() {
     const { data, error } = await sb
         .from('lessons')
@@ -85,7 +84,7 @@ async function createLessonCard(lesson) {
     
     const iconData = LESSON_ICONS.find(i => i.id === lesson.icon_id) || LESSON_ICONS[0];
     
-    // بارگذاری منابع
+   
     const { data: sources } = await sb
         .from('sources')
         .select('*')
@@ -104,7 +103,7 @@ async function createLessonCard(lesson) {
             totalTests += source.total_tests || 0;
             doneTests += source.done_tests || 0;
             
-            // بارگذاری فصل‌ها
+           
             const { data: chapters } = await sb
                 .from('chapters')
                 .select('*')
@@ -202,7 +201,7 @@ async function createLessonCard(lesson) {
 }
 
 
-// ====== MODALS ======
+
 function openLessonModal(lesson = null) {
     currentEditType = 'lesson';
     currentEditId = lesson ? lesson.id : null;
@@ -239,7 +238,7 @@ function editLesson(id) {
     });
 }
 
-// ====== SOURCE MODAL ======
+
 function openSourceModal(lessonId, source = null) {
     currentEditType = 'source';
     currentEditId = source ? source.id : null;
@@ -267,7 +266,7 @@ function editSource(id) {
     });
 }
 
-// ====== ADD TESTS TO SOURCE ======
+
 function addTestsToSource(sourceId) {
     currentEditType = 'add-tests';
     currentEditId = sourceId;
@@ -288,7 +287,7 @@ function addTestsToSource(sourceId) {
         </div>
     `;
     
-    // بارگذاری فصل‌های این منبع
+
     sb.from('chapters').select('id, title').eq('source_id', sourceId).then(({ data }) => {
         const select = document.getElementById('add-chapter-select');
         if (data) {
@@ -301,7 +300,7 @@ function addTestsToSource(sourceId) {
     document.getElementById('modal-overlay').classList.remove('hidden');
 }
 
-// ====== CHAPTER MODAL ======
+
 function openChapterModal(sourceId, chapter = null) {
     currentEditType = 'chapter';
     currentEditId = chapter ? chapter.id : null;
@@ -333,7 +332,7 @@ function editChapter(id) {
     });
 }
 
-// ====== WEEK MODAL ======
+
 function openWeekModal(lessonId, week = null) {
     currentEditType = 'week';
     currentEditId = week ? week.id : null;
@@ -359,7 +358,7 @@ function openWeekModal(lessonId, week = null) {
     document.getElementById('modal-overlay').classList.remove('hidden');
 }
 
-// ====== PART MODAL ======
+
 function openPartModal(weekId, part = null) {
     currentEditType = 'part';
     currentEditId = part ? part.id : null;
@@ -389,7 +388,6 @@ function openPartModal(weekId, part = null) {
     document.getElementById('modal-overlay').classList.remove('hidden');
 }
 
-// ====== SELECT ICON ======
 function selectIcon(iconId) {
     selectedIcon = iconId;
     document.querySelectorAll('.icon-option').forEach(el => {
@@ -397,14 +395,14 @@ function selectIcon(iconId) {
     });
 }
 
-// ====== CLOSE MODAL ======
+
 function closeModal() {
     document.getElementById('modal-overlay').classList.add('hidden');
     currentEditId = null;
     currentEditType = null;
 }
 
-// ====== SAVE FORM ======
+
 document.getElementById('modal-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -455,14 +453,14 @@ document.getElementById('modal-form').addEventListener('submit', async (e) => {
                     return;
                 }
                 
-                // گرفتن منبع فعلی
+               
                 const { data: source } = await sb.from('sources').select('*').eq('id', sourceId).single();
                 if (source) {
                     const newDone = (source.done_tests || 0) + addCount;
                     await sb.from('sources').update({ done_tests: newDone }).eq('id', sourceId);
                 }
                 
-                // اگه فصل انتخاب شده بود، به اون فصل هم اضافه کن
+    
                 if (chapterId) {
                     const { data: chapter } = await sb.from('chapters').select('*').eq('id', chapterId).single();
                     if (chapter) {
@@ -546,7 +544,7 @@ document.getElementById('modal-form').addEventListener('submit', async (e) => {
     }
 });
 
-// ====== DELETE ======
+
 async function deleteLesson(id) {
     if (!confirm('آیا از حذف این درس مطمئن هستی؟ همه منابع و فصل‌ها هم حذف می‌شوند.')) return;
     await sb.from('lessons').delete().eq('id', id);
@@ -580,7 +578,7 @@ async function deletePart(id) {
     await loadWeeksForLesson(select.value);
 }
 
-// ====== TAB 2: WEEKS ======
+
 async function loadLessonSelect() {
     const { data } = await sb
         .from('lessons')
@@ -705,24 +703,22 @@ async function updatePartTests(id, tests) {
 
 
 
-// ====== LOGOUT ======
 document.getElementById('logout-btn').addEventListener('click', () => {
     localStorage.removeItem('user');
     window.location.href = 'index.html';
 });
-// ====== باز و بسته کردن اسلاید راهنما ======
+
 function toggleHelpSlide() {
     const slide = document.getElementById('help-slide');
     const overlay = document.getElementById('help-overlay');
     slide.classList.toggle('open');
     overlay.classList.toggle('open');
     
-    // قفل اسکرول بدنه وقتی اسلاید بازه
+   
     document.body.style.overflow = slide.classList.contains('open') ? 'hidden' : '';
 }
-// ====== لودینگ اولیه ======
-document.addEventListener('DOMContentLoaded', () => {
-    // بعد از ۱ ثانیه لودینگ رو مخفی کن
+
+document.addEventListener('DOMContentLoaded', () => { 
     setTimeout(() => {
         const loading = document.getElementById('initial-loading');
         if (loading) {
@@ -734,7 +730,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 800);
 });
 
-// ====== نمایش لودینگ موقع بارگذاری داده‌ها ======
 function showLoading() {
     const existing = document.querySelector('.loading-overlay');
     if (existing) return;
@@ -766,7 +761,6 @@ function hideLoading() {
     }
 }
 
-// ====== اسکلتون لودر برای بخش‌ها ======
 function showSkeleton(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -792,7 +786,6 @@ function showSkeleton(containerId) {
     `;
 }
 
-// ====== توابع فوتر ======
 function openHelp() {
     toggleHelpSlide();
 }
@@ -800,7 +793,7 @@ function openHelp() {
 function showAbout() {
     alert('داشبورد پروگرس \nنسخه ۱.۰\nساخته شده با ❤️');
 }
-// ====== تولید لینک آیدی تصادفی ======
+
 function generateLinkId() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -831,15 +824,14 @@ document.getElementById('copy-view-link').addEventListener('click', async functi
             return;
         }
 
-        // ✅ این خط رو عوض کن با این:
+   
       publicLink = `${window.location.origin}/progress/view.html?link=${linkId}`;
         localStorage.setItem(`public_link_${userId}`, publicLink);
     }
 
     openShareModal(publicLink);
 });
-// ====== اشتراک لینک ======
-// ====== توابع مودال اشتراک ======
+
 function openShareModal(link) {
     const modal = document.getElementById('share-modal');
     if (!modal) {
@@ -847,10 +839,10 @@ function openShareModal(link) {
         return;
     }
     
-    // لینک رو توی input بذار
+
     document.getElementById('share-link').value = link;
     
-    // مودال رو نشون بده
+
     modal.style.display = 'flex';
 }
 
@@ -890,7 +882,7 @@ function shareVia(platform) {
 
 
 
-// ====== START ======
+
 checkAuth();
 loadinfos();
 loadLessons();

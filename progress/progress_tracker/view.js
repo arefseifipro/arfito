@@ -1,13 +1,14 @@
-
+// view.js - صفحه عمومی (بدون لاگین)
 let viewUserId = null;
 let viewLinkId = null;
 
+// ====== گرفتن لینک آیدی از URL ======
 function getLinkIdFromUrl() {
     const params = new URLSearchParams(window.location.search);
     return params.get('link');
 }
 
-
+// ====== پیدا کردن کاربر از روی لینک ======
 async function findUserByLink() {
     viewLinkId = getLinkIdFromUrl();
     
@@ -33,7 +34,7 @@ async function findUserByLink() {
     await loadLessonSelect();
 }
 
-
+// ====== بارگذاری پروفایل ======
 async function loadProfile() {
     const { data, error } = await sb
         .from('profiles')
@@ -50,7 +51,7 @@ async function loadProfile() {
         `${data.first_name} ${data.last_name} | ${data.grade} | ${data.field}`;
 }
 
-
+// ====== TAB SWITCH ======
 document.querySelectorAll('.admin-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
@@ -63,7 +64,7 @@ document.querySelectorAll('.admin-tab').forEach(tab => {
     });
 });
 
-
+// ====== TOGGLE ACCORDION ======
 function toggleAccordion(lessonId) {
     const body = document.getElementById('lesson-body-' + lessonId);
     const toggle = document.getElementById('toggle-' + lessonId);
@@ -71,7 +72,7 @@ function toggleAccordion(lessonId) {
     toggle.classList.toggle('open');
 }
 
-
+// ====== LOAD LESSONS (فقط نمایشی) ======
 async function loadLessons() {
     const { data, error } = await sb
         .from('lessons')
@@ -97,7 +98,7 @@ async function createLessonCard(lesson) {
     
     const iconData = LESSON_ICONS.find(i => i.id === lesson.icon_id) || LESSON_ICONS[0];
     
-
+    // بارگذاری منابع
     const { data: sources } = await sb
         .from('sources')
         .select('*')
@@ -116,7 +117,7 @@ async function createLessonCard(lesson) {
             totalTests += source.total_tests || 0;
             doneTests += source.done_tests || 0;
             
-
+            // بارگذاری فصل‌ها
             const { data: chapters } = await sb
                 .from('chapters')
                 .select('*')
@@ -201,7 +202,7 @@ async function createLessonCard(lesson) {
     return card;
 }
 
-
+// ====== TAB 2: WEEKS (فقط نمایشی) ======
 async function loadLessonSelect() {
     const { data } = await sb
         .from('lessons')
@@ -234,7 +235,7 @@ async function loadWeeksForLesson(lessonId) {
         .order('week_number');
     
     if (!weeks || weeks.length === 0) {
-        container.innerHTML = `<div class="empty-state"><span>${UI_ICONS.week} هنوز هفته‌ای برای این درس تعریف نشده</span></div>`;
+        container.innerHTML = '<div class="empty-state">${UI_ICONS.week} هنوز هفته‌ای برای این درس تعریف نشده</div>';
         return;
     }
     
@@ -282,7 +283,7 @@ async function loadWeeksForLesson(lessonId) {
     }
 }
 
-
+// ====== نمایش خطا ======
 function showError(msg) {
     document.getElementById('initial-loading').style.display = 'none';
     document.body.innerHTML = `
@@ -294,7 +295,7 @@ function showError(msg) {
     `;
 }
 
-
+// ====== لودینگ اولیه ======
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         const loading = document.getElementById('initial-loading');
