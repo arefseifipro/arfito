@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نمای عمومی | پروگرس</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-right">
+            <div class="logo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <path d="M9 22V12h6v10"/>
+                </svg>
+            </div>
+            <h1>پیشرفت من</h1>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <!-- درس‌ها -->
+        <section class="tab-content active">
+            <div class="content-header">
+                <h2>درس‌های من</h2>
+            </div>
+            <div id="lessons-container"></div>
+        </section>
+
+        <!-- هفته‌ها -->
+        <section class="tab-content">
+            <div class="content-header">
+                <h2>برنامه هفتگی درس‌ها</h2>
+            </div>
+            <div class="lesson-selector">
+                <label>انتخاب درس:</label>
+                <select id="week-lesson-select" onchange="loadWeeksForLesson(this.value)">
+                    <option value="">-- انتخاب کنید --</option>
+                </select>
+            </div>
+            <div id="weeks-container"></div>
+        </section>
+    </main>
+
+    <footer class="admin-footer">
+        <div class="footer-inner">
+            <div class="footer-section">
+                <span class="footer-text">پروگرس</span>
+            </div>
+            <div class="footer-section">
+                <span class="footer-text"> Wrote By ArefSeifi ©</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="icons.js"></script>
+    <script>
+        
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const linkId = urlParams.get('link');
+
+        if (linkId && linkId !== 'public-view.html') {
+            loadPublicData(linkId);
+        }
+
+        async function loadPublicData(linkId) {
+            const { data: linkData } = await sb
+                .from('public_links')
+                .select('user_id')
+                .eq('link_id', linkId)
+                .single();
+
+            if (!linkData) {
+                document.querySelector('.admin-main').innerHTML = 
+                    '<div class="empty-state">❌ لینک نامعتبر است</div>';
+                return;
+            }
+
+            const userId = linkData.user_id;
+            await loadLessons(userId);
+            await loadLessonSelect(userId);
+        }
+
+        // ====== درس‌ها ======
+        async function loadLessons(userId) {
+            const { data, error } = await sb
+                .from('lessons')
+                .select('*')
+                .eq('user_id', userId)
+                .order('created_at');
+
+            const container = document.getElementById('lessons-container');
+            if (error || !data || data.length === 0) {
+                container.innerHTML = '<div class="empty-state">هنوز درسی اضافه نشده</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            for (const lesson of data) {
+                container.appendChild(await createLessonCard(lesson, userId));
+            }
+        }
+
+        async function createLessonCard(lesson, userId) {
+            const card = document.createElement('div');
+            card.className = 'lesson-card';
+            
+            const iconData = LESSON_ICONS.find(i => i.id === lesson.icon_id) || LESSON_ICONS[0];
+            
+            const { data: sources } = await sb
+                .from('sources')
+                .select('*')
+                .eq('user_id', userId)
+                .eq('lesson_id', lesson.id)
+                .order('created_at');
+            
+            let sourcesHTML = '';
+            let totalTests = 0;
+            let doneTests = 0;
+            
+            if (sources && sources.length > 0) {
+                sourcesHTML = `<div class="sources-section"><div class="sources-header"><h4>${UI_ICONS.book} منابع (${sources.length})</h4></div>`;
+                
+                for (const source of sources) {
+                    totalTests += source.total_tests || 0;
+                    doneTests += source.done_tests || 0;
+                    
+                    const { data: chapters } = await sb
+                        .from('chapters')
+                        .select('*')
+                        .eq('source_id', source.id)
+                        .order('created_at');
+                    
+                    let chaptersHTML = '';
+                    if (chapters && chapters.length > 0) {
+                        chaptersHTML = '<div class="chapters-list">';
+                        chaptersHTML += chapters.map(ch => {
+                            const total = ch.total_tests || 0;
+                            const done = ch.done_tests || 0;
+                            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+                            return `
+                                <div class="chapter-item">
+                                    <span class="chapter-title">${UI_ICONS.chapter} ${ch.title}</span>
+                                    <div class="chapter-stats">
+                                        <span class="stat-done">${UI_ICONS.done} ${done}</span>
+                                        <span class="stat-remaining">${UI_ICONS.remaining} ${total - done}</span>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: ${pct}%"></div>
+                                        </div>
+                                        <span>${pct}%</span>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+                        chaptersHTML += '</div>';
+                    }
+                    
+                    const remaining = (source.total_tests || 0) - (source.done_tests || 0);
+                    sourcesHTML += `
+                        <div class="source-item">
+                            <div class="source-header">
+                                <div>
+                                    <div class="source-title">${UI_ICONS.book} ${source.title}</div>
+                                    <div class="source-stats-row">
+                                        <span class="stat">${UI_ICONS.total} کل: ${source.total_tests || 0}</span>
+                                        <span class="stat stat-done">${UI_ICONS.done} زده: ${source.done_tests || 0}</span>
+                                        <span class="stat stat-remaining">${UI_ICONS.remaining} مانده: ${remaining}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            ${chaptersHTML}
+                        </div>
+                    `;
+                }
+                sourcesHTML += '</div>';
+            } else {
+                sourcesHTML = `<div class="sources-section"><div class="sources-header"><h4>${UI_ICONS.book} منابع</h4></div><div class="empty-state" style="padding: 16px;">هنوز منبعی اضافه نشده</div></div>`;
+            }
+            
+            const progress = totalTests > 0 ? Math.round((doneTests / totalTests) * 100) : 0;
+            
+            card.innerHTML = `
+                <div class="lesson-card-header">
+                    <div class="lesson-info">
+                        <div class="lesson-icon">${iconData.svg}</div>
+                        <div>
+                            <div class="lesson-name">${lesson.name}</div>
+                            <div class="lesson-summary">
+                                ${UI_ICONS.total} ${totalTests} تست | ${UI_ICONS.done} ${doneTests} زده | ${UI_ICONS.progress} ${progress}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lesson-body open">
+                    <div class="lesson-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>${UI_ICONS.progress} پیشرفت کل</span>
+                            <span>${progress}%</span>
+                        </div>
+                    </div>
+                    ${sourcesHTML}
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // ====== هفته‌ها ======
+        async function loadLessonSelect(userId) {
+            const { data } = await sb
+                .from('lessons')
+                .select('id, name')
+                .eq('user_id', userId)
+                .order('created_at');
+            
+            const select = document.getElementById('week-lesson-select');
+            select.innerHTML = '<option value="">-- انتخاب کنید --</option>';
+            
+            if (data) {
+                data.forEach(lesson => {
+                    select.innerHTML += `<option value="${lesson.id}">${lesson.name}</option>`;
+                });
+            }
+        }
+
+        async function loadWeeksForLesson(lessonId) {
+            const container = document.getElementById('weeks-container');
+            if (!lessonId) {
+                container.innerHTML = '<div class="empty-state">یک درس را انتخاب کن</div>';
+                return;
+            }
+            
+            const { data: weeks } = await sb
+                .from('weeks')
+                .select('*')
+                .eq('lesson_id', lessonId)
+                .order('week_number');
+            
+            if (!weeks || weeks.length === 0) {
+                container.innerHTML = '<div class="empty-state">هنوز هفته‌ای برای این درس تعریف نشده</div>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            for (const week of weeks) {
+                const weekCard = document.createElement('div');
+                weekCard.className = 'week-card';
+                
+                const { data: parts } = await sb
+                    .from('parts')
+                    .select('*')
+                    .eq('week_id', week.id)
+                    .order('part_number');
+                
+                let partsHTML = '';
+                if (parts && parts.length > 0) {
+                    partsHTML = '<div class="parts-grid">';
+                    partsHTML += parts.map(part => `
+                        <div class="part-card ${part.is_done ? 'done' : ''}">
+                            <div class="part-header">
+                                <span class="part-number">${UI_ICONS.part} پارت ${part.part_number}</span>
+                                <span>${part.is_done ? UI_ICONS.check : UI_ICONS.uncheck}</span>
+                            </div>
+                            <div class="part-day">${UI_ICONS.calendar} ${part.day_name} - ${part.day_date}</div>
+                            <div class="part-tests">
+                                <span>${UI_ICONS.test} تست زده: ${part.tests_done || 0}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                    partsHTML += '</div>';
+                }
+                
+                weekCard.innerHTML = `
+                    <div class="week-header">
+                        <div>
+                            <div class="week-title">${UI_ICONS.week} هفته ${week.week_number}</div>
+                            <div class="week-date">${UI_ICONS.calendar} ${week.start_date} تا ${week.end_date}</div>
+                        </div>
+                    </div>
+                    ${partsHTML || '<div class="empty-state" style="padding: 16px;">هنوز پارتی اضافه نشده</div>'}
+                `;
+                
+                container.appendChild(weekCard);
+            }
+        }
+    </script>
+</body>
+</html>

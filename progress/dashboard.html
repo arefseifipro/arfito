@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدیریت | پروگرس</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+        <!-- لودینگ اولیه -->
+    <div id="initial-loading" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+        </div>
+        <div class="loading-text">در حال بارگذاری...</div>
+        <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- هدر -->
+    <header class="admin-header">
+        <div class="header-right">
+            <div class="logo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <path d="M9 22V12h6v10"/>
+                </svg>
+            </div>
+            <h1>پنل مدیریت</h1>
+        </div>
+        <div class="header-left">
+            <button class="btn-outline" id="copy-view-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                لینک صفحه کاربر
+            </button>
+            <button class="btn-outline danger" id="logout-btn">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                خروج
+            </button>
+        </div>
+    </header>
+
+    <!-- تب‌ها -->
+    <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="tab1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            درس‌ها و منابع
+        </button>
+        <button class="admin-tab" data-tab="tab2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            هفته‌ها و پارت‌ها
+        </button>
+    </div>
+
+    <!-- ====== تب ۱ ====== -->
+    <main class="admin-main">
+        <section id="tab1" class="tab-content active">
+            <div class="content-header">
+                <h2>درس‌های من</h2>
+                <button class="btn-primary" onclick="openLessonModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                    درس جدید
+                </button>
+            </div>
+            <div id="lessons-container"></div>
+        </section>
+
+        <!-- ====== تب ۲ ====== -->
+        <section id="tab2" class="tab-content">
+            <div class="content-header">
+                <h2>برنامه هفتگی درس‌ها</h2>
+            </div>
+            <div class="lesson-selector">
+                <label>انتخاب درس:</label>
+                <select id="week-lesson-select" onchange="loadWeeksForLesson(this.value)">
+                    <option value="">-- انتخاب کنید --</option>
+                </select>
+            </div>
+            <div id="weeks-container"></div>
+        </section>
+    </main>
+
+    <!-- مودال -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modal-title"></h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <form id="modal-form">
+                <div id="modal-fields"></div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary">ذخیره</button>
+                    <button type="button" class="btn-outline" onclick="closeModal()">انصراف</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- دکمه شناور راهنما -->
+<button id="help-fab" onclick="toggleHelpSlide()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+    <span>راهنما</span>
+</button>
+
+<!-- اسلاید راهنما -->
+<div id="help-slide" class="help-slide">
+    <div class="help-slide-header">
+        <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            راهنمای استفاده
+        </h3>
+        <button class="help-close" onclick="toggleHelpSlide()">✕</button>
+    </div>
+    <div class="help-slide-body">
+        <div class="help-section">
+            <div class="help-section-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z"/>
+                    <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/>
+                    <path d="M8 8h8M8 12h6"/>
+                </svg>
+            </div>
+            <div class="help-section-text">
+                <h4>تب درس‌ها</h4>
+                <p>مدیریت درس‌ها، منابع و فصل‌ها. هر درس رو باز کن تا منابع و فصل‌هاش رو ببینی. با دکمه + منبع و + فصل می‌تونی اضافه کنی.</p>
+            </div>
+        </div>
+        
+        <div class="help-section">
+            <div class="help-section-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+            </div>
+            <div class="help-section-text">
+                <h4>تب هفته‌ها</h4>
+                <p>برنامه هفتگی خودت رو بساز. برای هر درس هفته تعریف کن و توش پارت‌های روزانه اضافه کن. تعداد تست زده رو ثبت کن.</p>
+            </div>
+        </div>
+        
+        <div class="help-section">
+            <div class="help-section-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                </svg>
+            </div>
+            <div class="help-section-text">
+                <h4>ثبت تست</h4>
+                <p>برای اضافه کردن تست زده شده، از دکمه سبز "+ افزودن تست" استفاده کن. می‌تونی تعداد رو وارد کنی و به منبع یا فصل خاصی اضافه کنی.</p>
+            </div>
+        </div>
+        
+        <div class="help-section">
+            <div class="help-section-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+            </div>
+            <div class="help-section-text">
+                <h4>پارت‌ها</h4>
+                <p>هر هفته می‌تونه چند تا پارت داشته باشه. برای هر پارت روز، تعداد تست زده رو ثبت کن و با دکمه تیک بزن که انجام شده.</p>
+            </div>
+        </div>
+        
+        <div class="help-section">
+            <div class="help-section-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+                </svg>
+            </div>
+            <div class="help-section-text">
+                <h4>نوار پیشرفت</h4>
+                <p>برای هر درس یه نوار پیشرفت نشون داده میشه. هرچی بیشتر تست بزنی، درصد پیشرفتت بیشتر میشه.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="admin-footer">
+    <div class="footer-inner">
+        <div class="footer-section">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+            </svg>
+            <span class="footer-text">پروگرس</span>
+        </div>
+        <div class="footer-links">
+            <a class="footer-link" onclick="toggleHelpSlide()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                راهنما
+            </a>
+        </div>
+        <div class="footer-section">
+            <span class="footer-text"> Wrote By ArefSeifi ©</span>
+        </div>
+    </div>
+</footer>
+
+
+<!-- اوورلی برای بستن اسلاید -->
+<div id="help-overlay" class="help-overlay" onclick="toggleHelpSlide()"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="icons.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
