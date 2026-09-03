@@ -242,17 +242,26 @@
             
             return card;
         }
+function toggleAccordion(header) {
+    // پیدا کردن بدنه آکاردئون - برادر بعدی
+    let body = header.nextElementSibling;
+    
+    // اگه برادر بعدی نبود، دنبالش بگرد
+    while (body && !body.classList.contains('accordion-body')) {
+        body = body.nextElementSibling;
+    }
+    
+    if (body) {
+        body.classList.toggle('open');
+    }
+    
+    // چرخاندن فلش
+    const arrow = header.querySelector('.accordion-arrow');
+    if (arrow) {
+        arrow.classList.toggle('rotated');
+    }
+}
 
-        // ====== آکاردئون ======
-        function toggleAccordion(header) {
-            const body = header.nextElementSibling;
-            const arrow = header.querySelector('.accordion-arrow');
-            
-            if (body) {
-                body.classList.toggle('open');
-                if (arrow) arrow.classList.toggle('rotated');
-            }
-        }
 
         // ====== هفته‌ها ======
         async function loadLessonSelect(userId) {
