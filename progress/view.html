@@ -24,16 +24,22 @@
     </header>
 
     <main class="admin-main">
-        <!-- درس‌ها -->
-        <section class="tab-content active">
+        <!-- تب‌ها -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('lessons')">درس‌ها</button>
+            <button class="tab-btn" onclick="switchTab('weeks')">هفته‌ها</button>
+        </div>
+
+        <!-- محتوای تب درس‌ها -->
+        <section id="tab-lessons" class="tab-content active">
             <div class="content-header">
                 <h2>درس‌های من</h2>
             </div>
             <div id="lessons-container"></div>
         </section>
 
-        <!-- هفته‌ها -->
-        <section class="tab-content">
+        <!-- محتوای تب هفته‌ها -->
+        <section id="tab-weeks" class="tab-content">
             <div class="content-header">
                 <h2>برنامه هفتگی درس‌ها</h2>
             </div>
@@ -62,13 +68,24 @@
     <script src="config.js"></script>
     <script src="icons.js"></script>
     <script>
-        
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         const urlParams = new URLSearchParams(window.location.search);
         const linkId = urlParams.get('link');
 
         if (linkId && linkId !== 'public-view.html') {
             loadPublicData(linkId);
+        }
+
+        // ====== تغییر تب‌‌ها ======
+        function switchTab(tabName) {
+            // حذف کلاس active از همه تب‌‌ها و دکمه‌ها
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            // اضافه کلاس active به تب و دکمه مورد نظر
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            event.target.classList.add('active');
         }
 
         async function loadPublicData(linkId) {
@@ -127,7 +144,13 @@
             let doneTests = 0;
             
             if (sources && sources.length > 0) {
-                sourcesHTML = `<div class="sources-section"><div class="sources-header"><h4>${UI_ICONS.book} منابع (${sources.length})</h4></div>`;
+                // آکاردئون برای منابع
+                sourcesHTML = `<div class="sources-section">
+                    <div class="sources-header accordion-header" onclick="toggleAccordion(this)">
+                        <h4>${UI_ICONS.book} منابع (${sources.length})</h4>
+                        <span class="accordion-arrow">▼</span>
+                    </div>
+                    <div class="accordion-body">`;
                 
                 for (const source of sources) {
                     totalTests += source.total_tests || 0;
@@ -166,7 +189,7 @@
                     const remaining = (source.total_tests || 0) - (source.done_tests || 0);
                     sourcesHTML += `
                         <div class="source-item">
-                            <div class="source-header">
+                            <div class="source-header accordion-header" onclick="toggleAccordion(this)">
                                 <div>
                                     <div class="source-title">${UI_ICONS.book} ${source.title}</div>
                                     <div class="source-stats-row">
@@ -175,12 +198,15 @@
                                         <span class="stat stat-remaining">${UI_ICONS.remaining} مانده: ${remaining}</span>
                                     </div>
                                 </div>
+                                <span class="accordion-arrow">▼</span>
                             </div>
-                            ${chaptersHTML}
+                            <div class="accordion-body">
+                                ${chaptersHTML || '<div class="empty-state" style="padding: 8px;">هنوز فصلی اضافه نشده</div>'}
+                            </div>
                         </div>
                     `;
                 }
-                sourcesHTML += '</div>';
+                sourcesHTML += '</div></div>';
             } else {
                 sourcesHTML = `<div class="sources-section"><div class="sources-header"><h4>${UI_ICONS.book} منابع</h4></div><div class="empty-state" style="padding: 16px;">هنوز منبعی اضافه نشده</div></div>`;
             }
@@ -188,7 +214,7 @@
             const progress = totalTests > 0 ? Math.round((doneTests / totalTests) * 100) : 0;
             
             card.innerHTML = `
-                <div class="lesson-card-header">
+                <div class="lesson-card-header accordion-header" onclick="toggleAccordion(this)">
                     <div class="lesson-info">
                         <div class="lesson-icon">${iconData.svg}</div>
                         <div>
@@ -198,8 +224,9 @@
                             </div>
                         </div>
                     </div>
+                    <span class="accordion-arrow">▼</span>
                 </div>
-                <div class="lesson-body open">
+                <div class="accordion-body">
                     <div class="lesson-progress">
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: ${progress}%"></div>
@@ -214,6 +241,17 @@
             `;
             
             return card;
+        }
+
+        // ====== آکاردئون ======
+        function toggleAccordion(header) {
+            const body = header.nextElementSibling;
+            const arrow = header.querySelector('.accordion-arrow');
+            
+            if (body) {
+                body.classList.toggle('open');
+                if (arrow) arrow.classList.toggle('rotated');
+            }
         }
 
         // ====== هفته‌ها ======
@@ -283,13 +321,16 @@
                 }
                 
                 weekCard.innerHTML = `
-                    <div class="week-header">
+                    <div class="week-header accordion-header" onclick="toggleAccordion(this)">
                         <div>
                             <div class="week-title">${UI_ICONS.week} هفته ${week.week_number}</div>
                             <div class="week-date">${UI_ICONS.calendar} ${week.start_date} تا ${week.end_date}</div>
                         </div>
+                        <span class="accordion-arrow">▼</span>
                     </div>
-                    ${partsHTML || '<div class="empty-state" style="padding: 16px;">هنوز پارتی اضافه نشده</div>'}
+                    <div class="accordion-body">
+                        ${partsHTML || '<div class="empty-state" style="padding: 16px;">هنوز پارتی اضافه نشده</div>'}
+                    </div>
                 `;
                 
                 container.appendChild(weekCard);
