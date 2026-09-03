@@ -774,7 +774,7 @@ function openHelp() {
 }
 
 function showAbout() {
-    alert('داشبورد مدیریت تست‌زنی\nنسخه ۱.۰\nساخته شده با ❤️');
+    alert('داشبورد پروگرس \nنسخه ۱.۰\nساخته شده با ❤️');
 }
 // ====== تولید لینک آیدی تصادفی ======
 function generateLinkId() {
@@ -808,7 +808,7 @@ document.getElementById('copy-view-link').addEventListener('click', async functi
         }
 
         // ✅ این خط رو عوض کن با این:
-      publicLink = `${window.location.origin}/progress-tracker/view.html?link=${linkId}`;
+      publicLink = `${window.location.origin}/progress/view.html?link=${linkId}`;
         localStorage.setItem(`public_link_${userId}`, publicLink);
     }
 
