@@ -34,7 +34,6 @@ function toggleAccordion(lessonId) {
     body.classList.toggle('open');
     toggle.classList.toggle('open');
 }
-
 // ====== LOAD LESSONS ======
 async function loadLessons() {
     const { data, error } = await sb
@@ -53,6 +52,31 @@ async function loadLessons() {
     for (const lesson of data) {
         container.appendChild(await createLessonCard(lesson));
     }
+}
+
+async function loadinfos() {
+    const { data, error } = await sb
+        .from('profiles')
+        .select('first_name, last_name, grade, field')
+        .eq('id', currentUser.id)
+        .single();
+
+    console.log('currentUser.id =', currentUser.id);
+    console.log('data =', data);
+    console.log('error =', error);
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    if (!data) {
+        console.log('No profile found');
+        return;
+    }
+
+    document.getElementById('profile-info').textContent =
+        `${data.first_name} ${data.last_name} | ${data.grade} | ${data.field}`;
 }
 
 async function createLessonCard(lesson) {
@@ -812,16 +836,62 @@ document.getElementById('copy-view-link').addEventListener('click', async functi
         localStorage.setItem(`public_link_${userId}`, publicLink);
     }
 
-    try {
-        await navigator.clipboard.writeText(publicLink);
-        showToast('✅ لینک اختصاصی شما کپی شد!', 'success');
-    } catch (err) {
-        prompt('لینک اختصاصی شما (کپی کنید):', publicLink);
-    }
+    openShareModal(publicLink);
 });
+// ====== اشتراک لینک ======
+// ====== توابع مودال اشتراک ======
+function openShareModal(link) {
+    const modal = document.getElementById('share-modal');
+    if (!modal) {
+        console.error('مودال وجود نداره!');
+        return;
+    }
+    
+    // لینک رو توی input بذار
+    document.getElementById('share-link').value = link;
+    
+    // مودال رو نشون بده
+    modal.style.display = 'flex';
+}
+
+function closeShareModal(event) {
+    if (event && event.target !== event.currentTarget) return;
+    document.getElementById('share-modal').style.display = 'none';
+}
+
+async function copyShareLink() {
+    const link = document.getElementById('share-link');
+    try {
+        await navigator.clipboard.writeText(link.value);
+        const btn = document.querySelector('.copy-btn span');
+        btn.textContent = '✓ کپی شد';
+        setTimeout(() => btn.textContent = 'کپی', 2000);
+    } catch (err) {
+        link.select();
+        document.execCommand('copy');
+        showToast('✅ لینک کپی شد!', 'success');
+    }
+}
+
+function shareVia(platform) {
+    const link = document.getElementById('share-link').value;
+    const text = encodeURIComponent('پیشرفت درس‌هات رو ببین!');
+    
+    let url = '';
+    if (platform === 'telegram') {
+        url = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${text}`;
+    } else if (platform === 'whatsapp') {
+        url = `https://wa.me/?text=${text}%20${encodeURIComponent(link)}`;
+    }
+    
+    if (url) window.open(url, '_blank');
+}
+
+
 
 
 // ====== START ======
 checkAuth();
+loadinfos();
 loadLessons();
 loadLessonSelect();

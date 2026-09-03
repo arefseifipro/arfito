@@ -19,7 +19,7 @@
                     <path d="M9 22V12h6v10"/>
                 </svg>
             </div>
-            <h1>پیشرفت من</h1>
+            <h1 id="profile-info"></h1>
         </div>
     </header>
 
@@ -89,6 +89,8 @@
         }
 
         async function loadPublicData(linkId) {
+
+
             const { data: linkData } = await sb
                 .from('public_links')
                 .select('user_id')
@@ -102,9 +104,10 @@
             }
 
             const userId = linkData.user_id;
-            await loadLessons(userId);
-            await loadLessonSelect(userId);
-        }
+
+    await loadLessons(userId);
+    await loadLessonSelect(userId);
+}
 
         // ====== درس‌ها ======
         async function loadLessons(userId) {
@@ -345,6 +348,7 @@ function toggleAccordion(header) {
                 container.appendChild(weekCard);
             }
         }
+        
     </script>
 </body>
 </html>

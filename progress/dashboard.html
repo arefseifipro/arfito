@@ -28,34 +28,37 @@
     </div>
 
     <!-- هدر -->
-    <header class="admin-header">
-        <div class="header-right">
-            <div class="logo">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <path d="M9 22V12h6v10"/>
-                </svg>
-            </div>
-            <h1>پنل مدیریت</h1>
+   <header class="admin-header">
+    <div class="header-right">
+        <div class="logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <path d="M9 22V12h6v10"/>
+            </svg>
         </div>
-        <div class="header-left">
-            <button class="btn-outline" id="copy-view-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                </svg>
-                لینک صفحه کاربر
-            </button>
-            <button class="btn-outline danger" id="logout-btn">
-                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16 17 21 12 16 7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
-                </svg>
-                خروج
-            </button>
+        <div class="profile-badge">
+            <h1 id="profile-info"></h1>
         </div>
-    </header>
+    </div>
+    <div class="header-left">
+        <button class="btn-outline" id="copy-view-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            <span>لینک صفحه کاربر</span>
+        </button>
+        <button class="btn-outline danger" id="logout-btn">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            <span>خروج</span>
+        </button>
+    </div>
+</header>
+
 
     <!-- تب‌ها -->
     <div class="admin-tabs">
@@ -213,6 +216,26 @@
                 <h4>نوار پیشرفت</h4>
                 <p>برای هر درس یه نوار پیشرفت نشون داده میشه. هرچی بیشتر تست بزنی، درصد پیشرفتت بیشتر میشه.</p>
             </div>
+        </div>
+    </div>
+</div>
+<!-- مودال اشتراک -->
+<div id="share-modal" class="modal-overlay" style="display: none;" onclick="closeShareModal(event)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>اشتراک‌گذاری</h3>
+            <button class="modal-close" onclick="closeShareModal()">✕</button>
+        </div>
+        <p class="modal-subtitle"> برای اطلاع دیگران از وضعیت تحصیلی شما، میتوانید این لینک را به اشتراک بگذارید!</p>
+        <div class="share-link-box">
+            <input type="text" id="share-link" readonly value="https://progress.ir/user/12345">
+            <button class="copy-btn" onclick="copyShareLink()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span>کپی</span>
+            </button>
         </div>
     </div>
 </div>

@@ -22,13 +22,11 @@
             </div>
             <h1>پروگرس</h1>
             <p class="subtitle">پیگیری پیشرفت درس‌هات</p>
-
             <div class="tabs">
                 <button class="tab active" onclick="showTab('login')">ورود</button>
                 <button class="tab" onclick="showTab('register')">ثبت‌نام</button>
             </div>
 
-            <!-- فرم ورود -->
             <form id="login-form" class="auth-form">
                 <div class="form-group">
                     <label>نام کاربری</label>
@@ -53,36 +51,83 @@
             </form>
 
             <!-- فرم ثبت‌نام -->
-            <form id="register-form" class="auth-form hidden">
+           <!-- فرم ثبت‌نام -->
+<form id="register-form" class="auth-form hidden">
+
+    <!-- مرحله اول: یوزرنیم و رمز -->
+        <div id="step-1">
+            <div class="form-group">
+                <label>نام کاربری</label>
+                <div class="input-wrapper">
+                    <input type="text" id="reg-username" placeholder="نام کاربری" required>
+                </div>
+                <p class="hint">فقط حروف انگلیسی</p>
+            </div>
+            
+            <div class="form-group">
+                <label>رمز عبور</label>
+                <div class="input-wrapper">
+                    <input type="password" id="reg-password" placeholder="حداقل ۸ کاراکتر + عدد" required>
+                    <button type="button" class="toggle-password" onclick="togglePassword('reg-password', this)">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="hint">حداقل ۸ کاراکتر، حاوی عدد</p>
+            </div>
+            <div class="form-group">
+                <label>تکرار رمز عبور</label>
+                <div class="input-wrapper">
+                    <input type="password" id="reg-password2" placeholder="تکرار رمز" required>
+                </div>
+            </div>
+            <button type="button" class="btn-primary" onclick="goToStep2()">مرحله بعد</button>
+            <p id="reg-error" class="error-msg"></p>
+        </div>
+
+        <!-- مرحله دوم: اطلاعات شخصی -->
+        <div id="step-2" style="display: none;">
+            <div class="form-row">
                 <div class="form-group">
-                    <label>نام کاربری</label>
-                    <div class="input-wrapper">
-                        <input type="text" id="reg-username" placeholder="نام کاربری" required>
-                    </div>
-                    <p class="hint">فقط حروف انگلیسی</p>
+                    <label>نام</label>
+                    <input type="text" id="first-name" placeholder="مثلاً: علی" required>
                 </div>
                 <div class="form-group">
-                    <label>رمز عبور</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="reg-password" placeholder="حداقل ۸ کاراکتر + عدد" required>
-                        <button type="button" class="toggle-password" onclick="togglePassword('reg-password', this)">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <p class="hint">حداقل ۸ کاراکتر، حاوی عدد</p>
+                    <label>نام خانوادگی</label>
+                    <input type="text" id="last-name" placeholder="مثلاً: مرادی" required>
                 </div>
-                <div class="form-group">
-                    <label>تکرار رمز عبور</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="reg-password2" placeholder="تکرار رمز" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn-primary">ثبت‌ام</button>
-                <p id="reg-error" class="error-msg"></p>
-            </form>
+            </div>
+            
+            <div class="form-group">
+                <label>پایه تحصیلی</label>
+                <select id="grade" required>
+                    <option value="">-- انتخاب کنید --</option>
+                    <option value="متوسطه اول">متوسطه اول</option>
+                    <option value="دهم">دهم</option>
+                    <option value="یازدهم">یازدهم</option>
+                    <option value="کنکور">کنکور</option>
+                </select>
+            </div>
+        
+        <div class="form-group" id="field-group" style="display: none;">
+            <label>رشته تحصیلی</label>
+            <select id="field">
+                <option value="">-- انتخاب کنید --</option>
+                <option value="ریاضی">ریاضی</option>
+                <option value="تجربی">تجربی</option>
+                <option value="انسانی">انسانی</option>
+                <option value="سایر">سایر</option>
+            </select>
+        </div>
+        
+        <button type="submit" class="btn-primary">ثبت‌نام</button>
+        <button type="button" class="btn-secondary" onclick="backToStep1()" style="margin-top: 8px;">بازگشت</button>
+        <p id="reg-error-2" class="error-msg"></p>
+    </div>
+</form>
+
         </div>
     </div>
     
