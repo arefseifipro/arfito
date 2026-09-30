@@ -1,6 +1,12 @@
-/* =========================================
-   استایل‌های عمومی (برای نمایش در مرورگر)
-   ========================================= */
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('./fonts/Vazirmatn-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
+body {
+    font-family: 'Vazirmatn', sans-serif;
+}
 body {
     font-family: 'Vazirmatn', sans-serif;
     background-color: #f0f2f5; /* رنگ پس‌زمینه ملایم‌تر */
