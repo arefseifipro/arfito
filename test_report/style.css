@@ -7,6 +7,9 @@
 body {
     font-family: 'Vazirmatn', sans-serif;
 }
+* {
+    font-family: inherit;
+}
 body {
     font-family: 'Vazirmatn', sans-serif;
     background-color: #f0f2f5;
