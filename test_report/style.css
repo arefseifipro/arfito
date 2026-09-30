@@ -9,10 +9,6 @@
     src: url('./fonts/Vazirmatn-Bold.woff2') format('woff2');
     font-weight: 700;
 }
-
-body{
-    font-family: 'Vazirmatn', sans-serif;
-}
 * {
     font-family: inherit;
 }
